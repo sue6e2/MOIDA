@@ -9,7 +9,7 @@ class MakeGroupPopupContent extends Component{
                         <h2>스터디 그룹 만들기</h2>
                         <div>This is MakeGroupPopup Body</div>
                         <div>
-                            <button type="button" onClick={this.props.onClose}>close</button>
+                            <button type="button" onClick={this.props.onClose}>취소</button>
                         </div>
                     </div>
                 </div>
