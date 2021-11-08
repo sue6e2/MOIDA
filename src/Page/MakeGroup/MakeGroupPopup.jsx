@@ -7,7 +7,14 @@ class MakeGroupPopupContent extends Component{
                 <div className="makegroup_full_layer">
                     <div className="makegroup_common_alert">
                         <h2>스터디 그룹 만들기</h2>
-                        <div>This is MakeGroupPopup Body</div>
+                        <div>
+                            function NameInput() {
+                                    <div>
+                                        <h4>제목</h4>
+                                        <input type="text" placeholder="입력하세요" />
+                                    </div>            
+                            }
+                        </div>
                         <div>
                             <button type="button" onClick={this.props.onClose}>취소</button>
                         </div>
