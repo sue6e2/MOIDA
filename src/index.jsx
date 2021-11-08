@@ -18,7 +18,7 @@ const Root = () => {
           <Route exact path="/SignIn" component={SignIn}></Route>
           <Route exact path="/SignIn" component={SignIn}></Route>
           <Route exact path="/Main" component={Main}></Route>         
-          <Route exact path="/MakeGroupPopupContent" component={MakeGroupPopupContent}></Route>
+          
         
         </Switch>
       </div>
