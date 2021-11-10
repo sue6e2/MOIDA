@@ -6,8 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import LandingPage from './Page/LandingPage/LandingPage';
 import SignIn from './Page/SignIn/SignIn';
 import Main from './Page/Main/Main';
-import MakeGroupPopupContent from './Page/MakeGroup/MakeGroupPopup';
-
+import GroupPage from './Page/Group/Group';
 
 const Root = () => {
   return (
@@ -17,9 +16,8 @@ const Root = () => {
           <Route exact path="/" component={LandingPage}></Route>
           <Route exact path="/SignIn" component={SignIn}></Route>
           <Route exact path="/SignIn" component={SignIn}></Route>
-          <Route exact path="/Main" component={Main}></Route>         
-          
-        
+          <Route exact path="/Main" component={Main}></Route>
+          <Route exact path="/Group" component={GroupPage}></Route>
         </Switch>
       </div>
     </Router>
