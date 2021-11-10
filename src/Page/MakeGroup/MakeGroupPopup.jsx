@@ -124,7 +124,7 @@ class MakeGroupPopupContent extends Component{
                         <h2>스터디 그룹 만들기</h2>
                         <div>                            
                             <h4>스터디 이름</h4>
-                            <input type="text" name="gruopName" value={this.state.groupName} onChange={this.handleValueChange} placeholder="입력하세요" autoFocus required/>                             
+                            <input type="text" name="groupName" value={this.state.groupName} onChange={this.handleValueChange} placeholder="입력하세요" autoFocus required/>                             
                         </div>
                         <div>                            
                             <h4>최대 인원</h4>

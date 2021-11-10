@@ -18,7 +18,7 @@ app.use('/groupMember', groupMember);
 
 app.listen(port, () => console.log('express server is listening on port 5000'));
 
-const data=fs.readFileSync('../database/database.json');
+const data=fs.readFileSync('./database/database.json');
 const conf = JSON.parse(data);
 const mysql = require('mysql');
 
