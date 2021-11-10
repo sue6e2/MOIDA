@@ -36,3 +36,37 @@
     box-sizing:border-box;
     font-size: 16px;
 }
+
+
+.HashWrapOuter {
+    display: inline;
+    flex-wrap: wrap;
+}
+.HashWrapInner {
+    margin-top: 5px;
+    background: #ffeee7;
+    border-radius: 56px;
+    padding: 4px 8px;
+    color: #ff6e35;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.HashInput {
+    width: auto;
+    margin: 10px;
+    display: inline-flex;
+    outline: none;
+    cursor: text;
+    line-height: 2rem;
+    margin-bottom: 0.75rem;
+    min-width: 8rem;
+    border: none;
+  }
+ 
