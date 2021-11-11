@@ -21,8 +21,11 @@ app.use('/makeGroup', makeGroup);
 const groupMember = require('./Routes/GroupMember.js');
 app.use('/groupMember', groupMember);
 
+const signUp = require('./Routes/SignUp.js');
+app.use('/signUp', signUp);
 
-app.listen(port, () => console.log('express server is listening on port 5000'));
+
+app.listen(port, () => console.log('express server is listening on port 5001'));
 
 const data=fs.readFileSync('./database/database.json');
 const conf = JSON.parse(data);
@@ -36,4 +39,3 @@ const connection = mysql.createConnection({
     database: conf.database
 })
 connection.connect();
-
