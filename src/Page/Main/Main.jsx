@@ -5,29 +5,48 @@ import '../../Page/MakeGroup/MakeGroupPopup.css';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
 import GroupCard from '../../Components/Card/Card';
+import axios from 'axios';
 
 class Main extends Component {
     constructor(props) {
         super(props); //why?
 
         this.state = {
-            isOpenPopup: false,
+            // isOpenPopup: false,
             MyGroupData: []
         }
 
-        this.openPopup = this.openPopup.bind(this);
-        this.closePopup = this.closePopup.bind(this);
+        if (this.state.MyGroupData.length == 0) {
+            this.getGroupData();
+        }
+        // this.openPopup = this.openPopup.bind(this);
+        // this.closePopup = this.closePopup.bind(this);
     }
-    openPopup() {
-        this.setState({
-            isOpenPopup: true,
-        })
+
+    getGroupData = async () => {
+        try {
+            let response;
+            response = await axios.get("http://localhost:5001/myGroupList");
+            console.log(response);
+            if (response.data.length != 0) {
+                this.setState({
+                    MyGroupData: response.data
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
-    closePopup() {
-        this.setState({
-            isOpenPopup: false,
-        })
-    }
+    // openPopup() {
+    //     this.setState({
+    //         isOpenPopup: true,
+    //     })
+    // }
+    // closePopup() {
+    //     this.setState({
+    //         isOpenPopup: false,
+    //     })
+    // }
     render() {
         return (
             <div className="MainPage">

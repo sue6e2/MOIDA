@@ -10,7 +10,7 @@ class GroupPage extends Component {
         }
     }
     onClickButton = async () => {
-        await axios.get("http://localhost:5000/groupMember").then((res) => console.log(res.data.test))
+        await axios.get("http://localhost:5001/groupMember").then((res) => console.log(res.data.test))
     }
 
     inviteMember = () => {

@@ -1,13 +1,13 @@
 const fs = require('fs');
 const express = require('express');
-const bodyParser=require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
-const port=process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 const cors = require('cors');
 app.use(cors());
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const myTodo = require('./Routes/MyTodo.js');
 app.use('/myTodo', myTodo);
@@ -22,9 +22,9 @@ const groupMember = require('./Routes/GroupMember.js');
 app.use('/groupMember', groupMember);
 
 
-app.listen(port, () => console.log('express server is listening on port 5000'));
+app.listen(port, () => console.log('express server is listening on port 5001'));
 
-const data=fs.readFileSync('./database/database.json');
+const data = fs.readFileSync('./database/database.json');
 const conf = JSON.parse(data);
 const mysql = require('mysql');
 

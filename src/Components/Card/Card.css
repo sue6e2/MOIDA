@@ -1,6 +1,8 @@
 .GroupCard {
     width: 199px;
     height: 241px;
+    margin-right: 22px;
+    float: left;
 }
 
 .GroupCard .GroupColor {
