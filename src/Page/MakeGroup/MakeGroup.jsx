@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Group from "../../Components/Member/Group";
 import MakeGroupPopupContent from "./MakeGroupPopup";
+import axios from 'axios';
 
 //group data 관리(API응답해서 데이터베이스에있는 그룹 data 보여줌)
 class MakeGroup extends Component{
@@ -31,9 +32,8 @@ class MakeGroup extends Component{
     }
  
     callApi=async()=>{
-        const response=await fetch('/makeGroup');
-        const body = await response.json();
-        return body;
+        await axios.get("http://localhost:5000/makeGroup").then((res) => console.log(res.data.test))
+        
     }
 
     render(){
