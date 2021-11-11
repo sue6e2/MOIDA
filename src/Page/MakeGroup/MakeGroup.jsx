@@ -1,16 +1,32 @@
 import React, {Component} from "react";
 import Group from "../../Components/Member/Group";
+import MakeGroupPopupContent from "./MakeGroupPopup";
 
-//group data 관리
+//group data 관리(API응답해서 데이터베이스에있는 그룹 data 보여줌)
 class MakeGroup extends Component{
+    constructor(props){
+        super(props);
 
-    state={
-        groups:""
+        this.state={
+            groups:''
+            
+            }
+        this.stateRefresh=this.stateRefresh.bind(this);
+    }
+
+    stateRefresh(){
+        this.setState({
+            groups:''
+            
+        });
+        this.callApi()
+        .then(res => this.setState({groups : res}))
+        .catch(err => console.log(err));
     }
 
     componentDidMount(){
         this.callApi()
-        .then(res=>this.setState({groups : res}))
+        .then(res => this.setState({groups : res}))
         .catch(err => console.log(err));
     }
  
@@ -38,9 +54,10 @@ class MakeGroup extends Component{
                                 status={c.status}
                             />
                         )
-                    }): ""
+                    }): ''
                 }
                 <Group/>
+                <MakeGroupPopupContent stateRefresh = {this.stateRefresh}/>
             </div>
         );
     }

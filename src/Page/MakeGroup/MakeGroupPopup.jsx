@@ -66,13 +66,11 @@ class MakeGroupPopupContent extends Component{
   }
 
     handleFormSubmit(e) {
-
-        e.preventDefault()
-
+        e.preventDefault()       
         this.addGroup()
-
         .then((response) => {
             console.log(response.data);
+            //this.props.stateRefresh();
         })
         this.setState({
             groupName: '',           
@@ -81,7 +79,7 @@ class MakeGroupPopupContent extends Component{
             discription: '',
             status: "public",     
         })           
-        window.location.reload();
+       
     }
 
     handleValueChange(e) {
