@@ -9,6 +9,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+const myTodo = require('./Routes/MyTodo.js');
+app.use('/myTodo', myTodo);
+
+const myGroupList = require('./Routes/MyGroupList.js');
+app.use('/myGroupList', myGroupList);
+
 const makeGroup = require('./Routes/MakeGroup.js');
 app.use('/makeGroup', makeGroup);
 

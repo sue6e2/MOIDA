@@ -31,7 +31,12 @@ router.post('/', function(req, res) {
 })
 
 router.get('/', function (req, res) {
-    res.send({ test: "this is test for api" });
+    connection.query(
+        'SELECT * FROM moidagroup',
+        (err,rows,fields)=>{
+            res.send(rows);
+        }
+    )
 })
 
 module.exports = router;
