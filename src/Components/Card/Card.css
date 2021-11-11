@@ -1,0 +1,29 @@
+.GroupCard {
+    width: 199px;
+    height: 241px;
+}
+
+.GroupCard .GroupColor {
+    width: 199px;
+    height: 202px;
+    margin-bottom: 1px;
+}
+
+.GroupCard .GroupName {
+    width: 199px;
+    height: 38px;
+}
+
+.GroupCard .GroupName .GroupNameTitle {
+    font-family: SDGtNeocUni-bLt;
+    font-size: 25px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: black;
+    box-sizing: content-box;
+    margin: auto auto auto 7px;
+}
