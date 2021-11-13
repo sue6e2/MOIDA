@@ -9,6 +9,7 @@ class SignUp extends Component {
             id: "",
             password: "",
             passwordCheck: "",
+            passwordRight: "",
             name: ""
         };
     }
@@ -34,11 +35,59 @@ class SignUp extends Component {
         console.log(this.state.passwordCheck);
     }
 
+    onChangePasswordRight = (e) => {
+        this.setState({
+            passwordRight: e.target.value
+        })
+        console.log(this.state.passwordRight);
+    }
+
     onChangeName = (e) => {
         this.setState({
             name: e.target.value
         })
         console.log(this.state.name);
+    }
+
+    doesPasswordMatch(){
+        const { password, passwordCheck, passwordRight } = this.state;
+        if(!passwordRight){
+            return password === passwordCheck;
+        }else{
+            return password === passwordRight;
+        }
+        
+    }
+
+    confirmPasswordClassName(){
+        const { passwordCheck, passwordRight } = this.state;
+
+        if(passwordCheck) {
+            return this.doesPasswordMatch() ? 'is-vaild' : 'is-invaild';
+        }
+        if(passwordRight){
+            return this.doesPasswordMatch() ? 'is-vaild' : 'is-invaild';
+        }
+    }
+
+    renderFeedbackMessage(){
+        const { passwordCheck, passwordRight } = this.state;
+
+        if(passwordCheck){
+            if(!this.doesPasswordMatch()){
+                return(
+                    <div className = "invaildFeedback text-start m-0 p-0">비밀번호가 일치하지 않습니다.</div>
+                );
+            }
+        }
+        if(passwordRight){
+            if(this.doesPasswordMatch()){
+                return(
+                    <div className = "vaildFeedback text-start m-0 p-0">비밀번호가 일치합니다.</div>
+                )
+            }
+            
+        }
     }
 
     callApi = async () => {
@@ -78,17 +127,17 @@ class SignUp extends Component {
                                     required
                                     onChange={this.onChangePassword} />
                             </div>
-                            <div className="text-start">비밀번호 확인</div>
-                            <div class="input-group mt-1 mb-3">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    required
-                                    onChange={this.onChangePasswordCheck} />
-                            </div>
-                            <span className="d-none">비밀번호가 일치합니다.</span>
-                            <span className="d-none">비밀번호가 일치하지 않습니다.</span>
-                            <div className="text-start">이름</div>
+                            <div className = "text-start">비밀번호 확인</div>
+                    <div class="input-group mt-1">
+                        <input
+                            type="password"
+                            class={`form-control ${this.confirmPasswordClassName()}`}
+                            required
+                            onBlur = {this.onChangePasswordCheck}
+                            onChange = {this.onChangePasswordRight} />
+                    </div>
+                    {this.renderFeedbackMessage()}
+                            <div className="text-start mt-3">이름</div>
                             <div class="input-group mt-1 mb-3">
                                 <input
                                     type="text"
