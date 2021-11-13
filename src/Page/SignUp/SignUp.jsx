@@ -68,6 +68,7 @@ class SignUp extends Component {
                             class="form-control"
                             required
                             onChange = {this.onChangeID} />
+                        <button class="bt btn-main" type="button" id="button-addon2">중복확인</button>
                     </div>
                     <div className = "text-start">비밀번호</div>
                     <div class="input-group mt-1 mb-3">
