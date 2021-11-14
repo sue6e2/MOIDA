@@ -10,8 +10,7 @@ class SignUp extends Component {
             password: "",
             passwordCheck: "",
             name: "",
-            isIdValidate: false,
-            isPwValidate: false
+            isIdValidate: false
         };
     }
 
@@ -43,31 +42,31 @@ class SignUp extends Component {
         console.log(this.state.name);
     }
 
-    doesPasswordMatch(){
+    doesPasswordMatch() {
         const { password, passwordCheck } = this.state;
 
         return password === passwordCheck;
     }
 
-    confirmPasswordClassName(){
+    confirmPasswordClassName() {
         const { passwordCheck } = this.state;
 
-        if(passwordCheck) {
+        if (passwordCheck) {
             return this.doesPasswordMatch() ? 'is-vaild' : 'is-invaild';
         }
     }
 
-    renderFeedbackMessage(){
+    renderFeedbackMessage() {
         const { passwordCheck } = this.state;
 
-        if(passwordCheck){
-            if(!this.doesPasswordMatch()){
-                return(
-                    <div className = "invaildFeedback text-start m-0 p-0">비밀번호가 일치하지 않습니다.</div>
+        if (passwordCheck) {
+            if (!this.doesPasswordMatch()) {
+                return (
+                    <div className="invaildFeedback text-start m-0 p-0">비밀번호가 일치하지 않습니다.</div>
                 );
-            }else{
-                return(
-                    <div className = "vaildFeedback text-start m-0 p-0">비밀번호가 일치합니다.</div>
+            } else {
+                return (
+                    <div className="vaildFeedback text-start m-0 p-0">비밀번호가 일치합니다.</div>
                 );
             }
         }
@@ -107,14 +106,11 @@ class SignUp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if (this.state.isIdValidate == true && this.state.isPwValidate == true) {
+        if (this.state.isIdValidate == true) {
             this.callSignUpApi();
         }
-        else if(this.state.isPwValidate == true){
+        else {
             alert('아이디 중복확인이 필요합니다.')
-        }
-        else{
-            alert('비밀번호가 일치하지 않습니다.')
         }
     }
 
@@ -146,16 +142,16 @@ class SignUp extends Component {
                                     required
                                     onChange={this.onChangePassword} />
                             </div>
-                            <div className = "text-start">비밀번호 확인</div>
-                    <div class="input-group mt-1">
-                        <input
-                            type="password"
-                            class={`form-control ${ this.confirmPasswordClassName()}` }
-                            required
-                            onChange = {this.onChangePasswordCheck}
-                        />
-                    </div>
-                    {this.renderFeedbackMessage()}
+                            <div className="text-start">비밀번호 확인</div>
+                            <div class="input-group mt-1">
+                                <input
+                                    type="password"
+                                    class={`form-control ${this.confirmPasswordClassName()}`}
+                                    required
+                                    onChange={this.onChangePasswordCheck}
+                                />
+                            </div>
+                            {this.renderFeedbackMessage()}
                             <div className="text-start mt-3">이름</div>
                             <div class="input-group mt-1 mb-3">
                                 <input
