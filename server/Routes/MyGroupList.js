@@ -20,11 +20,11 @@ router.get('/', function (req, res) {
     //후에 moidagroup 정보들을 내가 가입한 그룹들만 보이게 조건 변경
    connection.query("SELECT g.group_id, g.name, g.discription, g.status,m.user_id, m.status, m.favorite from moidagroup g, (account a INNER JOIN moidagroup_member m) where a.id=m.user_id and g.group_id=m.group_id "
     , function(err,rows,fields){
-       if(err){
-           console.log("데이터 가져오기 실패");
+       if(!err){
+        console.log(rows);
+        res.send(rows);   
        }else{
-           console.log(rows);
-           res.send(rows);
+        console.log("데이터 가져오기 실패");
        }
    });
 })

@@ -14,9 +14,5 @@ const connection = mysql.createConnection({
 })
 connection.connect();
 
-router.get('/', function (req, res) {
-    res.send({ test: "this is test for api" });
-})
-
 
 module.exports = router;
