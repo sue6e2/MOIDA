@@ -7,7 +7,7 @@ class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            id: "",
             password: ""
         };
     }
@@ -16,12 +16,12 @@ class SignIn extends Component {
         this.setState({
             id: e.target.value
         })
-        console.log(this.state.email);
+        console.log(this.state.id);
     }
 
     onChangePassword = (e) => {
         this.setState({
-            name: e.target.value
+            password: e.target.value
         })
         console.log(this.state.password);
     }
@@ -37,12 +37,14 @@ class SignIn extends Component {
     // }
 
     callApi = async () => {
-        // const response = await Axios.get("http://localhost:5001/SignUp",
-        // {
-        //     headers: {
-        //     },
-        //     params: { account_id: values.id, password: this.state.passwordEntered, userName: this.state.usernameEntered, token: values.token }
-        // })
+        const response = await axios.post("http://localhost:5001/signIn",
+            {
+                headers: {
+                },
+                params: { user_id: this.state.id, user_pw: this.state.password }
+            })
+        console.log(response);
+
     }
 
     render() {
@@ -54,7 +56,7 @@ class SignIn extends Component {
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
                         <meta name="google-signin-client_id" content="639146971200-k5eu0kv67g03gbv05saum2b2ecafglhm.apps.googleusercontent.com"></meta>
                     </head>
-                    <form className="frmSignIn" name="signin" method="post" onSubmit={this.callApi()} >
+                    <div className="frmSignIn"  >
                         <div className="content">
                             <h1 className="text-center my-4">MOIDA</h1>
                             <div className="d-grid gap-2">
@@ -84,11 +86,11 @@ class SignIn extends Component {
                                     onChange={this.onChangePassword} />
                             </div>
                             <div className="d-grid gap-2">
-                                <button className="bt btn-main my-3" type="submit">로그인</button>
+                                <button className="bt btn-main my-3" onClick={() => { this.callApi(); }}>로그인</button>
                             </div>
                             <p>계정이 없으신가요? <button type="button" className="btn-a" onClick={() => { window.location.href = "/SignUp" }}>회원가입</button></p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         );
