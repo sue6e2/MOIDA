@@ -184,3 +184,13 @@
   border: none;
   color:#027ed7;
 } 
+
+.invaildFeedback{
+  color: #ff3535;
+  font-size: 14px;
+}
+
+.vaildFeedback{
+  color: #0088e9;
+  font-size: 14px;
+}
