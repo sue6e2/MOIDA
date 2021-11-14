@@ -1,7 +1,7 @@
 import { Component } from "react";
 import './SignUp.css'
 import axios from "axios";
-
+import CryptoJS from "crypto-js";
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +51,7 @@ class SignUp extends Component {
             })
         console.log(response);
         if (response.data.code == 0) {
+            sessionStorage.setItem('greetingName', CryptoJS.AES.encrypt(this.state.name, 'greeting key'));
             window.location.href = '/Congratulation';
         }
     }
