@@ -29,6 +29,7 @@ app.use('/signIn', signIn);
 
 app.listen(port, () => console.log(`express server is listening on port ${port}`));
 
+/*
 const data = fs.readFileSync('./database/database.json');
 const conf = JSON.parse(data);
 const mysql = require('mysql');
@@ -41,7 +42,7 @@ const connection = mysql.createConnection({
     database: conf.database
 })
 connection.connect();
-/*
+
 const dotenv = require("dotenv");
 
 dotenv.config();

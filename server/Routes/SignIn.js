@@ -52,9 +52,7 @@ router.post('/', function(req, res) {
                         err = new Error("입력하신 ID 혹은 비밀번호가 일치하지 않습니다.")
                         err.statusCode = 102;  
                         res.send(`${statusCode}: ${err}`)*/
-                        
-                        //res.send(err);
-                    }
+                      }
                 })
             }
         }catch(err){

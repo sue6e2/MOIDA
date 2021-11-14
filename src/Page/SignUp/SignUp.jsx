@@ -1,7 +1,7 @@
 import { Component } from "react";
 import './SignUp.css'
 import axios from "axios";
-
+import CryptoJS from "crypto-js";
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,8 @@ class SignUp extends Component {
             id: "",
             password: "",
             passwordCheck: "",
-            name: ""
+            name: "",
+            isIdValidate: false
         };
     }
 
@@ -41,13 +42,46 @@ class SignUp extends Component {
         console.log(this.state.name);
     }
 
-    callApi = async () => {
-        // const response = await Axios.get("http://localhost:5001/SignUp",
-        // {
-        //     headers: {
-        //     },
-        //     params: { account_id: values.id, password: this.state.passwordEntered, userName: this.state.usernameEntered, token: values.token }
-        // })
+    callSignUpApi = async () => {
+        const response = await axios.post("http://localhost:5001/signUp",
+            {
+                headers: {
+                },
+                params: { account_id: this.state.id, account_pwd: this.state.password, account_name: this.state.name }
+            })
+        console.log(response);
+        if (response.data.code == 0) {
+            sessionStorage.setItem('greetingName', CryptoJS.AES.encrypt(this.state.name, 'greeting key'));
+            window.location.href = '/Congratulation';
+        }
+    }
+
+    idDoubleCheck = async () => {
+        const response = await axios.get("http://localhost:5001/signUp/idDoubleCheck", {
+            headers: {
+
+            },
+            params: { account_id: this.state.id }
+        })
+        console.log(response);
+        if (response.data.code == 0) {
+            alert("사용가능한 아이디 입니다.")
+            this.setState({ isIdValidate: true })
+        }
+        else if (response.data.code == 101) {
+            alert("이미 존재하는 아이디입니다.")
+            this.setState({ isIdValidate: false })
+        }
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        if (this.state.isIdValidate == true) {
+            this.callSignUpApi();
+        }
+        else {
+            alert('아이디 중복확인이 필요합니다.')
+        }
     }
 
     render() {
@@ -58,7 +92,7 @@ class SignUp extends Component {
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
                     </head>
-                    <form className="frmSignUp" name="signup" method="post" onSubmit={this.callApi()} >
+                    <form className="frmSignUp" name="signup" method="post" onSubmit={this.handleSubmit} >
                         <div className="content">
                             <h1 className="text-center my-4">MOIDA</h1>
                             <div className="text-start">아이디</div>
@@ -68,7 +102,7 @@ class SignUp extends Component {
                                     class="form-control"
                                     required
                                     onChange={this.onChangeID} />
-                                <button class="bt btn-main" type="button" id="button-addon2">중복확인</button>
+                                <button class="bt btn-main" type="button" id="button-addon2" onClick={() => { this.idDoubleCheck() }}>중복확인</button>
                             </div>
                             <div className="text-start">비밀번호</div>
                             <div class="input-group mt-1 mb-3">
