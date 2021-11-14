@@ -9,6 +9,7 @@ import SignUp from './Page/SignUp/SignUp';
 import Main from './Page/Main/Main';
 import MakeGroup from './Page/MakeGroup/MakeGroup';
 import GroupPage from './Page/Group/Group';
+import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
 
 const Root = () => {
   return (
@@ -18,8 +19,9 @@ const Root = () => {
           <Route exact path="/" component={LandingPage}></Route>
           <Route exact path="/SignIn" component={SignIn}></Route>
           <Route exact path="/SignUp" component={SignUp}></Route>
-          <Route exact path="/Main" component={Main}></Route>         
-          <Route exact path="/MakeGroup" component={MakeGroup}></Route>         
+          <Route exact path="/Congratulation" component={CongratulationPage}></Route>
+          <Route exact path="/Main" component={Main}></Route>
+          <Route exact path="/MakeGroup" component={MakeGroup}></Route>
           <Route exact path="/Group" component={GroupPage}></Route>
         </Switch>
       </div>
