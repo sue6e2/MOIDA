@@ -1,0 +1,53 @@
+.CongratulationPage {
+    background-color: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.CongratulationPage h1 {
+    width: 300px;
+    height: 100px;
+    margin: 200px auto 85px auto;
+    font-family: NanumGothic;
+    font-size: 80px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #414141;
+}
+
+.CongratulationPage p {
+    width: 400px;
+    height: 80px;
+    margin: 0 auto 0 auto;
+    font-family: NanumGothic;
+    font-size: 60px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #414141;
+}
+
+.CongratulationPage .BtGoToService {
+    box-sizing: border-box;
+    margin: 0;
+    width: 510px;
+    height: 89px;
+    padding: 28px 95px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 0;
+    background-color: #0096ff;
+    color: white;
+    font-family: NanumGothic;
+    font-size: 30px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+}
