@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 })
 connection.connect();
 
-const util = require('util');
+//const util = require('util');
 
 router.post('/', function (req, res) {
     //console.log(`= = = > req: ${util.inspect(req)}`);
