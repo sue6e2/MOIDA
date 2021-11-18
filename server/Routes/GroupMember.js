@@ -18,17 +18,19 @@ connection.connect();
 router.post('/inviteMember', function (req, res) {
 
     //가짜데이터(db에 만들어졌음). 프론트에서 현재 세션의 user_id와 group_id를 보내주면 params를 통해 가져와야할듯
-    const user_id = req.query.user_id;
-    const group_id = req.query.group_id;
-    const status = req.query.status;
+    sql = `INSERT INTO moidagroup_member (user_id, group_id, status) values (?,?,?,0,0)`;
+    let user_id = req.body.params.user_id;
+    let group_id = req.body.params.group_id;
+    let status = req.body.params.status;
+    let params = [user_id, group_id, status];
 
-    connection.query(`insert into moidagroup_member (user_id,group_id,status) values (${user_id},${group_id},${status})`, function (err, rows) {
-        if (err) { throw err; }
+    connection.query(sql, params, function (err, rows, fields) {
+        if(!err){
+            res.send({code : 0, rows});
+            }else{
+                res.send({code: 102, errorMessage: err })
+            }
     })
-})
-
-router.get('/', function (req, res) {
-    res.send({ test: "this is test for api" });
 })
 
 module.exports = router;
