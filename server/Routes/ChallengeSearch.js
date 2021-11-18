@@ -15,8 +15,15 @@ const connection = mysql.createConnection({
 connection.connect();
 
 router.get('/', function (req, res) {
-    res.send({ test: "this is test for api" });
-})
 
+    connection.query(function (err, rows) {
+        'SELECT name, discription, status, startdate,enddate, image, badge, rate FROM moidagroup'
+        if(!err){
+            res.send({code:0, rows});
+        }else{
+            res.send({code:101, err});
+        }
+    })
+})
 
 module.exports = router;

@@ -8,8 +8,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-const myTodo = require('./Routes/MyTodo.js');
-app.use('/myTodo', myTodo);
+const challengeSearch = require('./Routes/ChallengeSearch.js');
+app.use('/challengeSearch', challengeSearch);
 
 const myGroupList = require('./Routes/MyGroupList.js');
 app.use('/myGroupList', myGroupList);
