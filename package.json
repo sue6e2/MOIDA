@@ -27,10 +27,7 @@
     "start:server": "nodemon ./server/server.js"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": []
   },
   "browserslist": {
     "production": [
