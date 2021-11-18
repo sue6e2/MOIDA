@@ -14,8 +14,8 @@ app.use('/challengeSearch', challengeSearch);
 const myGroupList = require('./Routes/MyGroupList.js');
 app.use('/myGroupList', myGroupList);
 
-const makeGroup = require('./Routes/MakeGroup.js');
-app.use('/makeGroup', makeGroup);
+// const makeGroup = require('./Routes/MakeGroup.js');
+// app.use('/makeGroup', makeGroup);
 
 const groupMember = require('./Routes/GroupMember.js');
 app.use('/groupMember', groupMember);

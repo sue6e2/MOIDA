@@ -10,6 +10,8 @@ import Main from './Page/Main/Main';
 import MakeGroup from './Page/MakeGroup/MakeGroup';
 import GroupPage from './Page/Group/Group';
 import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
+import ShowChallenge from './Page/ShowChallenge/ShowChallenge';
+import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
 
 const Root = () => {
   return (
@@ -23,6 +25,7 @@ const Root = () => {
           <Route exact path="/Main" component={Main}></Route>
           <Route exact path="/MakeGroup" component={MakeGroup}></Route>
           <Route exact path="/Group" component={GroupPage}></Route>
+          <Route exact path="/ChallengeSearch" component={ChallengeSearch}></Route>
         </Switch>
       </div>
     </Router>
