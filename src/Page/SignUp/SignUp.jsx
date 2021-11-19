@@ -10,8 +10,26 @@ class SignUp extends Component {
             password: "",
             passwordCheck: "",
             name: "",
-            isIdValidate: false
+            isIdValidate: false,
+            isGoogleLogin: false,
+            googleId: sessionStorage.getItem('googleId'),
+            googleName: sessionStorage.getItem('googleName')
         };
+        this.isGoogleLogin();
+    }
+
+    isGoogleLogin = () => {
+        const googleId = sessionStorage.getItem('googleId')
+        const googleName = sessionStorage.getItem('googleName')
+
+        if(googleId && googleName){
+            this.setState({
+                isGoogleLogin: true,
+                googleId: googleId,
+                googleName: googleName
+            })
+        }
+        console.log(this.state.googleId + this.state.googleName);
     }
 
     onChangeID = (e) => {
@@ -118,47 +136,50 @@ class SignUp extends Component {
         return (
             <div className="container_">
                 <div className="SignUp">
-                    <head>
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                    </head>
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossOrigin="anonymous"></script>
                     <form className="frmSignUp" name="signup" method="post" onSubmit={this.handleSubmit} >
                         <div className="content">
                             <h1 className="text-center my-4">MOIDA</h1>
                             <div className="text-start">아이디</div>
-                            <div class="input-group mt-1 mb-3">
+                            <div className="input-group mt-1 mb-3">
                                 <input
+                                    id = "id"
                                     type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     required
-                                    onChange={this.onChangeID} />
-                                <button class="bt btn-main" type="button" id="button-addon2" onClick={() => { this.idDoubleCheck() }}>중복확인</button>
+                                    onChange={this.onChangeID}
+                                    value ={this.state.googleId}
+                                />
+                                <button className="bt btn-main" type="button" id="button-addon2" onClick={() => { this.idDoubleCheck() }}>중복확인</button>
                             </div>
                             <div className="text-start">비밀번호</div>
-                            <div class="input-group mt-1 mb-3">
+                            <div className="input-group mt-1 mb-3">
                                 <input
                                     type="password"
-                                    class="form-control"
+                                    className="form-control"
                                     required
                                     onChange={this.onChangePassword} />
                             </div>
                             <div className="text-start">비밀번호 확인</div>
-                            <div class="input-group mt-1">
+                            <div className="input-group mt-1">
                                 <input
                                     type="password"
-                                    class={`form-control ${this.confirmPasswordClassName()}`}
+                                    className={`form-control ${this.confirmPasswordClassName()}`}
                                     required
                                     onChange={this.onChangePasswordCheck}
                                 />
                             </div>
                             {this.renderFeedbackMessage()}
                             <div className="text-start mt-3">이름</div>
-                            <div class="input-group mt-1 mb-3">
+                            <div className="input-group mt-1 mb-3">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     required
-                                    onChange={this.onChangeName} />
+                                    onChange={this.onChangeName}
+                                    value = {this.state.googleName}
+                                />
                             </div>
                             <div className="d-grid gap-2">
                                 <button className="bt btn-main my-3" type="submit">가입하기</button>
