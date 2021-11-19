@@ -10,6 +10,8 @@ import Main from './Page/Main/Main';
 import MakeGroup from './Page/MakeGroup/MakeGroup';
 import GroupPage from './Page/Group/Group';
 import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
+import ShowChallenge from './Page/ShowChallenge/ShowChallenge';
+import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
 import CryptoJS from 'crypto-js';
 
 const Root = () => {
@@ -29,6 +31,7 @@ const Root = () => {
           <Route exact path="/SignIn" component={needSignIn == true ? SignIn : Main}></Route>
           <Route exact path="/SignUp" component={SignUp}></Route>
           <Route exact path="/Congratulation" component={CongratulationPage}></Route>
+          <Route exact path="/ChallengeSearch" component={ChallengeSearch}></Route>
           <Route exact path="/Main" component={needSignIn == true ? SignIn : Main}></Route>
           {/* <Route exact path="/MakeGroup" component={MakeGroup}></Route>
           <Route exact path="/Group" component={GroupPage}></Route> */}

@@ -16,12 +16,20 @@ connection.connect();
 
 router.get('/', function (req, res) {
 
-    connection.query(function (err, rows) {
-        'SELECT name, discription, status, startdate,enddate, image, badge, rate FROM moidagroup'
+    let name = req.query.name;
+    console.log(name);
+
+    let sql = `SELECT name FROM moidagroup WHERE name LIKE '%${name}%'`;
+
+    connection.query(sql, name, (err, rows, result) =>{
+        
         if(!err){
             res.send({code:0, rows});
+            console.log("에러x");
+            console.log(rows);
         }else{
             res.send({code:101, err});
+            console.log("에러");
         }
     })
 })
