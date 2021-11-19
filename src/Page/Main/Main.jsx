@@ -31,6 +31,7 @@ class Main extends Component {
     }
 
     userData = Data.getUserData();
+    userRealId = sessionStorage.getItem('accountRealId');
 
     getChallengeData = async () => {
         try {
@@ -38,7 +39,8 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { account_id: this.userData.accountId }
+                    params: { account_id: this.userRealId }
+                    
                 }
             );
             console.log(response);

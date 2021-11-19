@@ -52,6 +52,7 @@ class SignIn extends Component {
             })
         console.log(response);
         if (response.data.code == 0) {
+            sessionStorage.setItem("accountRealId", response.data.accountRealId);
             sessionStorage.setItem("userData", CryptoJS.AES.encrypt(JSON.stringify(response.data.data), 'signIn key').toString());
             window.location.href = "/Main"
         } else if (response.data.code == 101) {

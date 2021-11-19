@@ -10,7 +10,7 @@ import Main from './Page/Main/Main';
 import MakeGroup from './Page/MakeGroup/MakeGroup';
 import GroupPage from './Page/Group/Group';
 import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
-import ShowChallenge from './Page/ShowChallenge/ShowChallenge';
+
 import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
 import CryptoJS from 'crypto-js';
 

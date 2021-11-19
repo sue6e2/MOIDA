@@ -18,8 +18,9 @@ class ChallengeSearch extends Component {
         {
           headers:{},
           params : { name : this.state.challengeName }
+          
         })
-
+        console.log(response);
         this.setState({
           challenge: response.data.rows
       })
