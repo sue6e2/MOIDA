@@ -2,6 +2,7 @@ import { Component } from "react";
 import './SignIn.css'
 import axios from "axios";
 import GoogleLogin from 'react-google-login';
+import CryptoJS from "crypto-js";
 
 class SignIn extends Component {
     constructor(props) {
@@ -50,7 +51,14 @@ class SignIn extends Component {
                 params: { user_id: this.state.id, user_pw: this.state.password }
             })
         console.log(response);
-
+        if (response.data.code == 0) {
+            sessionStorage.setItem("userData", CryptoJS.AES.encrypt(JSON.stringify(response.data.data), 'signIn key').toString());
+            window.location.href = "/Main"
+        } else if (response.data.code == 101) {
+            alert("입력하신 ID가 존재하지 않습니다")
+        } else if (response.data.code == 102) {
+            alert("비밀번호가 일치하지 않습니다.")
+        }
     }
 
     render() {

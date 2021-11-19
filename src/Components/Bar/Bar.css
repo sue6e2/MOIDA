@@ -1,8 +1,7 @@
 .TopBar {
-    background-color: #ffffff;
+    background-color: #fbfad4;
     display: flex;
     height: 111px;
-    border-bottom: solid 1px black;
 }
 
 .TopBar button {
@@ -13,40 +12,25 @@
     cursor: pointer;
 }
 
-.TopBar .MyToDoList {
-    height: 51px;
-    margin: 33px auto 30px 27px;
-    font-family: NanumGothicOTF;
-    font-size: 45px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -2.25px;
-    text-align: left;
-    color: #2b2b2b;
-}
-
 .MoidaLogo {
     width: 194px;
     height: 51px;
     margin: 28px 27px 30px 41px;
 }
 
-.TopBarSettingIcon {
-    margin-left: auto;
-    width: 56px;
-    height: 56px;
-    margin-top: 23px;
+.TopBarSearchInput {
+    width: 400px;
+    margin: 23px 0 0 auto;
+    height: 60px;
+    border-radius: 20px;
+    border: 0;
     float: right;
-    cursor: pointer;
 }
 
-.TopBarLogoutIcon {
+.TopBarProfileIcon {
+    margin: 23px 23px 0 23px;
     width: 56px;
     height: 56px;
-    margin-top: 23px;
-    margin-left: 12px;
-    margin-right: 27px;
+    float: right;
     cursor: pointer;
 }
