@@ -12,20 +12,29 @@ import GroupPage from './Page/Group/Group';
 import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
 import ShowChallenge from './Page/ShowChallenge/ShowChallenge';
 import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
+import CryptoJS from 'crypto-js';
 
 const Root = () => {
+
+  let needSignIn = false;
+
+  if (sessionStorage.getItem('userData') == null) {
+    needSignIn = true;
+  }
+
+
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/" component={LandingPage}></Route>
-          <Route exact path="/SignIn" component={SignIn}></Route>
+          <Route exact path="/SignIn" component={needSignIn == true ? SignIn : Main}></Route>
           <Route exact path="/SignUp" component={SignUp}></Route>
           <Route exact path="/Congratulation" component={CongratulationPage}></Route>
-          <Route exact path="/Main" component={Main}></Route>
-          <Route exact path="/MakeGroup" component={MakeGroup}></Route>
-          <Route exact path="/Group" component={GroupPage}></Route>
           <Route exact path="/ChallengeSearch" component={ChallengeSearch}></Route>
+          <Route exact path="/Main" component={needSignIn == true ? SignIn : Main}></Route>
+          {/* <Route exact path="/MakeGroup" component={MakeGroup}></Route>
+          <Route exact path="/Group" component={GroupPage}></Route> */}
         </Switch>
       </div>
     </Router>

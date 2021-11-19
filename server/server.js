@@ -1,12 +1,12 @@
 const fs = require('fs');
 const express = require('express');
-const bodyParser=require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5001;
 const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const challengeSearch = require('./Routes/ChallengeSearch.js');
 app.use('/challengeSearch', challengeSearch);
@@ -54,13 +54,13 @@ const pool = mysql.createPool({
     port: conf.port,
     database: conf.database,
     connectionLimit: 10,
-    waitForConnections: true  
+    waitForConnections: true
 });
 
 pool.on('enqueue', function () {
     console.log('Waiting for available connection slot');
   });
-  
+
 module.exports = pool;
 
 pool.getConnection(function(err, connection){
