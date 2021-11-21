@@ -1,7 +1,7 @@
 .ChallengeCard {
     width: 359px;
     height: 285.7px;
-    margin-right: 114px;
+    margin-right: 100px;
 }
 
 .ChallengeCard .MemberCountSection {
@@ -12,6 +12,7 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    border-radius: 5px 0 0 0;
 }
 
 .ChallengeCard .MemberCountSection .MemberImg {

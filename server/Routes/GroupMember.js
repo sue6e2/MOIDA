@@ -15,17 +15,17 @@ const connection = mysql.createConnection({
 connection.connect();
 
 router.post('/inviteMember', function (req, res) {
-
+    console.log(req);
     let sql = `INSERT INTO moidagroup_member values (?,?,0)`;
-    let user_id = req.query.master_realid;
+    let user_id = req.body.params.master_realid;
     let group_id = req.body.params.group_id;
     let params = [user_id, group_id];
 
     connection.query(sql, params, function (err, rows, fields) {
-        if(!err){
-            res.send({code : 0, rows});
-        }else{
-            res.send({code: 102, errorMessage: err })
+        if (!err) {
+            res.send({ code: 0, rows });
+        } else {
+            res.send({ code: 102, errorMessage: err })
         }
     })
 })

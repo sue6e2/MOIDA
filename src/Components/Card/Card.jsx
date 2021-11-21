@@ -1,25 +1,29 @@
 import "./Card.css";
-import rabbit from '../../res/img/rabbit.jpg';
 import icon_members from '../../res/img/icon-members.svg';
 
 const ChallengeCard = (props) => {
+    let end = new Date(props.endDate);
+    let start = new Date(props.startDate);
+    var gap = end.getTime() - start.getTime();
+    var result = Math.floor(gap / (1000 * 60 * 60 * 24));
+
     return (
         <div className="ChallengeCard">
             <div style={{ height: "177px", position: "relative" }}>
-                <img className="ChallengeImage" src={rabbit} ></img>
+                <img id="challenge-image" className="ChallengeImage" src={props.image} ></img>
                 <div className="MemberCountSection">
                     <img className="MemberImg" src={icon_members}></img>
-                    <p className="MemberCount">9명</p>
+                    <p className="MemberCount">{props.memberCount}명</p>
                 </div>
             </div>
-            <div className="ChallengeDate">챌린지 종료까지 D-10</div>
-            <p className="ChallengeName">하루에 하나씩 사진 보정 챌린지</p>
+            <div className="ChallengeDate">챌린지 종료까지 D-{result}</div>
+            <p className="ChallengeName">{props.name}</p>
             <div style={{ display: "flex" }}>
-                <div className="ChallengeRateGraph"><span /></div>
-                <p className="ChallengeRate">45%</p>
+                <div className="ChallengeRateGraph"><span style={{ width: `${props.rate}%` }} /></div>
+                <p className="ChallengeRate">{props.rate}%</p>
             </div>
 
-        </div>
+        </div >
     )
 }
 

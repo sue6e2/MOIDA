@@ -22,42 +22,37 @@ class SignUp extends Component {
         const googleId = sessionStorage.getItem('googleId')
         const googleName = sessionStorage.getItem('googleName')
 
-        if(googleId && googleName){
+        if (googleId && googleName) {
             this.setState({
                 isGoogleLogin: true,
                 googleId: googleId,
                 googleName: googleName
             })
         }
-        console.log(this.state.googleId + this.state.googleName);
     }
 
     onChangeID = (e) => {
         this.setState({
             id: e.target.value
         })
-        console.log(this.state.id);
     }
 
     onChangePassword = (e) => {
         this.setState({
             password: e.target.value
         })
-        console.log(this.state.password);
     }
 
     onChangePasswordCheck = (e) => {
         this.setState({
             passwordCheck: e.target.value
         })
-        console.log(this.state.passwordCheck);
     }
 
     onChangeName = (e) => {
         this.setState({
             name: e.target.value
         })
-        console.log(this.state.name);
     }
 
     doesPasswordMatch() {
@@ -136,20 +131,20 @@ class SignUp extends Component {
         return (
             <div className="container_">
                 <div className="SignUp">
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossOrigin="anonymous"></script>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossOrigin="anonymous"></script>
                     <form className="frmSignUp" name="signup" method="post" onSubmit={this.handleSubmit} >
                         <div className="content">
                             <h1 className="text-center my-4">MOIDA</h1>
                             <div className="text-start">아이디</div>
                             <div className="input-group mt-1 mb-3">
                                 <input
-                                    id = "id"
+                                    id="id"
                                     type="text"
                                     className="form-control"
                                     required
                                     onChange={this.onChangeID}
-                                    value ={this.state.googleId}
+                                    value={this.state.googleId}
                                 />
                                 <button className="bt btn-main" type="button" id="button-addon2" onClick={() => { this.idDoubleCheck() }}>중복확인</button>
                             </div>
@@ -178,7 +173,7 @@ class SignUp extends Component {
                                     className="form-control"
                                     required
                                     onChange={this.onChangeName}
-                                    value = {this.state.googleName}
+                                    value={this.state.googleName}
                                 />
                             </div>
                             <div className="d-grid gap-2">
