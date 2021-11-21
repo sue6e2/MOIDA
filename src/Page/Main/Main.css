@@ -1,10 +1,10 @@
 .MainPage .MyChallenge {
     box-sizing: border-box;
-    margin: 122px 200px auto 200px;
+    margin: 50px 200px auto 200px;
 }
 
 .MainPage .PoPularChallenge {
-    margin: 122px 200px 146px 200px;
+    margin: 50px 200px 146px 200px;
     box-sizing: border-box;
 }
 
@@ -22,14 +22,15 @@
 }
 
 .MainPage .MakeChallengeBt {
-    border-radius: 10px;
-    border: 1px solid black;
-    background-color: #c4c4c4;
-    width: 200px;
-    height: 200px;
+    border-radius: 5px;
+    border: solid 3px rgba(94, 94, 94, 0.6);
+    background-color: #f6f6f6;
+    width: 355px;
+    height: 259px;
     opacity: 1;
     cursor: pointer;
     text-align: center;
+    line-height: 250px;
 }
 
 .MainPage .MakeChallengeBtHide {
@@ -40,13 +41,15 @@
     text-align: center;
 }
 
-.MainPage .MakeChallengeBtHide p {
+.MainPage .MakeChallengeBtHide img {
     display: none;
 }
 
-.MainPage .MakeChallengeBt p {
-    font-size: 60px;
-    line-height: 1;
+.MainPage .MakeChallengeBt img {
+    width: 98px;
+    vertical-align: middle;
+    height: 98px;
+    object-fit: contain;
 }
 
 .MainPage .MakeChallengePopUp .CloseBt {

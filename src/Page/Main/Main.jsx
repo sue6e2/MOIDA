@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import '../../Page/MakeGroup/MakeGroupPopup.css';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
-import GroupCard from '../../Components/Card/Card';
+import ChallengeCard from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
 import rabbit from '../../res/img/rabbit.jpg';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
+import icon_plus from '../../res/img/icon-plus.svg';
 
 class Main extends Component {
     constructor(props) {
@@ -117,7 +118,7 @@ class Main extends Component {
         console.log(this.state.newChallengeVisibility);
         console.log(this.state.isBadgeValidate);
         if (this.state.isBadgeValidate == true) {
-            //this.makeChallenge();
+            this.makeChallenge();
         } else if (this.state.isBadgeValidate == false) {
             alert("칭호에 특수문자는 불가능합니다.")
         }
@@ -164,7 +165,9 @@ class Main extends Component {
                 <TopBar />
                 <div className="MyChallenge">
                     <h1>참여중인 챌린지</h1>
-                    {/* {
+                    <div style={{ display: "flex" }}>
+                        <ChallengeCard></ChallengeCard>
+                        {/* {
                         this.state.myChallengeData.map((current, index) => {
                             return (
                                 <GroupCard
@@ -173,12 +176,13 @@ class Main extends Component {
                             )
                         })
                     } */}
-                    <div
-                        className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
-                        onMouseEnter={() => { this.setState({ hide: false }) }}
-                        onMouseLeave={() => { this.setState({ hide: true }) }}
-                        onClick={() => { this.openPopup() }}>
-                        <p>+</p>
+                        <div
+                            className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
+                            onMouseEnter={() => { this.setState({ hide: false }) }}
+                            onMouseLeave={() => { this.setState({ hide: true }) }}
+                            onClick={() => { this.openPopup() }}>
+                            <img src={icon_plus}></img>
+                        </div>
                     </div>
                 </div>
                 <div className="PoPularChallenge">

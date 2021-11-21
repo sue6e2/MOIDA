@@ -1,7 +1,7 @@
 .TopBar {
     background-color: #fbfad4;
     display: flex;
-    height: 111px;
+    height: 70px;
 }
 
 .TopBar button {
@@ -15,20 +15,20 @@
 .MoidaLogo {
     width: 194px;
     height: 51px;
-    margin: 28px 27px 30px 41px;
+    margin: 15px 27px 30px 41px;
 }
 
 .TopBarSearchInput {
     width: 400px;
-    margin: 23px 0 0 auto;
-    height: 60px;
+    margin: 10px 0 0 auto;
+    height: 50px;
     border-radius: 20px;
     border: 0;
     float: right;
 }
 
 .TopBarProfileIcon {
-    margin: 23px 23px 0 23px;
+    margin: 10px 23px 0 23px;
     width: 56px;
     height: 56px;
     float: right;
