@@ -117,7 +117,7 @@ class Main extends Component {
         console.log(this.state.newChallengeVisibility);
         console.log(this.state.isBadgeValidate);
         if (this.state.isBadgeValidate == true) {
-            //this.makeChallenge();
+            this.makeChallenge();
         } else if (this.state.isBadgeValidate == false) {
             alert("칭호에 특수문자는 불가능합니다.")
         }

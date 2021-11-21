@@ -19,17 +19,14 @@ router.get('/', function (req, res) {
     let name = req.query.name;
     console.log(name);
 
-    let sql = `SELECT name FROM moidagroup WHERE name LIKE '%${name}%'`;
+    let sql = `SELECT name, description, status, image, rate, badge, startDate, endDate FROM moidagroup WHERE name LIKE '%${name}%'`;
 
     connection.query(sql, name, (err, rows, result) =>{
         
         if(!err){
-            res.send({code:0, rows});
-            console.log("에러x");
-            console.log(rows);
+            res.send({code:0, rows});         
         }else{
             res.send({code:101, err});
-            console.log("에러");
         }
     })
 })
