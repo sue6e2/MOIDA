@@ -48,3 +48,248 @@
     font-size: 60px;
     line-height: 1;
 }
+
+.MainPage .MakeChallengePopUp .CloseBt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.MainPage .MakeChallengePopUp .Title {
+    width: 270px;
+    height: 48px;
+    margin: 50px auto 35px auto;
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: black;
+}
+
+.MainPage .MakeChallengePopUp .ChallengeImage {
+    width: 314px;
+    height: 152px;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    margin: 0 auto;
+    display: block;
+}
+
+.MainPage .MakeChallengePopUp .ChallengeImgUpload {
+    width: 148px;
+    height: 32px;
+    margin: 11px auto 28px auto;
+    padding: 10px;
+    border: solid 1px black;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    display: flex;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: black;
+}
+
+.MainPage .MakeChallengePopUp .ChallengeImgUpload img {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    position: relative;
+    bottom: 4px;
+}
+
+.MainPage .MakeChallengePopUp .VisibilitySection {
+    margin: 0 635px 25px 205px;
+    display: inline-flex;
+}
+
+.MainPage .MakeChallengePopUp .VisibilityTitle {
+    width: 92px;
+    height: 21px;
+    font-family: Roboto;
+    margin: 3px 53px 3px 0;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+}
+
+.MainPage .MakeChallengePopUp .VisibilitySelectBox {
+    width: 305px;
+    height: 33px;
+    margin: 0;
+    border-radius: 10px;
+    border: solid 1px black;
+    background-color: white;
+    font-size: 20px;
+}
+
+.MainPage .MakeChallengePopUp .NameSection {
+    margin: 0 178px 25px 185px;
+    display: inline-flex;
+}
+
+.MainPage .MakeChallengePopUp .NameTitle {
+    width: 112px;
+    height: 21px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: auto 52px auto 0;
+}
+
+.MainPage .MakeChallengePopUp .NameInput {
+    width: 463px;
+    height: 36px;
+    border-radius: 10px;
+    border: solid 1px #000;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.MainPage .MakeChallengePopUp .DateSection {
+    margin: 0 254px 25px 185px;
+    display: inline-flex;
+}
+
+.MainPage .MakeChallengePopUp .DateSection p {
+    margin: auto 20px;
+    font-size: 30px;
+    font-family: Roboto;
+    line-height: 0.4;
+}
+
+.MainPage .MakeChallengePopUp .DateTitle {
+    width: 112px;
+    height: 21px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: auto 52px auto 0;
+}
+
+.MainPage .MakeChallengePopUp .DateInput {
+    width: 192px;
+    height: 36px;
+    border-radius: 10px;
+    border: solid 1px #000;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.MainPage .MakeChallengePopUp .BadgeSection {
+    margin: 0 178px 5px 252px;
+    display: inline-flex;
+}
+
+.MainPage .MakeChallengePopUp .BadgeTitle {
+    width: 45px;
+    height: 21px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: auto 52px auto 0;
+}
+
+.MainPage .MakeChallengePopUp .BadgeInput {
+    width: 463px;
+    height: 36px;
+    border-radius: 10px;
+    border: solid 1px #000;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.MainPage .MakeChallengePopUp .BadgeRule {
+    width: 250px;
+    height: 23px;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ff0707;
+    margin: 0 715px 29px 354px;
+}
+
+.MainPage .MakeChallengePopUp .DescriptionSection {
+    margin: 0 178px 24px 185px;
+    display: inline-flex;
+}
+
+.MainPage .MakeChallengePopUp .DescriptionTitle {
+    width: 112px;
+    height: 21px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: auto 52px 103px 0;
+}
+
+.MainPage .MakeChallengePopUp .DescriptionInput {
+    width: 463px;
+    height: 120px;
+    border-radius: 10px;
+    border: solid 1px #000;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.MainPage .MakeChallengePopUp .SubmitBt {
+    width: 120px;
+    height: 45px;
+    float: right;
+    margin-right: 30px;
+    border-radius: 10px;
+    background-color: #076df3;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 0;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+}
