@@ -17,7 +17,7 @@ connection.connect();
 //const util = require('util');
 
 router.post('/', function (req, res) {
-    //console.log(`= = = > req: ${util.inspect(req)}`);
+    
     const user_id = req.body.params.user_id;
     const user_pw = req.body.params.user_pw;
 
@@ -50,16 +50,10 @@ router.post('/', function (req, res) {
                             console.log(data2);
                             res.send({ code: 0, data: data[0], accountRealId : data2[0].id });
                         })
-                        
-                        
+               
                     } else {
                         console.log(err);
                         return res.send({ code: 102 });
-                        //res.status(406).json({message: err.message})
-                        /*
-                        err = new Error("입력하신 ID 혹은 비밀번호가 일치하지 않습니다.")
-                        err.statusCode = 102;  
-                        res.send(`${statusCode}: ${err}`)*/
                     }
                 })
             }
