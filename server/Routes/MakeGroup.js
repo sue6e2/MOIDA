@@ -34,22 +34,17 @@ router.post('/', upload.single('image'), function (req, res) {
     
     connection.query(sql, params, (err, rows, fields) => {
         if (!err) {
-            let g_id = `SELECT group_id from moidagroup, account where account_id = ${master_id}`
-
-            let sql2 = `INSERT INTO moidagroup_member values (?,?,?,0,0)`;
-            let user_id = req.query.master_id; // db의 user_id를 바꾸자
-            let group_id = g_id;
-            let status = req.body.params.status;
-            let params2 = [user_id, group_id, status];
-
-            connection.query(sql2, params2, function (err, rows, fields) {
+            let g_id = `SELECT group_id from moidagroup where master_id = ?`
+            const params2 = [master_id]
+            
+            connection.query(g_id, params2, function (err, data) {
                 if(!err){
-                    res.send({code : 0, rows});
+                    res.send({code : 0, data: data[data.length - 1]});
                 }else{
                     res.send({code: 101, errorMessage: err })
                 }
             })
-            res.send({ code: 0, rows });
+            //res.send({ code: 0, rows });
         } else {
             res.send({ code: 102, errorMessage: err })
         }
