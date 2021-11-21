@@ -6,6 +6,9 @@ import GroupCard from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
+import rabbit from '../../res/img/rabbit.jpg';
+import icon_camera from '../../res/img/icon-camera.svg';
+import icon_close from '../../res/img/icon-close.svg';
 
 class Main extends Component {
     constructor(props) {
@@ -23,6 +26,7 @@ class Main extends Component {
             newChallengeBadge: '',
             newChallengeStartDate: '',
             newChallengeEndDate: '',
+            isBadgeValidate: false
         }
 
         if (this.state.myChallengeData.length == 0) {
@@ -40,7 +44,7 @@ class Main extends Component {
                     headers: {
                     },
                     params: { account_id: this.userRealId }
-                    
+
                 }
             );
             console.log(response);
@@ -71,6 +75,21 @@ class Main extends Component {
             file: files[0],
             fileName: e.target.value
         })
+        console.log(files);
+        this.readImage(e.target);
+    }
+
+    readImage(input) {
+
+        if (input.files && input.files[0]) {
+
+            const reader = new FileReader()
+            reader.onload = e => {
+                const previewImage = document.getElementById("preview-Image");
+                previewImage.src = e.target.result
+            }
+            reader.readAsDataURL(input.files[0])
+        }
     }
 
     handleValueChange = (e) => {
@@ -80,9 +99,29 @@ class Main extends Component {
         })
     }
 
+    handleBadgeInput = (e) => {
+        var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+
+        if (special_pattern.test(e.target.value) == true) {
+
+        } else {
+            this.setState({
+                newChallengeBadge: e.target.value,
+                isBadgeValidate: true
+            })
+        }
+
+    }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.makeChallenge();
+        console.log(this.state.newChallengeVisibility);
+        console.log(this.state.isBadgeValidate);
+        if (this.state.isBadgeValidate == true) {
+            //this.makeChallenge();
+        } else if (this.state.isBadgeValidate == false) {
+            alert("칭호에 특수문자는 불가능합니다.")
+        }
+
     }
 
     makeChallenge = async () => {
@@ -91,8 +130,8 @@ class Main extends Component {
         formData.append('image', this.state.file);
         formData.append('name', this.state.newChallengeName);
         formData.append('description', this.state.newChallengeDescription);
-        formData.append('startDate', new Date(this.state.newChallengeStartDate));
-        formData.append('endDate', new Date(this.state.newChallengeEndDate));
+        formData.append('startDate', this.state.newChallengeStartDate);
+        formData.append('endDate', this.state.newChallengeEndDate);
         formData.append('badge', this.state.newChallengeBadge);
         try {
             let response = await axios(
@@ -106,6 +145,7 @@ class Main extends Component {
                     params: {
                         master_id: this.userData.accountId,
                         status: this.state.newChallengeVisibility,
+                        master_realid: this.userRealId
                     },
 
                 }
@@ -147,30 +187,46 @@ class Main extends Component {
 
                 <PopUp
                     isOpen={this.state.isOpenPopup}
-                    width={800}
-                    height={600}>
+                    width={1000}
+                    height={850}>
                     <div className="MakeChallengePopUp">
                         <form encType="multipart/form-data" onSubmit={this.handleFormSubmit}>
-                            <h1>챌린지 생성하기</h1>
-                            <input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
-                            <label>챌린지 이름:<input type="text" name="newChallengeName" onChange={this.handleValueChange} /></label>
-                            <label>챌린지 소개:<input type="text" name="newChallengeDescription" onChange={this.handleValueChange} /></label>
-                            <label>챌린지 기한(시작): <input type="text" name="newChallengeStartDate" onChange={this.handleValueChange} /></label>
-                            <label>챌린지 기한(끝): <input type="text" name="newChallengeEndDate" onChange={this.handleValueChange} /></label>
-                            <label>칭호명: <input type="text" name="newChallengeBadge" onChange={this.handleValueChange} /></label>
-                            <label>
-                                <input type="radio" name="newChallengeVisibility" value={0} onChange={(e) => { this.setState({ newChallengeVisibility: e.target.value }) }} />
-                                public
-                            </label>
-                            <label>
-                                <input type="radio" name="newChallengeVisibility" value={1} onChange={(e) => { this.setState({ newChallengeVisibility: e.target.value }) }} />
-                                private
-                            </label>
-                            <button type="submit">생성하기</button>
+                            <img className="CloseBt" src={icon_close} onClick={() => { this.closePopup() }} />
+                            <h1 className="Title">챌린지 생성</h1>
+                            <img id="preview-Image" src={rabbit} className="ChallengeImage" alt="챌린지 이미지"></img>
+                            <label for="input-file" className="ChallengeImgUpload">이미지 업로드<img src={icon_camera} /></label>
+                            <input style={{ display: "none" }} id="input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
+                            <div className="VisibilitySection">
+                                <label className="VisibilityTitle">공개 유무: </label>
+                                <select className="VisibilitySelectBox" id="cars" name="newChallengeVisibility" onChange={(e) => { this.setState({ newChallengeVisibility: e.target.value }) }}>
+                                    <option value="0">public </option>
+                                    <option value="1">private </option>
+                                </select>
+                            </div>
+                            <div className="NameSection">
+                                <label className="NameTitle">챌린지 이름: </label>
+                                <input required className="NameInput" type="text" name="newChallengeName" onChange={this.handleValueChange} />
+                            </div>
+                            <div className="DateSection">
+                                <label className="DateTitle">챌린지 기한: </label>
+                                <input required className="DateInput" type="date" title="" name="newChallengeStartDate" onChange={this.handleValueChange} />
+                                <p>~</p>
+                                <input required className="DateInput" type="date" title="" name="newChallengeEndDate" onChange={this.handleValueChange} />
+                            </div>
+                            <div className="BadgeSection">
+                                <label className="BadgeTitle">칭호: </label>
+                                <input required className="BadgeInput" type="text" maxLength={10} name="newChallengeBadge" onChange={this.handleBadgeInput} />
+                            </div>
+                            <p className="BadgeRule">※특수문자 제외, 10자 제한</p>
+                            <div className="DescriptionSection">
+                                <label className="DescriptionTitle">챌린지 소개: </label>
+                                <input required className="DescriptionInput" type="text" name="newChallengeDescription" onChange={this.handleValueChange} />
+                            </div>
+                            <button className="SubmitBt" type="submit">생성하기</button>
                         </form>
                     </div>
-                </PopUp>
-            </div>
+                </PopUp >
+            </div >
         );
     }
 }
