@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
-import ChallengeCard from '../../Components/Card/Card';
+import {ChallengeCard} from '../../Components/Card/Card';
 import {PopularityCard} from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
@@ -236,6 +236,7 @@ class Main extends Component {
                 </div>
                 <div className="PopularChallenge">
                     <h1>인기 챌린지</h1>
+                    <div style={{ display: "flex" }}>
                     {
                         this.state.popularityData.map((current, index) => {
                             var today = new Date();
@@ -249,10 +250,15 @@ class Main extends Component {
                                 <PopularityCard
                                     popularityName={current.name}
                                     dDay = {result}
+                                    image={current.image}
+                                    startDate={current.startDate}
+                                    endDate={current.endDate}
                                 />
                             )
                         })
                     }
+                    <img src={icon_next} className="PopularityNextBt"></img>
+                    </div>
                 </div>
 
                 <PopUp

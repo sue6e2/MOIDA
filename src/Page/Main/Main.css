@@ -305,3 +305,12 @@
     cursor: pointer;
     border: 0;
 }
+
+.MainPage .PopularituNextBt {
+    width: 76px;
+    height: 98px;
+    position: absolute;
+    right: 30px;
+    top: 300px;
+    cursor: pointer;
+}
