@@ -27,4 +27,19 @@ const ChallengeCard = (props) => {
     )
 }
 
-export default ChallengeCard;
+const PopularityCard = (props) =>{
+    // var today = new Date();
+    // var dday = new Date({props.dDay})
+    // var dday = today -d day;
+    return (
+        <div className = "PopularityCard" style = {{ backgroundColor : "pink" }}>
+            <div className = "ImageBox" >
+                <p className = "Dday">챌린지 시작까지 D-{props.dDay}</p>
+            </div>
+            <div className = "PopularityTitle">{props.popularityName}</div>
+        </div>
+    )
+}
+
+export {ChallengeCard, PopularityCard};
+

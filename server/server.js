@@ -23,10 +23,11 @@ app.use('/groupMember', groupMember);
 const signUp = require('./Routes/SignUp.js');
 app.use('/signUp', signUp);
 
+app.use('/image', express.static('./upload'));
+
 const signIn = require('./Routes/SignIn.js');
 app.use('/signIn', signIn);
 
-app.use('/image', express.static('./upload'));
 
 app.listen(port, () => console.log(`express server is listening on port ${port}`));
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
 import ChallengeCard from '../../Components/Card/Card';
+import {PopularityCard} from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
@@ -27,11 +28,16 @@ class Main extends Component {
             newChallengeBadge: '',
             newChallengeStartDate: '',
             newChallengeEndDate: '',
-            isBadgeValidate: false
+            isBadgeValidate: false,
+            popularityData : [],
         }
 
         if (this.state.myChallengeData.length == 0) {
             this.getChallengeData();
+        }
+
+        if(this.state.popularityData.length == 0){
+            this.getPopularityData();
         }
     }
 
@@ -144,7 +150,6 @@ class Main extends Component {
                         status: this.state.newChallengeVisibility,
                         master_realid: this.userRealId
                     },
-
                 }
             );
             console.log(response);
@@ -178,6 +183,25 @@ class Main extends Component {
         }
     }
 
+    getPopularityData = async () => {
+        try {
+            let response = await axios.get("http://localhost:5001/myGroupList/popularity");
+            console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    popularityData: response.data.rows
+                })
+                console.log(this.state.popularityData);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    getDday = async () => {
+        var today = new Date();
+
+    }
 
     render() {
         return (
@@ -210,8 +234,25 @@ class Main extends Component {
                         <img src={icon_next} className="MyChallengeNextBt"></img>
                     </div>
                 </div>
-                <div className="PoPularChallenge">
+                <div className="PopularChallenge">
                     <h1>인기 챌린지</h1>
+                    {
+                        this.state.popularityData.map((current, index) => {
+                            var today = new Date();
+                            var dday = new Date(current.startDate);
+
+                            var gap = dday.getTime() - today.getTime();
+                            var result = Math.ceil(gap / ( 1000 * 60 * 60 * 24 ));
+                            
+                            console.log(result);
+                            return (
+                                <PopularityCard
+                                    popularityName={current.name}
+                                    dDay = {result}
+                                />
+                            )
+                        })
+                    }
                 </div>
 
                 <PopUp
