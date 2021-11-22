@@ -1,10 +1,10 @@
 .MainPage .MyChallenge {
     box-sizing: border-box;
-    margin: 122px 200px auto 200px;
+    margin: 50px 50px auto 50px;
 }
 
-.MainPage .PoPularChallenge {
-    margin: 122px 200px 146px 200px;
+.MainPage .PopularChallenge {
+    margin: 50px 50px auto 50px;
     box-sizing: border-box;
 }
 

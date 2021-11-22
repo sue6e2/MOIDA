@@ -29,3 +29,28 @@
     box-sizing: content-box;
     margin: auto auto auto 7px;
 }
+
+.PopularityCard{
+    width: 359px;
+    flex-grow: 0;
+    margin: 0 0 24px 111px;
+    padding: 177px 0 0;
+    border-radius: 5px;
+    float: left;
+    
+}
+
+.PopularityCard .Dday{
+    width: 359px;
+    height: 24px;
+    flex-grow: 0;
+    border-radius: 0px 0px 5px 5px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #fbfad4;
+}
+
+.PopularityCard .PopularityTitle{
+    text-align: center;
+    font-size: 25px;
+}
