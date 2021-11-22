@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import '../../Page/MakeGroup/MakeGroupPopup.css';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
-import GroupCard from '../../Components/Card/Card';
+import ChallengeCard from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
 import rabbit from '../../res/img/rabbit.jpg';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
+import icon_plus from '../../res/img/icon-plus.svg';
+import icon_next from '../../res/img/icon-next.svg';
 
 class Main extends Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class Main extends Component {
 
     userData = Data.getUserData();
     userRealId = sessionStorage.getItem('accountRealId');
+    //madeGroupId = sessionStorage.getItem('group_id');
 
     getChallengeData = async () => {
         try {
@@ -43,14 +45,14 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { account_id: this.userRealId }
+                    params: { account_id: this.userRealId, }
 
                 }
             );
             console.log(response);
             if (response.data.length != 0) {
                 this.setState({
-                    myChallengeData: response.data
+                    myChallengeData: response.data.rows
                 })
             }
         } catch (error) {
@@ -75,12 +77,10 @@ class Main extends Component {
             file: files[0],
             fileName: e.target.value
         })
-        console.log(files);
         this.readImage(e.target);
     }
 
     readImage(input) {
-
         if (input.files && input.files[0]) {
 
             const reader = new FileReader()
@@ -114,8 +114,6 @@ class Main extends Component {
     }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.newChallengeVisibility);
-        console.log(this.state.isBadgeValidate);
         if (this.state.isBadgeValidate == true) {
             this.makeChallenge();
         } else if (this.state.isBadgeValidate == false) {
@@ -125,7 +123,6 @@ class Main extends Component {
     }
 
     makeChallenge = async () => {
-        console.log(this.state.file);
         const formData = new FormData();
         formData.append('image', this.state.file);
         formData.append('name', this.state.newChallengeName);
@@ -151,11 +148,35 @@ class Main extends Component {
                 }
             );
             console.log(response);
+            if (response.data.code == 0) {
+                sessionStorage.setItem("group_id", response.data.data.group_id);
+                this.insertGroupMember();
+
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
+    insertGroupMember = async () => {
+        let madeGroupId = sessionStorage.getItem('group_id');
+        try {
+            let response = await axios.post("http://localhost:5001/groupMember/inviteMember",
+                {
+                    headers: {
+                    },
+                    params: { master_realid: this.userRealId, group_id: madeGroupId }
+                }
+            );
+            console.log(response);
+            if (response.data.length != 0) {
+                this.closePopup();
+                location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     render() {
@@ -164,21 +185,29 @@ class Main extends Component {
                 <TopBar />
                 <div className="MyChallenge">
                     <h1>참여중인 챌린지</h1>
-                    {/* {
-                        this.state.myChallengeData.map((current, index) => {
-                            return (
-                                <GroupCard
-                                    groupName={current.name}
-                                />
-                            )
-                        })
-                    } */}
-                    <div
-                        className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
-                        onMouseEnter={() => { this.setState({ hide: false }) }}
-                        onMouseLeave={() => { this.setState({ hide: true }) }}
-                        onClick={() => { this.openPopup() }}>
-                        <p>+</p>
+                    <div style={{ display: "flex" }}>
+                        {
+                            this.state.myChallengeData.map((current, index) => {
+                                return (
+                                    <ChallengeCard
+                                        name={current.name}
+                                        memberCount={current.member_count}
+                                        image={current.image}
+                                        startDate={current.startDate}
+                                        endDate={current.endDate}
+                                        rate={current.rate}
+                                    />
+                                )
+                            })
+                        }
+                        <div
+                            className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
+                            onMouseEnter={() => { this.setState({ hide: false }) }}
+                            onMouseLeave={() => { this.setState({ hide: true }) }}
+                            onClick={() => { this.openPopup() }}>
+                            <img src={icon_plus}></img>
+                        </div>
+                        <img src={icon_next} className="MyChallengeNextBt"></img>
                     </div>
                 </div>
                 <div className="PoPularChallenge">

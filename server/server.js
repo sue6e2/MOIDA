@@ -26,6 +26,7 @@ app.use('/signUp', signUp);
 const signIn = require('./Routes/SignIn.js');
 app.use('/signIn', signIn);
 
+app.use('/image', express.static('./upload'));
 
 app.listen(port, () => console.log(`express server is listening on port ${port}`));
 

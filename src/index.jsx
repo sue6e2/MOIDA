@@ -7,12 +7,8 @@ import LandingPage from './Page/LandingPage/LandingPage';
 import SignIn from './Page/SignIn/SignIn';
 import SignUp from './Page/SignUp/SignUp';
 import Main from './Page/Main/Main';
-import MakeGroup from './Page/MakeGroup/MakeGroup';
-import GroupPage from './Page/Group/Group';
 import CongratulationPage from './Page/CongratulationPage/CongratulationPage';
-
 import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
-import CryptoJS from 'crypto-js';
 
 const Root = () => {
 
@@ -33,8 +29,6 @@ const Root = () => {
           <Route exact path="/Congratulation" component={CongratulationPage}></Route>
           <Route exact path="/ChallengeSearch" component={ChallengeSearch}></Route>
           <Route exact path="/Main" component={needSignIn == true ? SignIn : Main}></Route>
-          {/* <Route exact path="/MakeGroup" component={MakeGroup}></Route>
-          <Route exact path="/Group" component={GroupPage}></Route> */}
         </Switch>
       </div>
     </Router>
