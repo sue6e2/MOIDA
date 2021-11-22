@@ -85,3 +85,34 @@
     margin: 0;
     line-height: 10px;
 }
+
+.PopularityCard{
+    width: 359px;
+    height: 230px;
+    border-radius: 5px;
+    margin-right: 100px;
+    margin-bottom: 135px;
+}
+
+.PopularityCard .PopularityImage {
+    width: 359px;
+    height: 177px;
+    border-radius: 5px 5px 0 0;
+}
+
+.PopularityCard .Dday{
+    width: 359px;
+    height: 24px;
+    box-sizing: border-box;
+    border-radius: 0 0 5px 5px;
+    background-color: #fbfad4;
+    padding: 3px 105px;
+    font-size: 15px;
+    color: #181818;
+    font-family: Roboto;
+}
+
+.PopularityCard .PopularityTitle{
+    text-align: center;
+    font-size: 25px;
+}

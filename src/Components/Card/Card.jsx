@@ -22,9 +22,20 @@ const ChallengeCard = (props) => {
                 <div className="ChallengeRateGraph"><span style={{ width: `${props.rate}%` }} /></div>
                 <p className="ChallengeRate">{props.rate}%</p>
             </div>
-
-        </div >
+        </div>
     )
 }
 
-export default ChallengeCard;
+const PopularityCard = (props) =>{
+    return (
+        <div className = "PopularityCard">
+            <div className = "ImageSection" style = {{ height : "177px", backgroundColor : "balck"}}>
+                <img id = "popularity-image" className = "PopularityImage" src = {props.image} ></img>
+            </div>
+            <div className = "Dday">챌린지 시작까지 D-{props.dDay}</div>
+            <p className = "PopularityTitle">{props.popularityName}</p>
+        </div>
+    )
+}
+
+export {ChallengeCard, PopularityCard};

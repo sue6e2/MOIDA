@@ -3,8 +3,8 @@
     margin: 50px 50px auto 50px;
 }
 
-.MainPage .PoPularChallenge {
-    margin: 50px 200px 146px 50px;
+.MainPage .PopularChallenge {
+    margin: 50px 50px auto 50px;
     box-sizing: border-box;
 }
 
@@ -304,4 +304,13 @@
     color: #fff;
     cursor: pointer;
     border: 0;
+}
+
+.MainPage .PopularituNextBt {
+    width: 76px;
+    height: 98px;
+    position: absolute;
+    right: 30px;
+    top: 300px;
+    cursor: pointer;
 }
