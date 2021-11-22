@@ -27,7 +27,6 @@ class SignIn extends Component {
     }
 
     responseGoogle = (res) => {
-
         sessionStorage.setItem('googleId', res.profileObj.email);
         sessionStorage.setItem('googleName', res.profileObj.name);
 
