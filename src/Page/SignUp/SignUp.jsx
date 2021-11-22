@@ -6,14 +6,12 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: "",
+            id: sessionStorage.getItem('googleId'),
             password: "",
             passwordCheck: "",
-            name: "",
+            name: sessionStorage.getItem('googleName'),
             isIdValidate: false,
             isGoogleLogin: false,
-            googleId: sessionStorage.getItem('googleId'),
-            googleName: sessionStorage.getItem('googleName')
         };
         this.isGoogleLogin();
     }
@@ -144,7 +142,7 @@ class SignUp extends Component {
                                     className="form-control"
                                     required
                                     onChange={this.onChangeID}
-                                    value={this.state.googleId}
+                                    value={this.state.id}
                                 />
                                 <button className="bt btn-main" type="button" id="button-addon2" onClick={() => { this.idDoubleCheck() }}>중복확인</button>
                             </div>
@@ -173,7 +171,7 @@ class SignUp extends Component {
                                     className="form-control"
                                     required
                                     onChange={this.onChangeName}
-                                    value={this.state.googleName}
+                                    value={this.state.name}
                                 />
                             </div>
                             <div className="d-grid gap-2">
