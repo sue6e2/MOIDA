@@ -4,6 +4,10 @@ import moidaLogo from '../../res/img/logo.png';
 
 const TopBar = () => {
 
+    const signOut = () => {
+        sessionStorage.clear();
+        window.location.href = "/SignIn";
+    }
     return (
         <div className="TopBar">
             <button onClick={() => { window.location.href = "/Main" }} >
@@ -13,7 +17,7 @@ const TopBar = () => {
                 className="TopBarSearchInput"
                 placeholder="챌린지 검색"
             />
-            <img className="TopBarProfileIcon" src={settingIcon}></img>
+            <img className="TopBarProfileIcon" onClick={() => signOut()} src={settingIcon}></img>
         </div>)
 
 }
