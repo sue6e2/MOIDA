@@ -14,6 +14,21 @@ const connection = mysql.createConnection({
 })
 connection.connect();
 
+router.get('/', function (req, res) {
+    
+    let sql = ``
+    let user_id = req.query.account_id;
+    let params = [user_id];
+    connection.query(sql, params, function (err, rows, fields) {
+            if (!err) {
+              
+                res.send({ code: 0, rows });
+            } else {
+                
+                res.send({ code: 101 });
+            }
+        });
+})
 
 
 

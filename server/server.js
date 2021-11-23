@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const challengeSearch = require('./Routes/ChallengeSearch.js');
 app.use('/challengeSearch', challengeSearch);
 
+const challengeMain= require('./Routes/ChallengeMain.js');
+app.use('/challengeMain', challengeMain);
+
 const myGroupList = require('./Routes/MyGroupList.js');
 app.use('/myGroupList', myGroupList);
 
