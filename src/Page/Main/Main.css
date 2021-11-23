@@ -1,14 +1,31 @@
+.MainPage {
+    overflow-y: hidden;
+}
+
 .MainPage .MyChallenge {
     box-sizing: border-box;
-    margin: 50px 50px auto 50px;
+    margin: 40px 75px auto 75px;
 }
 
 .MainPage .PopularChallenge {
-    margin: 50px 50px auto 50px;
+    margin: 40px 75px auto 75px;
     box-sizing: border-box;
 }
 
-.MainPage h1 {
+.MainPage .MyChallenge h1 {
+    font-family: NanumGothicOTF;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2b2b2b;
+    margin: 0;
+}
+
+.MainPage .PopularChallenge h1 {
     font-family: NanumGothicOTF;
     font-size: 40px;
     font-weight: bold;
@@ -19,6 +36,23 @@
     text-align: left;
     color: #2b2b2b;
     margin: 0 0 50px 0;
+}
+
+.MainPage .MakeBt {
+    width: 200px;
+    height: 45px;
+    margin: 0 32px 0 0;
+    float: right;
+    border-radius: 10px;
+    background-color: #076df3;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 0;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
 }
 
 .MainPage .MakeChallengeBt {
@@ -52,12 +86,39 @@
     object-fit: contain;
 }
 
-.MainPage .MyChallengeNextBt {
-    width: 76px;
+.MainPage .MyChallengePreviousBt {
+    width: 66px;
     height: 98px;
     position: absolute;
-    right: 30px;
-    top: 300px;
+    left: 15px;
+    top: 289px;
+    cursor: pointer;
+}
+
+.MainPage .MyChallengeNextBt {
+    width: 66px;
+    height: 98px;
+    position: relative;
+    right: 90px;
+    top: 70px;
+    cursor: pointer;
+}
+
+.MainPage .PopularityPreviousBt {
+    width: 66px;
+    height: 98px;
+    position: absolute;
+    left: 15px;
+    top: 718px;
+    cursor: pointer;
+}
+
+.MainPage .PopularityNextBt {
+    width: 66px;
+    height: 98px;
+    position: relative;
+    right: 90px;
+    top: 70px;
     cursor: pointer;
 }
 
@@ -304,13 +365,4 @@
     color: #fff;
     cursor: pointer;
     border: 0;
-}
-
-.MainPage .PopularituNextBt {
-    width: 76px;
-    height: 98px;
-    position: absolute;
-    right: 30px;
-    top: 300px;
-    cursor: pointer;
 }

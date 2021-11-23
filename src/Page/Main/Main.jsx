@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
-import {ChallengeCard} from '../../Components/Card/Card';
-import {PopularityCard} from '../../Components/Card/Card';
+import { ChallengeCard } from '../../Components/Card/Card';
+import { PopularityCard } from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
@@ -10,7 +10,8 @@ import rabbit from '../../res/img/rabbit.jpg';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
 import icon_plus from '../../res/img/icon-plus.svg';
-import icon_next from '../../res/img/icon-next.svg';
+import icon_next from '../../res/img/icon-next.png';
+import icon_previous from '../../res/img/icon-previous.png';
 
 class Main extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ class Main extends Component {
 
         this.state = {
             isOpenPopup: false,
+            myDataBeforeProcessing: [],
+            popularityDataBeforeProcessing: [],
             myChallengeData: [],
             hide: true,
             newChallengeVisibility: 0,
@@ -29,42 +32,152 @@ class Main extends Component {
             newChallengeStartDate: '',
             newChallengeEndDate: '',
             isBadgeValidate: false,
-            popularityData : [],
+            popularityData: [],
+            myChallengePageNum: 1,
+            myChallengeTotalPageNum: 1,
+            isMyPageHandlerOn: true,
+            popularityPageNum: 1,
+            popularityTotalPageNum: 1,
+            isPopularityHandlerOn: true
         }
 
-        if (this.state.myChallengeData.length == 0) {
+        if (this.state.myDataBeforeProcessing.length == 0) {
             this.getChallengeData();
         }
 
-        if(this.state.popularityData.length == 0){
+        if (this.state.popularityDataBeforeProcessing.length == 0) {
             this.getPopularityData();
         }
+
+
     }
 
     userData = Data.getUserData();
     userRealId = sessionStorage.getItem('accountRealId');
-    //madeGroupId = sessionStorage.getItem('group_id');
 
     getChallengeData = async () => {
+        let temp = [];
         try {
             let response = await axios.get("http://localhost:5001/myGroupList",
                 {
                     headers: {
                     },
-                    params: { account_id: this.userRealId, }
+                    params: { account_id: this.userRealId }
 
                 }
             );
             console.log(response);
-            if (response.data.length != 0) {
+            if (response.data.rows.length != 0) {
+                for (let i = 0; i < response.data.rows.length; i++) {
+                    temp.push(response.data.rows[i]);
+                }
                 this.setState({
-                    myChallengeData: response.data.rows
+                    myDataBeforeProcessing: temp,
+                    myChallengeTotalPageNum: Math.ceil(response.data.rows.length / 4),
+                    isMyPageHandlerOn: true
+                })
+            } else {
+                this.setState({
+                    myChallengeTotalPageNum: 1,
+                    myDataBeforeProcessing: [],
+                    isOpenPopup: true
                 })
             }
         } catch (error) {
             console.log(error);
         }
     }
+
+    onClickMyPageHandler = (value) => {
+        let num = this.state.myChallengePageNum;
+        if (value == true) {
+            if (num < this.state.myChallengeTotalPageNum) {
+                this.setState({
+                    myChallengePageNum: num + 1,
+                    isMyPageHandlerOn: true,
+                })
+            }
+        } else {
+            if (num != 1) {
+                this.setState({
+                    myChallengePageNum: num - 1,
+                    isMyPageHandlerOn: true
+                })
+            }
+        }
+    }
+
+    onClickPopularityPageHandler = (value) => {
+        let num = this.state.popularityPageNum;
+        if (value == true) {
+            if (num < this.state.popularityTotalPageNum) {
+                this.setState({
+                    popularityPageNum: num + 1,
+                    isPopularityHandlerOn: true,
+                })
+            }
+        } else {
+            if (num != 1) {
+                this.setState({
+                    popularityPageNum: num - 1,
+                    isPopularityHandlerOn: true
+                })
+            }
+        }
+    }
+
+    componentDidUpdate() {
+        let resetNum = (this.state.myChallengePageNum - 1) * 4;
+        let p_resetNum = (this.state.popularityPageNum - 1) * 4;
+        if (this.state.isMyPageHandlerOn && this.state.myDataBeforeProcessing != 0) {
+            let temp = [];
+            if (this.state.myChallengeTotalPageNum == this.state.myChallengePageNum && this.state.myDataBeforeProcessing.length % 4 != 0) {
+                for (let i = resetNum; i < resetNum + (this.state.myDataBeforeProcessing.length % 4); i++) {
+                    temp.push(this.state.myDataBeforeProcessing[i]);
+                }
+                this.setState({
+                    isMyPageHandlerOn: false,
+                    myChallengeData: temp
+                })
+            } else {
+                for (let i = resetNum; i < resetNum + 4; i++) {
+                    if (this.state.myDataBeforeProcessing[i] == null) {
+                        continue;
+                    }
+                    temp.push(this.state.myDataBeforeProcessing[i]);
+                }
+                this.setState({
+                    isMyPageHandlerOn: false,
+                    myChallengeData: temp
+                })
+            }
+        } else if (this.state.isPopularityHandlerOn && this.state.popularityDataBeforeProcessing != 0) {
+            let temp = [];
+            if (this.state.popularityTotalPageNum == this.state.popularityPageNum && this.state.popularityDataBeforeProcessing.length % 4 != 0) {
+                for (let i = p_resetNum; i < p_resetNum + (this.state.popularityDataBeforeProcessing.length % 4); i++) {
+                    temp.push(this.state.popularityDataBeforeProcessing[i]);
+                }
+                this.setState({
+                    isPopularityHandlerOn: false,
+                    popularityData: temp
+                })
+            } else {
+                for (let i = p_resetNum; i < p_resetNum + 4; i++) {
+                    if (this.state.popularityDataBeforeProcessing[i] == null) {
+                        continue;
+                    }
+                    temp.push(this.state.popularityDataBeforeProcessing[i]);
+                }
+                this.setState({
+                    isPopularityHandlerOn: false,
+                    popularityData: temp
+                })
+            }
+
+        }
+    }
+
+
     openPopup = () => {
         this.setState({
             isOpenPopup: true,
@@ -121,6 +234,7 @@ class Main extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.isBadgeValidate == true) {
+            console.log(this.state.file);
             this.makeChallenge();
         } else if (this.state.isBadgeValidate == false) {
             alert("칭호에 특수문자는 불가능합니다.")
@@ -184,80 +298,100 @@ class Main extends Component {
     }
 
     getPopularityData = async () => {
+        let temp = [];
         try {
             let response = await axios.get("http://localhost:5001/myGroupList/popularity");
             console.log(response);
-            if (response.data.code == 0) {
+            if (response.data.rows.length != 0) {
+                for (let i = 0; i < response.data.rows.length; i++) {
+                    temp.push(response.data.rows[i]);
+                }
                 this.setState({
-                    popularityData: response.data.rows
+                    popularityDataBeforeProcessing: temp,
+                    popularityTotalPageNum: Math.ceil(response.data.rows.length / 4),
+                    isPopularityHandlerOn: true
                 })
-                console.log(this.state.popularityData);
+            } else {
+                this.setState({
+                    popularityTotalPageNum: 1,
+                    popularityDataBeforeProcessing: []
+                })
             }
         } catch (error) {
             console.log(error);
         }
     }
 
-    getDday = async () => {
-        var today = new Date();
 
-    }
 
     render() {
+
         return (
             <div className="MainPage">
                 <TopBar />
                 <div className="MyChallenge">
                     <h1>참여중인 챌린지</h1>
-                    <div style={{ display: "flex" }}>
-                        {
-                            this.state.myChallengeData.map((current, index) => {
-                                return (
-                                    <ChallengeCard
-                                        name={current.name}
-                                        memberCount={current.member_count}
-                                        image={current.image}
-                                        startDate={current.startDate}
-                                        endDate={current.endDate}
-                                        rate={current.rate}
-                                    />
-                                )
-                            })
-                        }
-                        <div
-                            className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
-                            onMouseEnter={() => { this.setState({ hide: false }) }}
-                            onMouseLeave={() => { this.setState({ hide: true }) }}
-                            onClick={() => { this.openPopup() }}>
-                            <img src={icon_plus}></img>
-                        </div>
-                        <img src={icon_next} className="MyChallengeNextBt"></img>
+                    <div style={{ height: "45px", margin: "0 0 10px 0" }}>
+                        <button className="MakeBt" onClick={() => { this.openPopup() }}>챌린지 생성하기</button>
                     </div>
+                    {
+                        this.state.myDataBeforeProcessing.length != 0 ?
+                            <div style={{ display: "flex" }}>
+                                <img style={this.state.myChallengePageNum == 1 ? { display: "none" } : {}} src={icon_previous} onClick={() => { this.onClickMyPageHandler(false) }} className="MyChallengePreviousBt"></img>
+                                {
+                                    this.state.myChallengeData.map((current, index) => {
+                                        return (
+                                            <ChallengeCard
+                                                key={index}
+                                                name={current.name}
+                                                memberCount={current.member_count}
+                                                image={current.image}
+                                                startDate={current.startDate}
+                                                endDate={current.endDate}
+                                                rate={current.my_rate}
+                                            />
+                                        )
+                                    })
+                                }
+                                <div
+                                    className={this.state.hide ? "MakeChallengeBtHide" : "MakeChallengeBt"}
+                                    onMouseEnter={() => { this.setState({ hide: false }) }}
+                                    onMouseLeave={() => { this.setState({ hide: true }) }}
+                                    onClick={() => { this.openPopup() }}>
+                                    <img src={icon_plus}></img>
+                                </div>
+                                <img style={this.state.myChallengePageNum == this.state.myChallengeTotalPageNum ? { display: "none" } : {}} src={icon_next} onClick={() => { this.onClickMyPageHandler(true) }} className="MyChallengeNextBt"></img>
+                            </div>
+                            :
+                            <div style={{ height: "285.69px" }}></div>
+                    }
+
                 </div>
                 <div className="PopularChallenge">
                     <h1>인기 챌린지</h1>
                     <div style={{ display: "flex" }}>
-                    {
-                        this.state.popularityData.map((current, index) => {
-                            var today = new Date();
-                            var dday = new Date(current.startDate);
+                        <img style={this.state.popularityPageNum == 1 ? { display: "none" } : {}} src={icon_previous} className="PopularityPreviousBt" onClick={() => { this.onClickPopularityPageHandler(false) }}></img>
+                        {
+                            this.state.popularityData.map((current, index) => {
+                                var today = new Date();
+                                var dday = new Date(current.startDate);
 
-                            var gap = dday.getTime() - today.getTime();
-                            var result = Math.ceil(gap / ( 1000 * 60 * 60 * 24 ));
-                            
-                            console.log(result);
-                            return (
-                                <PopularityCard
-                                    popularityName={current.name}
-                                    dDay = {result}
-                                    image={current.image}
-                                    startDate={current.startDate}
-                                    endDate={current.endDate}
-                                />
-                            )
-                        })
-                    }
-                    <img src={icon_next} className="PopularityNextBt"></img>
+                                var gap = dday.getTime() - today.getTime();
+                                var result = Math.ceil(gap / (1000 * 60 * 60 * 24));
+
+                                return (
+                                    <PopularityCard
+                                        key={index}
+                                        popularityName={current.name}
+                                        dDay={result}
+                                        image={current.image}
+                                        startDate={current.startDate}
+                                        endDate={current.endDate}
+                                    />
+                                )
+                            })
+                        }
+                        <img style={this.state.popularityPageNum == this.state.popularityTotalPageNum ? { display: "none" } : {}} src={icon_next} className="PopularityNextBt" onClick={() => { this.onClickPopularityPageHandler(true) }}></img>
                     </div>
                 </div>
 
