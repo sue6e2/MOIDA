@@ -89,18 +89,18 @@ class Main extends Component {
     }
 
     onClickMyPageHandler = (value) => {
-        let num = this.state.myChallengePageNum; //현재페이지(1)
-        if (value == true) { //nextBt이 눌렸을 때
-            if (num < this.state.myChallengeTotalPageNum) { //전체페이지보다 적을때 ex)1/2
+        let num = this.state.myChallengePageNum;
+        if (value == true) {
+            if (num < this.state.myChallengeTotalPageNum) {
                 this.setState({
-                    myChallengePageNum: num + 1, //페이지 1증가
+                    myChallengePageNum: num + 1,
                     isMyPageHandlerOn: true,
                 })
             }
         } else {
-            if (num != 1) {//페이지가 1일 아닐때 ex) 2/4
+            if (num != 1) {
                 this.setState({
-                    myChallengePageNum: num - 1, //페이지 1 감소
+                    myChallengePageNum: num - 1,
                     isMyPageHandlerOn: true
                 })
             }
@@ -108,18 +108,18 @@ class Main extends Component {
     }
 
     onClickPopularityPageHandler = (value) => {
-        let num = this.state.popularityPageNum; //현재페이지(1)
-        if (value == true) { //nextBt이 눌렸을 때
-            if (num < this.state.popularityTotalPageNum) { //전체페이지보다 적을때 ex)1/2
+        let num = this.state.popularityPageNum;
+        if (value == true) {
+            if (num < this.state.popularityTotalPageNum) {
                 this.setState({
-                    popularityPageNum: num + 1, //페이지 1증가
+                    popularityPageNum: num + 1,
                     isPopularityHandlerOn: true,
                 })
             }
         } else {
-            if (num != 1) {//페이지가 1일 아닐때 ex) 2/4
+            if (num != 1) {
                 this.setState({
-                    popularityPageNum: num - 1, //페이지 1 감소
+                    popularityPageNum: num - 1,
                     isPopularityHandlerOn: true
                 })
             }
@@ -317,12 +317,6 @@ class Main extends Component {
                     popularityDataBeforeProcessing: []
                 })
             }
-
-            // if (response.data.code == 0) {
-            //     this.setState({
-            //         popularityData: response.data.rows
-            //     })
-            // }
         } catch (error) {
             console.log(error);
         }
