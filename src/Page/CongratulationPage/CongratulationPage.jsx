@@ -13,7 +13,7 @@ class CongratulationPage extends Component {
                 <h1>MOIDA</h1>
                 <p>{name}님 환영합니다!</p>
                 <div style={{ width: "510px", margin: "56px auto 0 auto" }}>
-                    <button className="BtGoToService">서비스 바로 이용하기</button>
+                    <button onClick={() => { window.location.href = "/SignIn" }} className="BtGoToService">서비스 바로 이용하기</button>
                 </div>
 
             </div>
