@@ -53,7 +53,6 @@ class Main extends Component {
     }
 
     userData = Data.getUserData();
-    userRealId = sessionStorage.getItem('accountRealId');
 
     getChallengeData = async () => {
         let temp = [];
@@ -62,7 +61,7 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { account_id: this.userRealId }
+                    params: { account_id: this.userData.realId }
 
                 }
             );
@@ -262,7 +261,7 @@ class Main extends Component {
                     params: {
                         master_id: this.userData.accountId,
                         status: this.state.newChallengeVisibility,
-                        master_realid: this.userRealId
+                        master_realid: this.userData.realId
                     },
                 }
             );
@@ -284,7 +283,7 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { master_realid: this.userRealId, group_id: madeGroupId }
+                    params: { master_realid: this.userData.realId, group_id: madeGroupId }
                 }
             );
             console.log(response);
@@ -322,7 +321,10 @@ class Main extends Component {
         }
     }
 
-
+    myChallengeCardHandler = (index) => {
+        console.log(index);
+        console.log(this.userData);
+    }
 
     render() {
 
@@ -343,6 +345,7 @@ class Main extends Component {
                                         return (
                                             <ChallengeCard
                                                 key={index}
+                                                cardClicked={() => { this.myChallengeCardHandler(index) }}
                                                 name={current.name}
                                                 memberCount={current.member_count}
                                                 image={current.image}
