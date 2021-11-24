@@ -40,7 +40,7 @@ class CertificationsPage extends Component {
 
                 }
             );
-            console.log(response);
+            //console.log(response);
             if (response.data.code == 0) {
                 this.setState({
                     certificationData: response.data.rows
@@ -129,6 +129,27 @@ class CertificationsPage extends Component {
             console.log(error);
         }
     }
+
+    handleBlame = async (index) => {
+        try {
+            let response = await axios.post("http://localhost:5001/blame",
+                {
+                    headers: {
+                    },
+                    params: {
+                        group_id: this.challengeData.group_id,
+                        cert_id: this.state.certificationData[index].c_id,
+                        user_realid: this.userData.realId
+                    }
+
+                }
+            );
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     today = new Date();
     year = this.today.getFullYear();
     month = this.today.getMonth() + 1;
@@ -154,6 +175,7 @@ class CertificationsPage extends Component {
                                         description={current.description}
                                         date={current.date}
                                         accountName={current.account_name}
+                                        blameClicked={() => { this.handleBlame(index) }}
                                     />
                                 )
                             })

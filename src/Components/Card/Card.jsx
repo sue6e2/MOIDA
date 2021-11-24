@@ -56,7 +56,7 @@ const CertificationCard = (props) => {
                 </div>
             </div>
             <div className="CertificationBlameSection">
-                <button>신고</button>
+                <button onClick={() => { props.blameClicked() }}>신고</button>
             </div>
         </div>
     )

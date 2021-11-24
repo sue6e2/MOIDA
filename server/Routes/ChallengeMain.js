@@ -132,13 +132,14 @@ router.get('/mine', function (req, res) {
 
 //다른사람 인증내역 보러가기
 router.get('/others', function (req, res) {
+
     //최신순 정렬
-    let sql = `SELECT  a.account_name, c.title, c.description, c.photo, c.date from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
+    let sql = `SELECT  a.account_name,c.c_id, c.title, c.description, c.photo, c.date from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
     let group_id = req.query.group_id;
     let params = [group_id];
 
     connection.query(sql, params, function (err, rows) {
-
+        console.log(rows);
         if (!err) {
             res.send({ code: 0, rows })
         } else {
