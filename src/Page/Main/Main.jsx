@@ -12,6 +12,7 @@ import icon_close from '../../res/img/icon-close.svg';
 import icon_plus from '../../res/img/icon-plus.svg';
 import icon_next from '../../res/img/icon-next.png';
 import icon_previous from '../../res/img/icon-previous.png';
+import CryptoJS from 'crypto-js';
 
 class Main extends Component {
     constructor(props) {
@@ -53,7 +54,6 @@ class Main extends Component {
     }
 
     userData = Data.getUserData();
-    userRealId = sessionStorage.getItem('accountRealId');
 
     getChallengeData = async () => {
         let temp = [];
@@ -62,7 +62,7 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { account_id: this.userRealId }
+                    params: { account_id: this.userData.realId }
 
                 }
             );
@@ -262,7 +262,7 @@ class Main extends Component {
                     params: {
                         master_id: this.userData.accountId,
                         status: this.state.newChallengeVisibility,
-                        master_realid: this.userRealId
+                        master_realid: this.userData.realId
                     },
                 }
             );
@@ -284,7 +284,7 @@ class Main extends Component {
                 {
                     headers: {
                     },
-                    params: { master_realid: this.userRealId, group_id: madeGroupId }
+                    params: { master_realid: this.userData.realId, group_id: madeGroupId }
                 }
             );
             console.log(response);
@@ -322,7 +322,13 @@ class Main extends Component {
         }
     }
 
-
+    myChallengeCardHandler = (index) => {
+        const challengeData = this.state.myChallengeData;
+        console.log(index);
+        console.log(challengeData[index]);
+        sessionStorage.setItem("challengeData", CryptoJS.AES.encrypt(JSON.stringify(challengeData[index]), 'challenge key').toString());
+        location.href = "/Challenge/" + challengeData[index].name;
+    }
 
     render() {
 
@@ -343,6 +349,7 @@ class Main extends Component {
                                         return (
                                             <ChallengeCard
                                                 key={index}
+                                                cardClicked={() => { this.myChallengeCardHandler(index) }}
                                                 name={current.name}
                                                 memberCount={current.member_count}
                                                 image={current.image}
