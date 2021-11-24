@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
   
     let params = [user_id, group_id]
 
-    connection.query(sql , params, function(err, rows, fields) {
+    connection.query(sql , params, function(err, rows) {
         if(!err){
             res.send({code: 0, rows})
         }else{
@@ -49,18 +49,36 @@ router.post('/certification',  upload.single('photo'), function (req, res) {
     let description = req.body.description;
     let photo;
     if (typeof req.file === "undefined") {
-        image = '/photo/no-image.jpg';
+        photo = '/photo/no-image.jpg';
     } else {
-        image = '/photo/' + req.file.filename;
+        photo = '/photo/' + req.file.filename;
     }
     
     let date = new Date(req.body.date);
     
     let params = [group_id, account_id, title, description, photo, date];
-   
+    
+    //인증하면 개인 및 단체 달성률 갱신
     connection.query(sql, params, function(err) {
+        
         if(!err){
-            res.send({code: 0})
+            let sql3 = `UPDATE moidagroup g INNER JOIN moidagroup_member m ON g.group_id = m.group_id set m.rate = m.rate + 1/ (g.endDate - g.startDate + 1) *100 where m.user_id = ? AND m.group_id = ?; `; 
+            let params3 = [account_id, group_id];  
+            let q1 = mysql.format(sql3, params3);
+            
+            let sql2 = `UPDATE moidagroup g INNER JOIN (SELECT group_id, AVG(rate) AS 'Group_rate' FROM moidagroup_member GROUP BY group_id) m ON g.group_id = m.group_id set g.rate = m.Group_rate where g.group_id = ?;`;
+            let params2 = [group_id];
+            let q2 = mysql.format(sql2, params2);
+
+
+            connection.query(q1 + q2, function (err) {
+                if(!err){
+                    res.send({code: 0})
+                }else{
+                    res.send({code:101, errorMessage: err})
+                }
+            })
+            //res.send({code: 0})
         }else{
             res.send({code:101})
         }
@@ -68,6 +86,7 @@ router.post('/certification',  upload.single('photo'), function (req, res) {
     })
 })
 
+/*
 //인증하면 개인 및 단체 달성률 갱신
 router.put('/updateRate', function (req, res) {
 
@@ -92,7 +111,7 @@ router.put('/updateRate', function (req, res) {
     })
 
 })
-
+*/
 //내 인증목록
 router.get('/mine', function (req, res) {
 
@@ -103,7 +122,7 @@ router.get('/mine', function (req, res) {
 
     let params = [group_id, account_id];
 
-    connection.query(sql, params, function (err, rows, fields) {
+    connection.query(sql, params, function (err, rows) {
     
             if (!err) {
                 res.send({ code: 0, rows })
@@ -121,7 +140,7 @@ router.get('/others', function (req, res) {
     let group_id = req.body.group_id;
     let params = [group_id];
 
-    connection.query(sql, params, function (err, rows, fields) {
+    connection.query(sql, params, function (err, rows) {
     
             if (!err) {
                 res.send({ code: 0, rows })
