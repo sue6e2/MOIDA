@@ -8,7 +8,7 @@ const ChallengeCard = (props) => {
     var result = Math.floor(gap / (1000 * 60 * 60 * 24));
 
     return (
-        <div className="ChallengeCard">
+        <div className="ChallengeCard" onClick={() => { props.cardClicked() }}>
             <div style={{ height: "177px", position: "relative" }}>
                 <img id="challenge-image" className="ChallengeImage" src={props.image} ></img>
                 <div className="MemberCountSection">
@@ -26,16 +26,16 @@ const ChallengeCard = (props) => {
     )
 }
 
-const PopularityCard = (props) =>{
+const PopularityCard = (props) => {
     return (
-        <div className = "PopularityCard">
-            <div className = "ImageSection" style = {{ height : "177px", backgroundColor : "balck"}}>
-                <img id = "popularity-image" className = "PopularityImage" src = {props.image} ></img>
+        <div className="PopularityCard">
+            <div className="ImageSection" style={{ height: "177px", backgroundColor: "balck" }}>
+                <img id="popularity-image" className="PopularityImage" src={props.image} ></img>
             </div>
-            <div className = "Dday">챌린지 시작까지 D-{props.dDay}</div>
-            <p className = "PopularityTitle">{props.popularityName}</p>
+            <div className="Dday">챌린지 시작까지 D-{props.dDay}</div>
+            <p className="PopularityTitle">{props.popularityName}</p>
         </div>
     )
 }
 
-export {ChallengeCard, PopularityCard};
+export { ChallengeCard, PopularityCard };
