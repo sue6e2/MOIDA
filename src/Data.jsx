@@ -13,4 +13,15 @@ export default class Data {
             return null
         }
     }
+
+    static getChallengeData = () => {
+        if (sessionStorage.getItem("challengeData") != null) {
+            const bytes = CryptoJS.AES.decrypt(sessionStorage.getItem('challengeData'), 'challenge key');
+            let challengeData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            return challengeData
+        }
+        else {
+            return null
+        }
+    }
 }

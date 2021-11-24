@@ -29,7 +29,7 @@ const Root = () => {
           <Route exact path="/Congratulation" component={CongratulationPage}></Route>
           <Route exact path="/ChallengeSearch" component={ChallengeSearch}></Route>
           <Route exact path="/Main" component={needSignIn == true ? SignIn : Main}></Route>
-          <Route exact path="/Challenge" component={ChallengePage}></Route>
+          <Route exact path="/Challenge/:challenge" component={ChallengePage}></Route>
         </Switch>
       </div>
     </Router>

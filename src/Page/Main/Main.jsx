@@ -12,6 +12,7 @@ import icon_close from '../../res/img/icon-close.svg';
 import icon_plus from '../../res/img/icon-plus.svg';
 import icon_next from '../../res/img/icon-next.png';
 import icon_previous from '../../res/img/icon-previous.png';
+import CryptoJS from 'crypto-js';
 
 class Main extends Component {
     constructor(props) {
@@ -322,8 +323,11 @@ class Main extends Component {
     }
 
     myChallengeCardHandler = (index) => {
+        const challengeData = this.state.myChallengeData;
         console.log(index);
-        console.log(this.userData);
+        console.log(challengeData[index]);
+        sessionStorage.setItem("challengeData", CryptoJS.AES.encrypt(JSON.stringify(challengeData[index]), 'challenge key').toString());
+        location.href = "/Challenge/" + challengeData[index].name;
     }
 
     render() {
