@@ -14,7 +14,7 @@ app.use('/blame', blame);
 const challengeSearch = require('./Routes/ChallengeSearch.js');
 app.use('/challengeSearch', challengeSearch);
 
-const challengeMain= require('./Routes/ChallengeMain.js');
+const challengeMain = require('./Routes/ChallengeMain.js');
 app.use('/challengeMain', challengeMain);
 
 const myGroupList = require('./Routes/MyGroupList.js');
@@ -30,6 +30,7 @@ const signUp = require('./Routes/SignUp.js');
 app.use('/signUp', signUp);
 
 app.use('/image', express.static('./upload'));
+app.use('/photo', express.static('./upload'));
 
 const signIn = require('./Routes/SignIn.js');
 app.use('/signIn', signIn);

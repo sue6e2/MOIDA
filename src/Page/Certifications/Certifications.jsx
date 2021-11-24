@@ -1,45 +1,63 @@
 import { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
-import './Challenge.css';
-import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
+import Data from '../../Data';
+import './Certifications.css';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
 import preview_image from '../../res/img/no-image.jpg';
 import axios from 'axios';
+import { CertificationCard } from '../../Components/Card/Card';
 
-class ChallengePage extends Component {
+class CertificationsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isConfirmPopUpOpen: false,
+            isConfirmOpen: false,
             confirmTitle: "",
             confirmDescription: "",
             confirmDate: new Date(),
             file: null,
-            fileName: ""
+            fileName: "",
+            certificationData: []
+        }
+
+
+        if (this.state.certificationData.length == 0) {
+            this.getCertificationData();
         }
     }
     userData = Data.getUserData();
     challengeData = Data.getChallengeData();
 
-    endDate = new Date(this.challengeData.endDate);
-    startDate = new Date(this.challengeData.startDate);
-    gap = this.endDate.getTime() - this.startDate.getTime();
-    result = Math.floor(this.gap / (1000 * 60 * 60 * 24));
-    start = this.challengeData.startDate.toString();
-    end = this.challengeData.endDate.toString();
-    startDStr = this.start.substring(0, 10);
-    endDStr = this.end.substring(0, 10);
+    getCertificationData = async () => {
+        try {
+            let response = await axios.get("http://localhost:5001/challengeMain/others",
+                {
+                    headers: {
+                    },
+                    params: { group_id: this.challengeData.group_id }
 
-    openConfirmPopUp = () => {
-        this.setState({
-            isConfirmPopUpOpen: true,
-        })
+                }
+            );
+            console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    certificationData: response.data.rows
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
     }
-    closeConfirmPopUp = () => {
+    goBack2Challenge = () => {
+        location.href = "/Challenge/" + this.challengeData.name;
+    }
+    onChangeInputHandler = (e) => {
+        const { value, name } = e.target;
         this.setState({
-            isConfirmPopUpOpen: false,
+            [name]: value
         })
     }
 
@@ -65,14 +83,18 @@ class ChallengePage extends Component {
         }
     }
 
-    onChangeConfirmValue = (e) => {
-        const { value, name } = e.target;
+    openConfirmPopUp = () => {
         this.setState({
-            [name]: value
+            isConfirmOpen: true,
+        })
+    }
+    closeConfirmPopUp = () => {
+        this.setState({
+            isConfirmOpen: false,
         })
     }
 
-    handleConfirmFormSubmit = (e) => {
+    confirmSubmitHandler = (e) => {
         e.preventDefault();
         this.makeConfirmation();
     }
@@ -103,16 +125,10 @@ class ChallengePage extends Component {
                 this.closeConfirmPopUp();
                 location.reload();
             }
-
         } catch (error) {
             console.log(error);
         }
     }
-
-    goToOtherCertifications = () => {
-        location.href = "/Challenge/" + this.challengeData.name + "/Certifications";
-    }
-
     today = new Date();
     year = this.today.getFullYear();
     month = this.today.getMonth() + 1;
@@ -120,44 +136,37 @@ class ChallengePage extends Component {
 
     render() {
         return (
-            <div className="ChallengePage">
+            <div className="CertificationsPage">
                 <TopBar />
-                <div className="ChallengeContents">
-                    <div className="ChallengeTitleSection">
+                <div className="CertificationsContent">
+                    <div className="InfoSection">
                         <h1>{this.challengeData.name}</h1>
-                        <button className="ShowAllConfirmBt" onClick={() => { this.goToOtherCertifications() }}>인증 보러가기</button>
-                        <button className="ConfirmBt" onClick={() => { this.openConfirmPopUp() }}>인증하기</button>
+                        <button onClick={() => { this.goBack2Challenge() }} className="GoBack2Challenge" >챌린지로</button>
+                        <button onClick={() => { this.openConfirmPopUp() }} className="ConfirmButton" >인증하기</button>
                     </div>
-                    <div className="ChallengeInfoSection">
-                        <div className="ChallengeInfoTop">
-                            <p>{this.challengeData.description}</p>
-                            <p>참가자 : {this.challengeData.member_count}명</p>
-                        </div>
-                        <div className="ChallengeInfoBottom">
-                            <p>성공시 &lt;{this.challengeData.badge}&gt;</p>
-                            <p>기간 : {this.startDStr.replace(/-/g, ".")}~{this.endDStr.replace(/-/g, ".")}</p>
-                            <h2>D-{this.result}</h2>
-                        </div>
-
+                    <div className="CertificationsSection">
+                        {
+                            this.state.certificationData.map((current, index) => {
+                                return (
+                                    <CertificationCard
+                                        img={current.photo}
+                                        title={current.title}
+                                        description={current.description}
+                                        date={current.date}
+                                        accountName={current.account_name}
+                                    />
+                                )
+                            })
+                        }
                     </div>
-                    <div style={{ display: "flex" }}>
-                        <div className="MyAchievementSection">
-                            <p className="Title">나의 성취도</p>
-                        </div>
-                        <div className="AllAchievementSection">
-                            <p className="Title">모두의 성취도</p>
-                        </div>
-                    </div>
-
                 </div>
-
                 <PopUp
-                    isOpen={this.state.isConfirmPopUpOpen}
+                    isOpen={this.state.isConfirmOpen}
                     width={1000}
                     height={800}
                 >
                     <div className="ConfirmPopUp">
-                        <form encType="multipart/form-data" onSubmit={this.handleConfirmFormSubmit}>
+                        <form encType="multipart/form-data" onSubmit={this.confirmSubmitHandler}>
                             <img className="ConfirmCloseBt" src={icon_close} onClick={() => { this.closeConfirmPopUp() }} />
                             <h1 className="Title">내인증</h1>
                             <img id="preview-confirmimage" src={preview_image} className="ConfirmImage" alt="인증이미지"></img>
@@ -165,25 +174,23 @@ class ChallengePage extends Component {
                             <input style={{ display: "none" }} id="confirm-input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleConfirmFileChange} />
                             <div className="ConfirmTitleSection">
                                 <label className="ConfirmTitle">인증 제목: </label>
-                                <input required className="ConfirmTitleInput" type="text" name="confirmTitle" onChange={this.onChangeConfirmValue} />
+                                <input required className="ConfirmTitleInput" type="text" name="confirmTitle" onChange={this.onChangeInputHandler} />
                             </div>
                             <div className="ConfirmDescriptionSection">
                                 <label className="ConfirmDescriptionTitle">인증 설명: </label>
-                                <textarea required className="ConfirmDescriptionTextArea" type="text" name="confirmDescription" onChange={this.onChangeConfirmValue} />
+                                <textarea required className="ConfirmDescriptionTextArea" type="text" name="confirmDescription" onChange={this.onChangeInputHandler} />
                             </div>
                             <div className="ConfirmDateSection">
                                 <label className="ConfirmDateTitle">인증 날짜: </label>
                                 <input className="ConfirmDateInput" type="text" value={this.year + '.' + this.month + '.' + this.date} readOnly />
                             </div>
-
                             <button className="SubmitConfirmBt" type="submit">생성하기</button>
                         </form>
                     </div>
                 </PopUp>
-
             </div>
         );
     }
 }
 
-export default ChallengePage;
+export default CertificationsPage;

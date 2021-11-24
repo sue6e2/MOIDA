@@ -6,7 +6,7 @@ import { PopularityCard } from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import PopUp from '../../Components/Popup/Popup';
-import rabbit from '../../res/img/rabbit.jpg';
+import preview_Image from '../../res/img/no-image.jpg'
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
 import icon_plus from '../../res/img/icon-plus.svg';
@@ -410,7 +410,7 @@ class Main extends Component {
                         <form encType="multipart/form-data" onSubmit={this.handleFormSubmit}>
                             <img className="CloseBt" src={icon_close} onClick={() => { this.closePopup() }} />
                             <h1 className="Title">챌린지 생성</h1>
-                            <img id="preview-Image" src={rabbit} className="ChallengeImage" alt="챌린지 이미지"></img>
+                            <img id="preview-Image" src={preview_Image} className="ChallengeImage" alt="챌린지 이미지"></img>
                             <label for="input-file" className="ChallengeImgUpload">이미지 업로드<img src={icon_camera} /></label>
                             <input style={{ display: "none" }} id="input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
                             <div className="VisibilitySection">
@@ -437,7 +437,7 @@ class Main extends Component {
                             <p className="BadgeRule">※특수문자 제외, 10자 제한</p>
                             <div className="DescriptionSection">
                                 <label className="DescriptionTitle">챌린지 소개: </label>
-                                <input required className="DescriptionInput" type="text" name="newChallengeDescription" onChange={this.handleValueChange} />
+                                <textarea required className="DescriptionInput" type="text" name="newChallengeDescription" onChange={this.handleValueChange} />
                             </div>
                             <button className="SubmitBt" type="submit">생성하기</button>
                         </form>
