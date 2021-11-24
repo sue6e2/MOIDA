@@ -6,6 +6,7 @@ const conf = JSON.parse(data);
 const mysql = require('mysql');
 
 const multer = require('multer');
+//const { type } = require('os');
 const upload = multer({ dest: './upload' })
 
 router.use('/image', express.static('./upload'));
@@ -36,9 +37,10 @@ router.post('/', upload.single('image'), function (req, res) {
     }
 
     let badge = req.body.badge;
+    
     let params = [name, master_id, description, status, startDate, endDate, image, badge];
 
-    connection.query(sql, params, (err, rows, fields) => {
+    connection.query(sql, params, (err) => {
         if (!err) {
             let g_id = `SELECT group_id from moidagroup where master_id = ?`
             const params2 = [master_id]
@@ -57,5 +59,20 @@ router.post('/', upload.single('image'), function (req, res) {
     })
 })
 
+//챌린지 삭제
+router.delete('/deleteChallenge', function (req,res) {
+    let sql = `DELETE from moidagroup where group_id = ? AND master_id = ?`
+    let group_id = req.body.group_id;
+    let master_id = req.body.master_id;
+    let params = [group_id, master_id]
+    
+    connection.query(sql, params, (err)=>{
+        if(!err){
+            res.send({code: 0})
+        }else{
+            res.send({code:101, errorMessage: err})
+        }
+    })
+})
 
 module.exports = router;
