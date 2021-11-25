@@ -7,6 +7,8 @@ export default class Data {
             let userData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
             let userRealId = sessionStorage.getItem("accountRealId");
             userData.realId = userRealId;
+            let userName = sessionStorage.getItem("accountName");
+            userData.accountName = userName;
             return userData
         }
         else {
