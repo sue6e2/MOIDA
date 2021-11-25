@@ -16,7 +16,8 @@ const connection = mysql.createConnection({
     password: conf.password,
     port: conf.port,
     database: conf.database,
-    multipleStatements: true
+    multipleStatements: true,
+    timezone: "Asia/Seoul"
 })
 connection.connect();
 
@@ -53,7 +54,7 @@ router.post('/certification', upload.single('photo'), function (req, res) {
     }
 
     let date = new Date(req.body.date);
-
+   
     let params = [group_id, account_id, title, description, photo, date];
 
     //인증하면 개인 및 단체 달성률 갱신
@@ -113,7 +114,7 @@ router.put('/updateRate', function (req, res) {
 //내 인증목록
 router.get('/mine', function (req, res) {
     //최신순 정렬
-    let sql = `SELECT title, description, photo, date from certification where group_id2 = ? AND account_id = ? ORDER BY date DESC`
+    let sql = `SELECT c_id, title, description, photo, date from certification where group_id2 = ? AND account_id = ? ORDER BY date DESC`
     let group_id = req.query.group_id;
     let account_id = req.query.user_realid;
 
@@ -133,7 +134,7 @@ router.get('/mine', function (req, res) {
 router.get('/others', function (req, res) {
 
     //최신순 정렬
-    let sql = `SELECT  a.id, a.account_name,c.c_id, c.title, c.description, c.photo, c.date from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
+    let sql = `SELECT c.c_id, a.id, a.account_name, c.title, c.description, c.photo, c.date, c.validation from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
     let group_id = req.query.group_id;
     let params = [group_id];
 
