@@ -7,6 +7,8 @@ import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
 import preview_image from '../../res/img/no-image.jpg';
 import axios from 'axios';
+import { Chart } from 'chart.js';
+import DoughnutChart from '../../Components/DoughnutChart/DoughnutChart';
 
 class ChallengePage extends Component {
     constructor(props) {
@@ -123,6 +125,7 @@ class ChallengePage extends Component {
     date = this.today.getDate();
 
     render() {
+        console.log(this.challengeData);
         return (
             <div className="ChallengePage">
                 <TopBar />
@@ -147,6 +150,11 @@ class ChallengePage extends Component {
                     <div style={{ display: "flex" }}>
                         <div className="MyAchievementSection" onClick={() => { this.goToMyCertifications() }}>
                             <p className="Title">나의 성취도</p>
+                            <div className="ChartSection">
+                                <DoughnutChart
+                                    myRate={Math.floor(this.challengeData.my_rate)}
+                                />
+                            </div>
                         </div>
                         <div className="AllAchievementSection">
                             <p className="Title">모두의 성취도</p>
