@@ -2,6 +2,7 @@ import "./Card.css";
 import icon_members from '../../res/img/icon-members.svg';
 import rabbit from '../../res/img/rabbit.jpg';
 import DefaultProfileImg from "../DefaultProfileImg/DefaultProfileImg";
+import Data from "../../Data";
 
 const ChallengeCard = (props) => {
     let end = new Date(props.endDate);
@@ -43,8 +44,11 @@ const PopularityCard = (props) => {
 const CertificationCard = (props) => {
     let date = props.date.toString();
     let dateStr = date.substring(0, 10);
+    let userData = Data.getUserData();
+    let id = userData.realId;
+
     return (
-        <div className="CertificationCard">
+        <div className="CertificationCard" style={props.validation == 1 ? { backgroundColor: "#f2f2f2", border: "solid 2px #f2f2f2" } : { backgroundColor: "white", border: "solid 2px #076df3" }}>
             <div className="CertificationImgSection">
                 <img src={props.img}></img>
             </div>
@@ -64,7 +68,7 @@ const CertificationCard = (props) => {
                 </div>
             </div>
             <div className="CertificationBlameSection">
-                <button onClick={() => { props.blameClicked() }}>신고</button>
+                <button style={id == props.userId ? { display: "none" } : {}} onClick={() => { props.blameClicked() }}>신고</button>
             </div>
         </div>
     )

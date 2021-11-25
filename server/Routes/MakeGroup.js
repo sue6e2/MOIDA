@@ -38,7 +38,7 @@ router.post('/', upload.single('image'), function (req, res) {
     }
 
     let badge = req.body.badge;
-    
+
     let params = [name, master_id, description, status, startDate, endDate, image, badge];
 
     connection.query(sql, params, (err) => {
@@ -61,17 +61,17 @@ router.post('/', upload.single('image'), function (req, res) {
 })
 
 //챌린지 삭제
-router.delete('/deleteChallenge', function (req,res) {
+router.delete('/deleteChallenge', function (req, res) {
     let sql = `DELETE from moidagroup where group_id = ? AND master_id = ?`
-    let group_id = req.body.group_id;
-    let master_id = req.body.master_id;
+    let group_id = req.query.group_id;
+    let master_id = req.query.master_id;
     let params = [group_id, master_id]
-    
-    connection.query(sql, params, (err)=>{
-        if(!err){
-            res.send({code: 0})
-        }else{
-            res.send({code:101, errorMessage: err})
+
+    connection.query(sql, params, (err) => {
+        if (!err) {
+            res.send({ code: 0 })
+        } else {
+            res.send({ code: 101, errorMessage: err })
         }
     })
 })

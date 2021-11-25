@@ -1,6 +1,6 @@
 const DefaultProfileImg = (props) => {
 
-    const colorList = ["#ff87a6", "#ffab84", "#97d8ae", "#bcd89c", "#8fd5de", "#91c4ed", "#df9be8", "#b59be8", "#f76388"];
+    const colorList = ["#8DF6E5", "#FECFF3", "#FEFCC9", "#A1EAFB", "#CDBDFE", "#FF999A", "#03D99D", "#076DF3", "#F2E206", "#FF7BA2"];
     let username = String(props.name);
     let userId = props.id;
     let usercolor = colorList[userId % colorList.length];

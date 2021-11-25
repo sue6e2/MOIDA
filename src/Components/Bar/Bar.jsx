@@ -2,6 +2,7 @@ import './Bar.css'
 import moidaLogo from '../../res/img/logo.png';
 import DefaultProfileImg from '../DefaultProfileImg/DefaultProfileImg';
 import Data from '../../Data';
+import setting from '../../res/img/ic-setting.png';
 
 const TopBar = () => {
 
@@ -20,7 +21,7 @@ const TopBar = () => {
                 className="TopBarSearchInput"
                 placeholder="챌린지 검색"
             />
-            <div className="TopBarProfileIcon" onClick={() => signOut()}>
+            <div className="TopBarProfileIcon" >
                 <DefaultProfileImg
                     id={userData.realId}
                     name={userData.accountName}
@@ -30,6 +31,9 @@ const TopBar = () => {
                     textMargin={"0"}
                     lineHeight={2.7}
                 />
+            </div>
+            <div className="TopBarLogOutIcon" onClick={() => signOut()}>
+                <img src={setting}></img>
             </div>
         </div>)
 

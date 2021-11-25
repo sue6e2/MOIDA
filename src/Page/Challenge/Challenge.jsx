@@ -9,6 +9,10 @@ import preview_image from '../../res/img/no-image.jpg';
 import axios from 'axios';
 import { Chart } from 'chart.js';
 import DoughnutChart from '../../Components/DoughnutChart/DoughnutChart';
+import icon_member from '../../res/img/icon-memberCount.png';
+import icon_description from '../../res/img/icon-description.png';
+import icon_date from '../../res/img/icon-date.png';
+import icon_badge from '../../res/img/icon-crown.png';
 
 class ChallengePage extends Component {
     constructor(props) {
@@ -19,8 +23,13 @@ class ChallengePage extends Component {
             confirmDescription: "",
             confirmDate: new Date(),
             file: null,
-            fileName: ""
+            fileName: "",
+            cannotGetBadge: false,
+            isBadgePopUpOpen: false,
+            isLeavePopUpOpen: false,
+            isDeletePopUpOpen: false
         }
+        this.checkBadgeValidation();
     }
     userData = Data.getUserData();
     challengeData = Data.getChallengeData();
@@ -34,6 +43,30 @@ class ChallengePage extends Component {
     startDStr = this.start.substring(0, 10);
     endDStr = this.end.substring(0, 10);
 
+
+    checkBadgeValidation = async () => {
+        try {
+            let response = await axios.get("http://localhost:5001/groupMember/validation2",
+                {
+                    headers: {
+                    },
+                    params: {
+                        group_id: this.challengeData.group_id,
+                        user_realid: this.userData.realId,
+                    }
+
+                }
+            );
+            console.log(response);
+            if (response.data.rows[0].validation2 == 1) {
+                this.setState({
+                    cannotGetBadge: true
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     openConfirmPopUp = () => {
         this.setState({
             isConfirmPopUpOpen: true,
@@ -43,6 +76,45 @@ class ChallengePage extends Component {
         this.setState({
             isConfirmPopUpOpen: false,
         })
+    }
+
+    openBadgePopUp = () => {
+        this.setState({
+            isBadgePopUpOpen: true,
+        })
+    }
+
+    closeBadgePopUp = () => {
+        this.setState({
+            isBadgePopUpOpen: false,
+        })
+        location.reload();
+    }
+
+    openLeavePopUp = () => {
+        this.setState({
+            isLeavePopUpOpen: true,
+        })
+    }
+
+    closeLeavePopUp = () => {
+        this.setState({
+            isLeavePopUpOpen: false,
+        })
+        window.location.href = "/Main"
+    }
+
+    openDeletePopUp = () => {
+        this.setState({
+            isDeletePopUpOpen: true,
+        })
+    }
+
+    closeDeletePopUp = () => {
+        this.setState({
+            isDeletePopUpOpen: false,
+        })
+        window.location.href = "/Main"
     }
 
     handleConfirmFileChange = (e) => {
@@ -119,6 +191,78 @@ class ChallengePage extends Component {
         location.href = "/Challenge/" + this.challengeData.name + "/MyCertifications";
     }
 
+    getBadgeHandler = async () => {
+        try {
+            let response = await axios.post("http://localhost:5001/groupMember/getBadge",
+                {
+                    headers: {
+                    },
+                    params: {
+                        group_id: this.challengeData.group_id,
+                        user_realid: this.userData.realId,
+                    }
+
+                }
+            );
+            console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    isBadgePopUpOpen: true
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    deleteChallenge = async () => {
+        try {
+            let response = await axios.delete("http://localhost:5001/makeGroup/deleteChallenge",
+                {
+                    headers: {
+                    },
+                    params: {
+                        group_id: this.challengeData.group_id,
+                        master_id: this.challengeData.master_id
+                    }
+
+                }
+            );
+            console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    isDeletePopUpOpen: true
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    leaveChallenge = async () => {
+        try {
+            let response = await axios.delete("http://localhost:5001/groupMember/leave",
+                {
+                    headers: {
+                    },
+                    params: {
+                        group_id: this.challengeData.group_id,
+                        user_realid: this.userData.realId
+                    }
+
+                }
+            );
+            console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    isLeavePopUpOpen: true
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     today = new Date();
     year = this.today.getFullYear();
     month = this.today.getMonth() + 1;
@@ -126,6 +270,7 @@ class ChallengePage extends Component {
 
     render() {
         console.log(this.challengeData);
+        console.log(this.userData);
         return (
             <div className="ChallengePage">
                 <TopBar />
@@ -137,12 +282,18 @@ class ChallengePage extends Component {
                     </div>
                     <div className="ChallengeInfoSection">
                         <div className="ChallengeInfoTop">
-                            <p>{this.challengeData.description}</p>
-                            <p>참가자 : {this.challengeData.member_count}명</p>
+                            <img src={icon_description} /><p>{this.challengeData.description}</p>
+                            <img src={icon_member} /><p>참가자 : {this.challengeData.member_count}명</p>
+                            <button onClick={() => { this.userData.accountId == this.challengeData.master_id ? this.deleteChallenge() : this.leaveChallenge() }} className="DeleteChallenge">{this.userData.accountId == this.challengeData.master_id ? "삭제" : "탈퇴"}</button>
                         </div>
                         <div className="ChallengeInfoBottom">
-                            <p>성공시 &lt;{this.challengeData.badge}&gt;</p>
-                            <p>기간 : {this.startDStr.replace(/-/g, ".")}~{this.endDStr.replace(/-/g, ".")}</p>
+                            <img src={icon_badge} />
+                            <div style={{ display: "flex", width: "773px" }}>
+                                <p className="BadgeTitle">성공시 &lt;{this.challengeData.badge}&gt;</p>
+                                <button disabled={this.challengeData.my_rate < 100 || this.state.cannotGetBadge == true} className="GetBadge" onClick={() => { this.getBadgeHandler() }}>칭호 받기</button>
+                            </div>
+
+                            <img src={icon_date} /><p>기간 : {this.startDStr.replace(/-/g, ".")}~{this.endDStr.replace(/-/g, ".")}</p>
                             <h2>D-{this.result}</h2>
                         </div>
 
@@ -190,6 +341,39 @@ class ChallengePage extends Component {
 
                             <button className="SubmitConfirmBt" type="submit">생성하기</button>
                         </form>
+                    </div>
+                </PopUp>
+
+                <PopUp
+                    isOpen={this.state.isBadgePopUpOpen}
+                    width={400}
+                    height={200}
+                >
+                    <div className="BadgePopUp">
+                        <img className="BadgePopUpCloseBt" src={icon_close} onClick={() => { this.closeBadgePopUp() }} />
+                        <h1>칭호를 얻었습니다!</h1>
+                    </div>
+                </PopUp>
+
+                <PopUp
+                    isOpen={this.state.isLeavePopUpOpen}
+                    width={500}
+                    height={200}
+                >
+                    <div className="LeavePopUp">
+                        <img className="LeavePopUpCloseBt" src={icon_close} onClick={() => { this.closeLeavePopUp() }} />
+                        <h1>챌린지를 탈퇴했습니다!</h1>
+                    </div>
+                </PopUp>
+
+                <PopUp
+                    isOpen={this.state.isDeletePopUpOpen}
+                    width={500}
+                    height={200}
+                >
+                    <div className="DeletePopUp">
+                        <img className="DeletePopUpCloseBt" src={icon_close} onClick={() => { this.closeDeletePopUp() }} />
+                        <h1>챌린지를 삭제하였습니다!</h1>
                     </div>
                 </PopUp>
 

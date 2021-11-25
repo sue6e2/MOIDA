@@ -58,17 +58,24 @@
     padding: 30px;
 }
 
+.ChallengePage .ChallengeInfoSection img {
+    width: 30px;
+    height: 30px;
+    margin: auto 10px auto 0;
+}
+
 .ChallengePage .ChallengeInfoSection p {
     font-family: NanumGothic;
     font-size: 30px;
     text-align: left;
+    margin: auto 0;
 }
 
 .ChallengePage .ChallengeInfoSection h2 {
     font-family: NanumGothic;
     font-size: 60px;
     text-align: left;
-    margin: 0;
+    margin: 0 0 0 200px;
 }
 
 .ChallengePage .ChallengeInfoSection .ChallengeInfoTop {
@@ -76,8 +83,13 @@
     height: 80px;
 }
 
-.ChallengePage .ChallengeInfoSection .ChallengeInfoTop p {
+.ChallengePage .ChallengeInfoSection .ChallengeInfoTop p:nth-child(1) {
     flex-basis: 50%;
+}
+
+.ChallengePage .ChallengeInfoSection .ChallengeInfoTop p:nth-child(2) {
+    flex-basis: 47.5%;
+    margin: auto 0;
 }
 
 .ChallengePage .ChallengeInfoSection .ChallengeInfoBottom {
@@ -85,16 +97,42 @@
     height: 80px;
 }
 
+.ChallengePage .ChallengeInfoSection .ChallengeInfoBottom p {
+    font-family: NanumGothic;
+    font-size: 30px;
+    text-align: left;
+    margin: auto 0;
+}
+
 .ChallengePage .ChallengeInfoSection .ChallengeInfoBottom p:nth-child(1) {
     flex-basis: 50%;
 }
 
 .ChallengePage .ChallengeInfoSection .ChallengeInfoBottom p:nth-child(2) {
-    flex-basis: 40%;
+    flex-basis: 47.6%;
 }
 
 .ChallengePage .ChallengeInfoSection .ChallengeInfoBottom p:nth-child(3) {
     flex-basis: 10%;
+}
+
+
+.ChallengePage .ChallengeInfoSection .ChallengeInfoBottom .GetBadge {
+    border-radius: 11px;
+    background-color: #076df3;
+    padding: 5px 15px;
+    height: 50px;
+    font-family: NanumGothic;
+    font-size: 24px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin: auto 0;
+    line-height: 0;
+}
+
+.ChallengePage .ChallengeInfoSection .ChallengeInfoBottom .GetBadge:disabled {
+    background-color: #c4c4c4;
 }
 
 .ChallengePage .MyAchievementSection {
@@ -293,4 +331,60 @@
     color: #fff;
     cursor: pointer;
     border: 0;
+}
+
+.ChallengePage .BadgePopUp .BadgePopUpCloseBt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.ChallengePage .BadgePopUp h1 {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.ChallengePage .ChallengeContents .ChallengeInfoSection .ChallengeInfoTop .DeleteChallenge {
+    border-radius: 11px;
+    background-color: #c4c4c4;
+    padding: 5px 30px;
+    height: 50px;
+    font-family: NanumGothic;
+    font-size: 24px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin: auto 63px auto auto;
+    line-height: 0;
+}
+
+.ChallengePage .LeavePopUp .LeavePopUpCloseBt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.ChallengePage .LeavePopUp h1 {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.ChallengePage .DeletePopUp .DeletePopUpCloseBt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.ChallengePage .DeletePopUp h1 {
+    text-align: center;
+    margin-top: 80px;
 }
