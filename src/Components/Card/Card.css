@@ -119,3 +119,80 @@
     margin-top: 8px;
     margin-bottom: 0;
 }
+
+.CertificationCard {
+    background-color: white;
+    border: solid 2px #076df3;
+    height: 180px;
+    display: flex;
+    border-radius: 0 20px 20px 0;
+    margin-bottom: 32px;
+}
+
+.CertificationCard .CertificationImgSection {
+    width: 21%;
+    height: 180px;
+}
+
+.CertificationCard .CertificationImgSection img {
+    width: 100%;
+    height: 180px;
+}
+
+.CertificationCard .CertificationInfoSection {
+    width: 70%;
+}
+
+.CertificationCard .CertificationInfoSection .CertificationTitle {
+    font-family: NanumGothic;
+    font-size: 29px;
+    font-weight: bold;
+    color: black;
+    margin: 10px 0 10px 20px;
+}
+
+.CertificationCard .CertificationInfoSection .CertificationDescription {
+    font-family: NanumGothic;
+    font-size: 18px;
+    color: black;
+    margin: 0 0 0 20px;
+    height: 35%;
+}
+
+.CertificationCard .CertificationInfoSection .UserProfile {
+    width: 50px;
+    height: 50px;
+    border-radius: 75px;
+    color: white;
+    background-color: #b2ecff;
+    margin-left: 20px;
+    background-color: #b2ecff;
+    text-align: center;
+    line-height: 3;
+}
+
+.CertificationCard .CertificationInfoSection .CertificationDate {
+    font-family: NanumGothic;
+    font-size: 29px;
+    width: 209px;
+    margin: auto 0 auto 17px;
+}
+
+.CertificationCard .CertificationBlameSection {
+    width: 9%;
+    margin: auto;
+    text-align: center;
+}
+
+.CertificationCard .CertificationBlameSection button {
+    width: 90px;
+    height: 90px;
+    border-radius: 75px;
+    background-color: #076df3;
+    font-family: NanumGothic;
+    font-size: 32px;
+    color: white;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+}
