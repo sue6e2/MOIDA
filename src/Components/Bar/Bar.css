@@ -29,9 +29,9 @@
 }
 
 .TopBarProfileIcon {
-    margin: 10px 23px 0 23px;
+    margin: auto 32px auto 68px;
     width: 56px;
     height: 56px;
-    float: right;
     cursor: pointer;
+    font-size: 20px;
 }

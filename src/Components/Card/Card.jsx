@@ -1,6 +1,7 @@
 import "./Card.css";
 import icon_members from '../../res/img/icon-members.svg';
 import rabbit from '../../res/img/rabbit.jpg';
+import DefaultProfileImg from "../DefaultProfileImg/DefaultProfileImg";
 
 const ChallengeCard = (props) => {
     let end = new Date(props.endDate);
@@ -51,7 +52,14 @@ const CertificationCard = (props) => {
                 <h1 className="CertificationTitle">{props.title}</h1>
                 <p className="CertificationDescription">{props.description}</p>
                 <div style={{ display: "flex" }}>
-                    <div className="UserProfile">홍주</div>
+                    <DefaultProfileImg
+                        id={props.userId}
+                        name={props.userName}
+                        width={50}
+                        height={50}
+                        margin={"0 0 0 20px"}
+                        lineHeight={props.lineHeight}
+                    />
                     <p className="CertificationDate">{dateStr.replace(/-/g, ".")}</p>
                 </div>
             </div>

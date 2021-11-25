@@ -156,6 +156,7 @@ class CertificationsPage extends Component {
     date = this.today.getDate();
 
     render() {
+        console.log(this.state.certificationData)
         return (
             <div className="CertificationsPage">
                 <TopBar />
@@ -174,8 +175,10 @@ class CertificationsPage extends Component {
                                         title={current.title}
                                         description={current.description}
                                         date={current.date}
-                                        accountName={current.account_name}
+                                        userName={current.account_name}
                                         blameClicked={() => { this.handleBlame(index) }}
+                                        userId={current.id}
+                                        lineHeight={1}
                                     />
                                 )
                             })
