@@ -16,7 +16,8 @@ const connection = mysql.createConnection({
     password: conf.password,
     port: conf.port,
     database: conf.database,
-    multipleStatements: true
+    multipleStatements: true,
+    timezone: "Asia/Seoul"
 })
 connection.connect();
 
@@ -53,7 +54,7 @@ router.post('/certification', upload.single('photo'), function (req, res) {
     }
 
     let date = new Date(req.body.date);
-
+   
     let params = [group_id, account_id, title, description, photo, date];
 
     //인증하면 개인 및 단체 달성률 갱신
