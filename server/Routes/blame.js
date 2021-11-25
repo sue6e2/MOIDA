@@ -16,16 +16,17 @@ connection.connect();
 
 //신고기능
 router.post('/', function (req, res) {
+    console.log(req.body.params);
     let sql = `INSERT into blame select null, ?, ? from DUAL where not exists(SELECT * FROM blame WHERE cert_id = ? AND user_id2 = ?)`
-    let cert_id = req.body.cert_id;
-    let user_id = req.body.user_realid;
+    let cert_id = req.body.params.cert_id;
+    let user_id = req.body.params.user_realid;
     let params = [cert_id, user_id, cert_id, user_id]
 
-    connection.query(sql , params, function(err) {
-        if(!err){
-            res.send({code: 0})
-        }else{
-            res.send({code:101})
+    connection.query(sql, params, function (err) {
+        if (!err) {
+            res.send({ code: 0 })
+        } else {
+            res.send({ code: 101 })
         }
     })
 })

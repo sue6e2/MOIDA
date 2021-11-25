@@ -1,5 +1,6 @@
 import "./Card.css";
 import icon_members from '../../res/img/icon-members.svg';
+import rabbit from '../../res/img/rabbit.jpg';
 
 const ChallengeCard = (props) => {
     let end = new Date(props.endDate);
@@ -19,8 +20,8 @@ const ChallengeCard = (props) => {
             <div className="ChallengeDate">챌린지 종료까지 D-{result}</div>
             <p className="ChallengeName">{props.name}</p>
             <div style={{ display: "flex" }}>
-                <div className="ChallengeRateGraph"><span style={{ width: `${props.rate}%` }} /></div>
-                <p className="ChallengeRate">{props.rate}%</p>
+                <div className="ChallengeRateGraph"><span style={{ width: `${Math.floor(props.rate)}%` }} /></div>
+                <p className="ChallengeRate">{Math.floor(props.rate)}%</p>
             </div>
         </div>
     )
@@ -38,4 +39,27 @@ const PopularityCard = (props) => {
     )
 }
 
-export { ChallengeCard, PopularityCard };
+const CertificationCard = (props) => {
+    let date = props.date.toString();
+    let dateStr = date.substring(0, 10);
+    return (
+        <div className="CertificationCard">
+            <div className="CertificationImgSection">
+                <img src={props.img}></img>
+            </div>
+            <div className="CertificationInfoSection">
+                <h1 className="CertificationTitle">{props.title}</h1>
+                <p className="CertificationDescription">{props.description}</p>
+                <div style={{ display: "flex" }}>
+                    <div className="UserProfile">홍주</div>
+                    <p className="CertificationDate">{dateStr.replace(/-/g, ".")}</p>
+                </div>
+            </div>
+            <div className="CertificationBlameSection">
+                <button onClick={() => { props.blameClicked() }}>신고</button>
+            </div>
+        </div>
+    )
+}
+
+export { ChallengeCard, PopularityCard, CertificationCard };
