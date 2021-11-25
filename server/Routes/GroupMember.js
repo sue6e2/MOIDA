@@ -78,4 +78,21 @@ router.post('/getBadge', function (req, res) {
     })
 })
 
+router.get('/validation2', function (req, res) {
+    
+    let sql = `SELECT validation2 from moidagroup_member where group_id = ? AND user_id =?; `;
+    let group_id = req.body.group_id;
+    let user_id = req.body.user_realid;
+    let params = [group_id, user_id];
+
+    connection.query(sql, params, function (err, rows) {
+        if(!err){
+            res.send({ code: 0, rows })
+        }else{
+            res.send({ code: 101 })
+        }
+        
+    })
+})
+
 module.exports = router;
