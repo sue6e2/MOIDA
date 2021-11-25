@@ -113,6 +113,10 @@ class ChallengePage extends Component {
         location.href = "/Challenge/" + this.challengeData.name + "/Certifications";
     }
 
+    goToMyCertifications = () => {
+        location.href = "/Challenge/" + this.challengeData.name + "/MyCertifications";
+    }
+
     today = new Date();
     year = this.today.getFullYear();
     month = this.today.getMonth() + 1;
@@ -141,7 +145,7 @@ class ChallengePage extends Component {
 
                     </div>
                     <div style={{ display: "flex" }}>
-                        <div className="MyAchievementSection">
+                        <div className="MyAchievementSection" onClick={() => { this.goToMyCertifications() }}>
                             <p className="Title">나의 성취도</p>
                         </div>
                         <div className="AllAchievementSection">

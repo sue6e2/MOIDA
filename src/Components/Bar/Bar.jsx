@@ -1,6 +1,7 @@
 import './Bar.css'
-import settingIcon from '../../res/img/ic-setting.png';
 import moidaLogo from '../../res/img/logo.png';
+import DefaultProfileImg from '../DefaultProfileImg/DefaultProfileImg';
+import Data from '../../Data';
 
 const TopBar = () => {
 
@@ -8,6 +9,8 @@ const TopBar = () => {
         sessionStorage.clear();
         window.location.href = "/SignIn";
     }
+
+    const userData = Data.getUserData();
     return (
         <div className="TopBar">
             <button onClick={() => { window.location.href = "/Main" }} >
@@ -17,7 +20,17 @@ const TopBar = () => {
                 className="TopBarSearchInput"
                 placeholder="챌린지 검색"
             />
-            <img className="TopBarProfileIcon" onClick={() => signOut()} src={settingIcon}></img>
+            <div className="TopBarProfileIcon" onClick={() => signOut()}>
+                <DefaultProfileImg
+                    id={userData.realId}
+                    name={userData.accountName}
+                    width={56}
+                    height={56}
+                    margin={"0"}
+                    textMargin={"0"}
+                    lineHeight={2.7}
+                />
+            </div>
         </div>)
 
 }

@@ -159,18 +159,6 @@
     height: 35%;
 }
 
-.CertificationCard .CertificationInfoSection .UserProfile {
-    width: 50px;
-    height: 50px;
-    border-radius: 75px;
-    color: white;
-    background-color: #b2ecff;
-    margin-left: 20px;
-    background-color: #b2ecff;
-    text-align: center;
-    line-height: 3;
-}
-
 .CertificationCard .CertificationInfoSection .CertificationDate {
     font-family: NanumGothic;
     font-size: 29px;

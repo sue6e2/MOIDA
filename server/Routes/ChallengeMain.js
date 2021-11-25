@@ -112,11 +112,10 @@ router.put('/updateRate', function (req, res) {
 */
 //내 인증목록
 router.get('/mine', function (req, res) {
-
     //최신순 정렬
     let sql = `SELECT title, description, photo, date from certification where group_id2 = ? AND account_id = ? ORDER BY date DESC`
-    let group_id = req.body.group_id;
-    let account_id = req.body.user_realid;
+    let group_id = req.query.group_id;
+    let account_id = req.query.user_realid;
 
     let params = [group_id, account_id];
 
@@ -134,7 +133,7 @@ router.get('/mine', function (req, res) {
 router.get('/others', function (req, res) {
 
     //최신순 정렬
-    let sql = `SELECT  a.account_name,c.c_id, c.title, c.description, c.photo, c.date from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
+    let sql = `SELECT  a.id, a.account_name,c.c_id, c.title, c.description, c.photo, c.date from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
     let group_id = req.query.group_id;
     let params = [group_id];
 
