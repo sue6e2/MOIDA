@@ -134,7 +134,7 @@ router.get('/mine', function (req, res) {
 router.get('/others', function (req, res) {
 
     //최신순 정렬
-    let sql = `SELECT c.c_id, a.account_name, c.title, c.description, c.photo, c.date, c.validation from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
+    let sql = `SELECT c.c_id, a.id, a.account_name, c.title, c.description, c.photo, c.date, c.validation from certification c INNER JOIN account a ON a.id = c.account_id where c.group_id2 = ? order by c.date desc`
     let group_id = req.query.group_id;
     let params = [group_id];
 
