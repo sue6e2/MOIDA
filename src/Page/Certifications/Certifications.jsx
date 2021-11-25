@@ -139,7 +139,8 @@ class CertificationsPage extends Component {
                     params: {
                         group_id: this.challengeData.group_id,
                         cert_id: this.state.certificationData[index].c_id,
-                        user_realid: this.userData.realId
+                        user_realid: this.userData.realId,
+                        blamedUser_id: this.state.certificationData[index].id
                     }
 
                 }

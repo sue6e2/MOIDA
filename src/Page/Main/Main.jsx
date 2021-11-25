@@ -355,7 +355,7 @@ class Main extends Component {
                                                 image={current.image}
                                                 startDate={current.startDate}
                                                 endDate={current.endDate}
-                                                rate={current.my_rate}
+                                                myRate={current.my_rate}
                                             />
                                         )
                                     })

@@ -114,6 +114,12 @@
     margin: 35px auto 0 auto;
 }
 
+.ChallengePage .MyAchievementSection .ChartSection {
+    margin: 10px auto;
+    width: 400px;
+    height: 280px;
+}
+
 .ChallengePage .AllAchievementSection {
     width: 815px;
     height: 400px;

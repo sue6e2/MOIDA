@@ -21,8 +21,8 @@ const ChallengeCard = (props) => {
             <div className="ChallengeDate">챌린지 종료까지 D-{result}</div>
             <p className="ChallengeName">{props.name}</p>
             <div style={{ display: "flex" }}>
-                <div className="ChallengeRateGraph"><span style={{ width: `${Math.floor(props.rate)}%` }} /></div>
-                <p className="ChallengeRate">{Math.floor(props.rate)}%</p>
+                <div className="ChallengeRateGraph"><span style={{ width: `${Math.floor(props.myRate)}%` }} /></div>
+                <p className="ChallengeRate">{Math.floor(props.myRate)}%</p>
             </div>
         </div>
     )
