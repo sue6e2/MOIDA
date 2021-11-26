@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { SearchResultCard } from '../../Components/Card/Card';
 import TopBar from '../../Components/Bar/Bar';
 import './ChallengeSearch.css';
+import CryptoJS from 'crypto-js';
 
 class ChallengeSearch extends Component {
     constructor(props) {
@@ -11,41 +12,51 @@ class ChallengeSearch extends Component {
           challengeName: "",
           challenge:[]
         }
-
-        if (this.state.challenge.length == 0) {
-          this.renderResult();
-      }
     }
 
-    renderResult = async () => {
-      try{
-        let response = await axios.get("http://localhost:5001/challengeSearch",
-          {
-            headers: {
-            },
-            params: {name : this.state.challengeName}
-            }
-            );
-        if(response.data.code == 0){
-          this.setState({
-            challenge : response.data.rows
-          })
-          console.log(challenge);
-        }
-      }catch(error){
-        console.log(error);
+    getSearchData = () => {
+      if (sessionStorage.getItem("searchData") != null) {
+          const bytes = CryptoJS.AES.decrypt(sessionStorage.getItem('searchData'), 'search key');
+          let searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+          console.log(searchData);
+          return searchData
       }
-    }
+      else {
+          return null
+      }
+  }
 
     render() {
-
+      let renderData = this.getSearchData();
         return (
           <>
             <div className="ResultPage">
               <TopBar />
               <div className="ChallengeResult">
                 <h1>검색결과</h1>
-                <SearchResultCard />
+                {
+                  renderData.length != 0?
+                  <div>
+                  {
+                    renderData.map((current, index) =>{
+                      return(
+                        <SearchResultCard
+                        key = {current.index}
+                        title = {current.name}
+                        discription = {current.discription}
+                        image = {current.imgage}
+                        startDate={current.startDate}
+                        endDate={current.endDate}
+                        memberCount = {current.member_count}
+                        badge = {current.badge}
+                        />
+                      )
+                    })
+                  }
+                  </div>
+                  :
+                  <div>일치하는 검색 결과가 없습니다.</div>
+                }
               </div>
                 {/* {this.renderResult()} */}
             </div>

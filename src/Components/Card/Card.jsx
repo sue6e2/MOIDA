@@ -74,6 +74,11 @@ const CertificationCard = (props) => {
 }
 
 const SearchResultCard = (props) => {
+    let dateSt = props.startDate.toString();
+    let dateEn = props.endDate.toString();
+    let dateStr = dateSt.substring(0, 10);
+    let dateEnd = dateEn.substring(0, 10);
+
     return(
         <div className="SearchResultCard">
             <div className="SearchResultImgSection">
@@ -85,7 +90,7 @@ const SearchResultCard = (props) => {
             </div>
             <div className="SearchResultInfoSection2">
                 <h2>챌린지 기간</h2>
-                <span>{props.start}~{props.end}</span>
+                <span>{dateEnd.replace(/-/g, ".")}~{dateStr.replace(/-/g, ".")}</span>
                 <h2>현재신청인원</h2>
                 <span>{props.memberCount}</span>
                 <h2>칭호</h2>

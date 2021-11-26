@@ -17,6 +17,10 @@ const TopBar = () => {
         window.location.href = "/SignIn";
     }
 
+    const returnIndex = () => {
+
+    }
+
     const onClickButton = async () => {
 
       try{
@@ -28,10 +32,15 @@ const TopBar = () => {
           });
           if(response.data.code ==0){
             console.log("검색됨");
-            console.log(response.data.rows);
             
             let searchData = response.data.rows;
-            sessionStorage.setItem("searchData", CryptoJS.AES.encrypt(JSON.stringify(searchData), 'search key').toString());
+
+            
+
+              sessionStorage.setItem("searchData", CryptoJS.AES.encrypt(JSON.stringify(searchData), 'search key').toString());
+
+           
+            console.log(searchData);
             window.location.href = "/ChallengeSearch";
           }
       }catch(error){
