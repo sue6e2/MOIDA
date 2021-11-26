@@ -117,7 +117,7 @@ router.put('/updateRate', function (req, res) {
 router.get('/mine', function (req, res) {
     //최신순 정렬
     console.log(req.query);
-    let sql = `select c.c_id, c.title,c.validation, c.description, c.photo, c.date, count(*) AS 'blame_count' from blame b INNER JOIN certification c ON c.c_id = b.cert_id where c.group_id2 = ? AND c.account_id = ? group by (b.cert_id) ORDER BY c.date DESC;`
+    let sql = `select c_id, title, description, photo, date, validation, (select count(c_id) from blame RIGHT OUTER JOIN certification on cert_id = c_id where c.c_id = cert_id) AS 'blame_count' from certification c where group_id2 = ? AND account_id = ? order by date desc;`
     let group_id = req.query.group_id;
     let account_id = req.query.user_realid;
 
