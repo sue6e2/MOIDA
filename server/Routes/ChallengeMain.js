@@ -54,7 +54,7 @@ router.post('/certification', upload.single('photo'), function (req, res) {
     }
 
     let date = new Date(req.body.date);
-   
+
     let params = [group_id, account_id, title, description, photo, date];
 
     //인증하면 개인 및 단체 달성률 갱신
@@ -140,7 +140,6 @@ router.get('/others', function (req, res) {
     let params = [group_id];
 
     connection.query(sql, params, function (err, rows) {
-        console.log(rows);
         if (!err) {
             res.send({ code: 0, rows })
         } else {

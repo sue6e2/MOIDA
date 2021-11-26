@@ -40,7 +40,7 @@ class CertificationsPage extends Component {
 
                 }
             );
-            //console.log(response);
+            console.log(response);
             if (response.data.code == 0) {
                 this.setState({
                     certificationData: response.data.rows
@@ -180,6 +180,7 @@ class CertificationsPage extends Component {
                                         blameClicked={() => { this.handleBlame(index) }}
                                         userId={current.id}
                                         lineHeight={1}
+                                        validation={current.validation}
                                     />
                                 )
                             })

@@ -29,9 +29,21 @@
 }
 
 .TopBarProfileIcon {
-    margin: auto 32px auto 68px;
+    margin: auto 16px auto 68px;
     width: 56px;
     height: 56px;
     cursor: pointer;
     font-size: 20px;
+}
+
+.TopBarLogOutIcon {
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    margin: auto 32px auto 0;
+}
+
+.TopBarLogOutIcon img {
+    width: 56px;
+    height: 56px;
 }

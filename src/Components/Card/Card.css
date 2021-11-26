@@ -121,8 +121,6 @@
 }
 
 .CertificationCard {
-    background-color: white;
-    border: solid 2px #076df3;
     height: 180px;
     display: flex;
     border-radius: 0 20px 20px 0;
