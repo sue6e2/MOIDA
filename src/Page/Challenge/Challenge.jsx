@@ -289,11 +289,11 @@ class ChallengePage extends Component {
                         <div className="ChallengeInfoBottom">
                             <img src={icon_badge} />
                             <div style={{ display: "flex", width: "773px" }}>
-                                <p className="BadgeTitle">성공시 &lt;{this.challengeData.badge}&gt;</p>
+                                <p className="BadgeTitle">성공 시 &lt;{this.challengeData.badge}&gt;</p>
                                 <button disabled={this.challengeData.my_rate < 100 || this.state.cannotGetBadge == true} className="GetBadge" onClick={() => { this.getBadgeHandler() }}>칭호 받기</button>
                             </div>
 
-                            <img src={icon_date} /><p>기간 : {this.startDStr.replace(/-/g, ".")}~{this.endDStr.replace(/-/g, ".")}</p>
+                            <img src={icon_date} /><p>기간 : {this.startDStr.replace(/-/g, ".")} ~ {this.endDStr.replace(/-/g, ".")}</p>
                             <h2>D-{this.result}</h2>
                         </div>
 

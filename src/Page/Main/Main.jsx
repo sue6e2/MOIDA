@@ -336,7 +336,7 @@ class Main extends Component {
             <div className="MainPage">
                 <TopBar />
                 <div className="MyChallenge">
-                    <h1>참여중인 챌린지</h1>
+                    <h1>참여 중인 챌린지</h1>
                     <div style={{ height: "45px", margin: "0 0 10px 0" }}>
                         <button className="MakeBt" onClick={() => { this.openPopup() }}>챌린지 생성하기</button>
                     </div>
