@@ -115,7 +115,7 @@ router.put('/updateRate', function (req, res) {
 //내 인증목록
 router.get('/mine', function (req, res) {
     //최신순 정렬
-    let sql = `SELECT c_id, title, description, photo, date from certification where group_id2 = ? AND account_id = ? ORDER BY date DESC`
+    let sql = `SELECT c_id, title, validation, description, photo, date from certification where group_id2 = ? AND account_id = ? ORDER BY date DESC`
     let group_id = req.query.group_id;
     let account_id = req.query.user_realid;
 

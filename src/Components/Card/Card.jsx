@@ -1,6 +1,5 @@
 import "./Card.css";
 import icon_members from '../../res/img/icon-members.svg';
-import rabbit from '../../res/img/rabbit.jpg';
 import DefaultProfileImg from "../DefaultProfileImg/DefaultProfileImg";
 import Data from "../../Data";
 
@@ -74,4 +73,37 @@ const CertificationCard = (props) => {
     )
 }
 
-export { ChallengeCard, PopularityCard, CertificationCard };
+const MyCertificationCard = (props) => {
+    let date = props.date.toString();
+    let dateStr = date.substring(0, 10);
+    let userData = Data.getUserData();
+
+    return (
+        <div className="MyCertificationCard" style={props.validation == 1 ? { backgroundColor: "#f2f2f2", border: "solid 2px #f2f2f2" } : { backgroundColor: "white", border: "solid 2px #076df3" }}>
+            <div className="MyCertificationImgSection">
+                <img src={props.img}></img>
+            </div>
+            <div className="MyCertificationInfoSection">
+                <h1 className="MyCertificationTitle">{props.title}</h1>
+                <p className="MyCertificationDescription">{props.description}</p>
+                <div style={{ display: "flex" }}>
+                    <DefaultProfileImg
+                        id={userData.realId}
+                        name={userData.accountName}
+                        width={50}
+                        height={50}
+                        margin={"0 0 0 20px"}
+                        lineHeight={props.lineHeight}
+                    />
+                    <p className="MyCertificationDate">{dateStr.replace(/-/g, ".")}</p>
+                </div>
+            </div>
+            <div className="MyCertificationBlameSection">
+                <p className="BlameTitle">신고 수</p>
+                <p className="BlameCount">5</p>
+            </div>
+        </div>
+    )
+}
+
+export { ChallengeCard, PopularityCard, CertificationCard, MyCertificationCard };

@@ -1,0 +1,36 @@
+.MyCertificationsPage {
+    overflow: hidden;
+}
+
+.MyCertificationsPage .MyCertificationsContent {
+    padding: 60px 110px 0 110px;
+}
+
+.MyCertificationsPage .MyCertificationsContent .InfoSection {
+    display: flex;
+    height: 64px;
+    margin: 0 0 30px 0;
+}
+
+.MyCertificationsPage .MyCertificationsContent .InfoSection h1 {
+    font-family: NanumGothic;
+    font-size: 53px;
+    font-weight: bold;
+    color: black;
+    height: 64px;
+    margin: 0;
+}
+
+.MyCertificationsPage .MyCertificationsContent .InfoSection .GoBackToChallenge {
+    border-radius: 11px;
+    background-color: #076df3;
+    padding: 17px 57px;
+    height: 64px;
+    font-family: NanumGothic;
+    font-size: 32px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin-left: auto;
+    line-height: 0;
+}
