@@ -47,3 +47,15 @@
     width: 56px;
     height: 56px;
 }
+
+.TopBarSearchInput{
+    position: relative;
+}
+
+.SearchIcon{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 17px;
+    right: 240px;
+}
