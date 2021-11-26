@@ -34,3 +34,39 @@
     margin-left: auto;
     line-height: 0;
 }
+
+.MyCertificationsPage .MyCertificationsContent .RateSection .MyChallengeRateGraph {
+    width: 100%;
+    height: 45px;
+    flex-grow: 0;
+    opacity: 0.7;
+    border-radius: 11px;
+    background-color: #f2f2f2;
+    margin: 0 0 30px 0;
+}
+
+.MyCertificationsPage .MyCertificationsContent .RateSection .MyChallengeRateGraph span {
+    display: block;
+    padding: 0;
+    height: 45px;
+    border-radius: 11px;
+    background-color: #076df3;
+}
+
+.MyCertificationsPage .MyCertificationsContent .RateSection .MyChallengeRateGraph p {
+    height: 37px;
+    font-family: NanumGothic;
+    font-size: 26px;
+    width: 80px;
+    color: #fff;
+    text-align: left;
+    margin: 4px 0;
+    float: right;
+}
+
+.MyCertificationsPage .MyCertificationsContent .ChallengeCountSection p {
+    font-family: NanumGothic;
+    font-size: 24px;
+    color: #076df3;
+    margin: 0 0 30px 0;
+}

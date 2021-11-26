@@ -71,7 +71,6 @@
 .ChallengeCard .ChallengeRateGraph span {
     display: block;
     padding: 0;
-    width: 45%;
     height: 5.6px;
     border-radius: 40px;
     background-color: #076df3;

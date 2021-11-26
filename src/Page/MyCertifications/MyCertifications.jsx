@@ -9,7 +9,8 @@ class MyCertificationsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            myCertificationData: []
+            myCertificationData: [],
+            certificatedData: 0
         }
 
         if (this.state.myCertificationData.length == 0) {
@@ -34,6 +35,7 @@ class MyCertificationsPage extends Component {
                 this.setState({
                     myCertificationData: response.data.rows
                 })
+                this.countCertification();
             }
         } catch (error) {
             console.log(error);
@@ -42,6 +44,19 @@ class MyCertificationsPage extends Component {
 
     goBackToChallenge = () => {
         location.href = "/Challenge/" + this.challengeData.name;
+    }
+
+    countCertification = () => {
+        let count = 0;
+        const data = this.state.myCertificationData
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].validation === '0') {
+                count++;
+            }
+        }
+        this.setState({
+            certificatedData: count
+        })
     }
 
 
@@ -55,10 +70,12 @@ class MyCertificationsPage extends Component {
                         <button onClick={() => { this.goBackToChallenge() }} className="GoBackToChallenge" >챌린지로</button>
                     </div>
                     <div className="RateSection">
-
+                        <div className="MyChallengeRateGraph">
+                            <span style={{ width: `${Math.floor(this.challengeData.my_rate)}%` }} ><p>{Math.floor(this.challengeData.my_rate) + "%"}</p></span>
+                        </div>
                     </div>
-                    <div className="ChallengeCount">
-
+                    <div className="ChallengeCountSection">
+                        <p>전체 챌린지 : {this.state.myCertificationData.length}회   |   인증된 챌린지 : {this.state.certificatedData}회</p>
                     </div>
                     <div className="MyCertificationsSection">
                         {
@@ -71,6 +88,7 @@ class MyCertificationsPage extends Component {
                                         date={current.date}
                                         lineHeight={1}
                                         validation={current.validation}
+                                        blameCount={current.blame_count}
                                     />
                                 )
                             })

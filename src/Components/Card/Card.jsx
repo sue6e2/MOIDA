@@ -100,7 +100,7 @@ const MyCertificationCard = (props) => {
             </div>
             <div className="MyCertificationBlameSection">
                 <p className="BlameTitle">신고 수</p>
-                <p className="BlameCount">5</p>
+                <p className="BlameCount">{props.blameCount}</p>
             </div>
         </div>
     )
