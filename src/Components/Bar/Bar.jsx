@@ -2,7 +2,7 @@ import './Bar.css'
 import moidaLogo from '../../res/img/logo.png';
 import DefaultProfileImg from '../DefaultProfileImg/DefaultProfileImg';
 import Data from '../../Data';
-import setting from '../../res/img/ic-setting.png';
+import icon_signOut from '../../res/img/icon-logout.png';
 
 const TopBar = () => {
 
@@ -33,7 +33,7 @@ const TopBar = () => {
                 />
             </div>
             <div className="TopBarLogOutIcon" onClick={() => signOut()}>
-                <img src={setting}></img>
+                <img src={icon_signOut}></img>
             </div>
         </div>)
 
