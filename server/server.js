@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const blame = require('./Routes/blame.js');
 app.use('/blame', blame);
 
+const mypage = require('./Routes/MyPage.js');
+app.use('/mypage', mypage);
+
 const challengeSearch = require('./Routes/ChallengeSearch.js');
 app.use('/challengeSearch', challengeSearch);
 
