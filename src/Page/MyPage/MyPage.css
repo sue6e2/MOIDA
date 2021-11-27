@@ -1,6 +1,12 @@
 .MyPage .MyPageSection{
   box-sizing: border-box;
   margin: 40px 75px auto 75px;
+  display: flex;
+}
+
+.MyPage .MyInfo{
+  width: 700px;
+  justify-content: center;
 }
 
 .DefaultProfileImg{
@@ -8,4 +14,32 @@
   height: 102px;
   margin: 30px 351px 64px 1px;
   padding: 31px 19px 30px 18px;
+}
+
+.MyPage .NameLabel{
+  color: #909090;
+  font-size: 25px;
+  padding-left: 10px;
+}
+
+.MyPage .Name{
+  font-size: 35px;
+  color: #000;
+  padding-left: 10px;
+}
+
+.GroupName{
+  font-size: 20px;
+  color: #000;
+  width: 350px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.BadgeName{
+  font-size: 20px;
+  color: #076df3;
+  font-weight: bold;
+  width: 350px;
+  padding-left: 10px;
 }
