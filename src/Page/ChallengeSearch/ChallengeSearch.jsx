@@ -43,8 +43,8 @@ class ChallengeSearch extends Component {
                         <SearchResultCard
                         key = {current.index}
                         title = {current.name}
-                        discription = {current.discription}
-                        image = {current.imgage}
+                        description = {current.description}
+                        img = {current.image}
                         startDate={current.startDate}
                         endDate={current.endDate}
                         memberCount = {current.member_count}
