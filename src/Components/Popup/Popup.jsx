@@ -15,8 +15,8 @@ const PopUp = (props) => {
 }
 
 const PopUpApply = (props) => {
-    let dateSt = props.startDate.toString();
-    let dateEn = props.endDate.toString();
+    let dateSt = String(props.startDate);
+    let dateEn = String(props.endDate);
     let dateStr = dateSt.substring(5, 10);
     let dateEnd = dateEn.substring(5, 10);
 
@@ -34,7 +34,7 @@ const PopUpApply = (props) => {
                         <p className = "IconDes">챌린지 기간</p>
                     </div>
                     <p className ="Content" style={{ textAlign : "right"}}>
-                        {dateEnd.replace(/-/g, "/")} ~ {dateStr.replace(/-/g, "/")}
+                        {dateStr.replace(/-/g, "/")} ~ {dateEnd.replace(/-/g, "/")}
                     </p>
                     <div className ="DescriptionSection">
                         <img src={icon_memberCount} width="40px" height="40ox"/>
@@ -59,7 +59,7 @@ const PopUpApply = (props) => {
                 </div>
                 <p className ="Content" style ={{marginLeft : "30px"}}>{props.badge}</p>
             </div>
-            <button className="ApplyBtn">신청하기</button>
+            <button className="ApplyBtn" onClick={()=>{props.applyClicked()}}>신청하기</button>
             </div>
         </div>
         :

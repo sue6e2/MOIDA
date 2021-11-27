@@ -12,6 +12,8 @@
   align-items: center;
   color: #fff;
   font-size: 25px;
+  cursor: pointer;
+  border: 0;
 }
 
 .ApplySection .DescriptionSection{

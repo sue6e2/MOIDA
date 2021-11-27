@@ -41,6 +41,7 @@ class Main extends Component {
             isPopularityHandlerOn: true,
             isOpenApplyPopup : false,
             popularityChallengeId: '',
+            popularityApplyData :[],
         }
 
         if (this.state.myDataBeforeProcessing.length == 0) {
@@ -171,7 +172,6 @@ class Main extends Component {
                     popularityData: temp
                 })
             }
-
         }
     }
 
@@ -328,6 +328,15 @@ class Main extends Component {
         location.href = "/Challenge/" + challengeData[index].name;
     }
 
+    popularityChallengeCardHandler = (index) => {
+        const popularityeData = this.state.popularityData;
+        
+        this.setState({
+            popularityApplyData : popularityeData[index]
+        })
+        console.log(this.state.popularityApplyData);
+    }
+
     openApplyPopup =(props) =>{
         this.setState({
             isOpenApplyPopup: true,
@@ -343,30 +352,29 @@ class Main extends Component {
         })
     }
 
-    // ApplyPopularity =() => {
-
-    //     try {
-    //         let response = await axios(
-    //             {
-    //                 method: 'post',
-    //                 url: 'http://localhost:5001/groupMember/inviteMember',
-    //                 headers: {
-    //                 },
-    //                 params: {
-    //                     master_realid: this.userData.realId,
-    //                     group_id: this.state.popularityChallengeId
-    //                 },
-    //             }
-    //         );
-    //         console.log(response);
-    //         if (response.data.code == 0) {
-    //             sessionStorage.setItem("group_id", response.data.data.group_id);
-    //             this.insertGroupMember();
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    applyPopularity = async() => {
+        try {
+            let response = await axios(
+                {
+                    method: 'post',
+                    url: 'http://localhost:5001/groupMember/inviteApplyMember',
+                    headers: {
+                    },
+                    params: {
+                        master_realid: this.userData.realId,
+                        group_id: this.state.popularityApplyData.group_id
+                    },
+                }
+            );
+            console.log(response);
+            if (response.data.code == 0) {
+                this.closeApplyPopup();
+                location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     render() {
 
@@ -433,6 +441,7 @@ class Main extends Component {
                                         image={current.image}
                                         startDate={current.startDate}
                                         endDate={current.endDate}
+                                        cardClicked={() => { this.popularityChallengeCardHandler(index) }}
                                     />
                                     </div>
                                 )
@@ -482,28 +491,22 @@ class Main extends Component {
                             <button className="SubmitBt" type="submit">생성하기</button>
                         </form>
                     </div>
-                </PopUp >
-                {
-                this.state.popularityData.map((current, index) => {
-                    // sessionStorage.setItem("group_id", response.data.data.group_id);
-                return (
+                </PopUp >                   
                 <PopUpApply
                     isOpenApply={this.state.isOpenApplyPopup}
                     width={758}
                     height={560}
-                    title = {current.name}
-                    description = {current.description}
-                    img = {current.image}
-                    startDate={current.startDate}
-                    endDate={current.endDate}
-                    memberCount = {current.member_count}
-                    badge = {current.badge}
+                    title = {this.state.popularityApplyData.name}
+                    description = {this.state.popularityApplyData.description}
+                    img = {this.state.popularityApplyData.image}
+                    startDate={this.state.popularityApplyData.startDate}
+                    endDate={this.state.popularityApplyData.endDate}
+                    memberCount = {this.state.popularityApplyData.member_count}
+                    badge = {this.state.popularityApplyData.badge}
+                    applyClicked = {()=>{this.applyPopularity()}}
                 >
-                    <img className ="ApplyPopupClose"src={icon_close} onClick={() => { this.closeApplyPopup() }} />
+                    <img className ="ApplyPopupClose" src={icon_close} onClick={() => { this.closeApplyPopup() }} />
                 </PopUpApply>
-                                )
-                            })
-                        }
             </div >
         );
     }

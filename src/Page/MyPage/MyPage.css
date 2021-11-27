@@ -1,0 +1,11 @@
+.MyPage .MyPageSection{
+  box-sizing: border-box;
+  margin: 40px 75px auto 75px;
+}
+
+.DefaultProfileImg{
+  width: 102px;
+  height: 102px;
+  margin: 30px 351px 64px 1px;
+  padding: 31px 19px 30px 18px;
+}

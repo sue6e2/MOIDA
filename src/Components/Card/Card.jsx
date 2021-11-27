@@ -34,7 +34,7 @@ const ChallengeCard = (props) => {
 
 const PopularityCard = (props) => {
     return (
-        <div className="PopularityCard">
+        <div className="PopularityCard" onClick ={ ()=>{props.cardClicked()} }>
             <div className="ImageSection" style={{ height: "177px", backgroundColor: "balck" }}>
                 <img id="popularity-image" className="PopularityImage" src={props.image} ></img>
             </div>
@@ -119,6 +119,27 @@ const SearchResultCard = (props) => {
     )
 }
 
+const MyChallengeCard = (props) =>{
+
+    let end = new Date(props.endDate);
+    let start = new Date(props.startDate);
+    var gap = end.getTime() - start.getTime();
+    var result = Math.floor(gap / (1000 * 60 * 60 * 24));
+
+    return (
+        <div className="MyChallengeCard" onClick={() => { props.cardClicked() }}>
+            <div style={{ position: "relative" }}>
+                <img id="challenge-image" className="ChallengeImage" src={props.image} ></img>
+            </div>
+            <p className="ChallengeName">{props.name}</p>
+            <div style={{ display: "flex" }}>
+                <div className="ChallengeRateGraph"><span style={{ width: `${Math.floor(props.myRate)}%` }} /></div>
+                <p className="ChallengeRate">{Math.floor(props.myRate)}%</p>
+            </div>
+        </div>
+    )
+}
+
 const MyCertificationCard = (props) => {
     let date = props.date.toString();
     let dateStr = date.substring(0, 10);
@@ -152,4 +173,4 @@ const MyCertificationCard = (props) => {
     )
 }
 
-export { ChallengeCard, PopularityCard, SearchResultCard, CertificationCard, MyCertificationCard };
+export { ChallengeCard, PopularityCard, SearchResultCard, CertificationCard, MyChallengeCard ,MyCertificationCard };
