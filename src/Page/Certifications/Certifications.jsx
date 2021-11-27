@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
-import {PopUp} from '../../Components/Popup/Popup';
+import { PopUp } from '../../Components/Popup/Popup';
 import Data from '../../Data';
 import './Certifications.css';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
-import preview_image from '../../res/img/no-image.jpg';
+import preview_image from '../../res/img/certification_default.png';
 import axios from 'axios';
 import { CertificationCard } from '../../Components/Card/Card';
 

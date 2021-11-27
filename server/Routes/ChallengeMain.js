@@ -48,7 +48,7 @@ router.post('/certification', upload.single('photo'), function (req, res) {
     let description = req.body.description;
     let photo;
     if (typeof req.file === "undefined") {
-        photo = '/photo/no-image.jpg';
+        photo = '/photo/certification_default.png';
     } else {
         photo = '/photo/' + req.file.filename;
     }

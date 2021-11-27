@@ -75,7 +75,7 @@
     font-family: NanumGothic;
     font-size: 60px;
     text-align: left;
-    margin: 0 0 0 200px;
+    margin: 0 0 0 191px;
 }
 
 .ChallengePage .ChallengeInfoSection .ChallengeInfoTop {
@@ -149,7 +149,7 @@
     font-family: NanumGothic;
     font-size: 49px;
     font-weight: bold;
-    margin: 35px auto 0 auto;
+    margin: 15px auto 0 auto;
 }
 
 .ChallengePage .MyAchievementSection .ChartSection {
@@ -171,7 +171,15 @@
     font-family: NanumGothic;
     font-size: 49px;
     font-weight: bold;
-    margin: 35px auto 0 auto;
+    margin: 15px auto 0 auto;
+}
+
+.ChallengePage .AllAchievementSection img {
+    height: 300px;
+    width: 608.5px;
+    position: relative;
+    bottom: 0px;
+    left: 100px;
 }
 
 .ChallengePage .ConfirmPopUp .ConfirmCloseBt {
