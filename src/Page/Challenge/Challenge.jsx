@@ -2,10 +2,10 @@ import { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Challenge.css';
 import Data from '../../Data';
-import {PopUp} from '../../Components/Popup/Popup';
+import { PopUp } from '../../Components/Popup/Popup';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
-import preview_image from '../../res/img/no-image.jpg';
+import preview_image from '../../res/img/certification_default.png';
 import axios from 'axios';
 import { Chart } from 'chart.js';
 import DoughnutChart from '../../Components/DoughnutChart/DoughnutChart';
@@ -13,6 +13,11 @@ import icon_member from '../../res/img/icon-memberCount.png';
 import icon_description from '../../res/img/icon-description.png';
 import icon_date from '../../res/img/icon-date.png';
 import icon_badge from '../../res/img/icon-crown.png';
+import sprout from '../../res/img/sprout.png';
+import grass from '../../res/img/grass.png';
+import tree from '../../res/img/tree.png';
+import fruit from '../../res/img/fruit.png';
+import flower from '../../res/img/flower.png';
 
 class ChallengePage extends Component {
     constructor(props) {
@@ -30,6 +35,7 @@ class ChallengePage extends Component {
             isDeletePopUpOpen: false
         }
         this.checkBadgeValidation();
+        //this.checkTotalRate();
     }
     userData = Data.getUserData();
     challengeData = Data.getChallengeData();
@@ -263,14 +269,36 @@ class ChallengePage extends Component {
         }
     }
 
+    checkTotalRate = (value) => {
+        switch (true) {
+            case (value <= 100) && (value >= 81):
+                return fruit
+                break;
+            case (value <= 80) && (value >= 61):
+                return tree
+                break;
+            case (value <= 60) && (value >= 41):
+                return flower
+                break;
+            case (value <= 40) && (value >= 21):
+                return grass
+                break;
+            case (value <= 20) && (value >= 0):
+                return sprout
+                break;
+        }
+
+
+    }
+
     today = new Date();
     year = this.today.getFullYear();
     month = this.today.getMonth() + 1;
     date = this.today.getDate();
+    totalRate = Math.floor(this.challengeData.rate);
+
 
     render() {
-        console.log(this.challengeData);
-        console.log(this.userData);
         return (
             <div className="ChallengePage">
                 <TopBar />
@@ -288,7 +316,7 @@ class ChallengePage extends Component {
                         </div>
                         <div className="ChallengeInfoBottom">
                             <img src={icon_badge} />
-                            <div style={{ display: "flex", width: "773px" }}>
+                            <div style={{ display: "flex", width: "780px" }}>
                                 <p className="BadgeTitle">성공 시 &lt;{this.challengeData.badge}&gt;</p>
                                 <button disabled={this.challengeData.my_rate < 100 || this.state.cannotGetBadge == true} className="GetBadge" onClick={() => { this.getBadgeHandler() }}>칭호 받기</button>
                             </div>
@@ -309,6 +337,7 @@ class ChallengePage extends Component {
                         </div>
                         <div className="AllAchievementSection">
                             <p className="Title">모두의 성취도</p>
+                            <img id="totalRate-img" src={this.checkTotalRate(this.totalRate)}></img>
                         </div>
                     </div>
 
@@ -322,7 +351,7 @@ class ChallengePage extends Component {
                     <div className="ConfirmPopUp">
                         <form encType="multipart/form-data" onSubmit={this.handleConfirmFormSubmit}>
                             <img className="ConfirmCloseBt" src={icon_close} onClick={() => { this.closeConfirmPopUp() }} />
-                            <h1 className="Title">내인증</h1>
+                            <h1 className="Title">내 인증</h1>
                             <img id="preview-confirmimage" src={preview_image} className="ConfirmImage" alt="인증이미지"></img>
                             <label for="confirm-input-file" className="ConfirmImgUpload">이미지 업로드<img src={icon_camera} /></label>
                             <input style={{ display: "none" }} id="confirm-input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleConfirmFileChange} />

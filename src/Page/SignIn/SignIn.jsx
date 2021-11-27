@@ -27,16 +27,12 @@ class SignIn extends Component {
     }
 
     responseGoogle = (res) => {
-        console.log("dfs");
         sessionStorage.setItem('googleId', res.profileObj.email);
         sessionStorage.setItem('googleName', res.profileObj.name);
-
-        // window.location.href = '/SignUp';
-
         this.gooleLogin2(res.profileObj.email, res.profileObj.name);
     }
 
-    gooleLogin2 = async (id, name) =>{
+    gooleLogin2 = async (id, name) => {
 
         const response = await axios.post("http://localhost:5001/signIn/googleLogin",
             {

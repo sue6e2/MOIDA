@@ -13,7 +13,7 @@
 }
 
 .MyCertificationsPage .MyCertificationsContent .InfoSection h1 {
-    font-family: NanumGothic;
+    font-family: Pretendard;
     font-size: 53px;
     font-weight: bold;
     color: black;
@@ -26,7 +26,7 @@
     background-color: #076df3;
     padding: 17px 57px;
     height: 64px;
-    font-family: NanumGothic;
+    font-family: Pretendard;
     font-size: 32px;
     color: white;
     border: 0;
@@ -55,17 +55,17 @@
 
 .MyCertificationsPage .MyCertificationsContent .RateSection .MyChallengeRateGraph p {
     height: 37px;
-    font-family: NanumGothic;
+    font-family: Pretendard;
     font-size: 26px;
     width: 80px;
     color: #fff;
-    text-align: left;
-    margin: 4px 0;
+    text-align: right;
+    margin: 4px 10px 4px 0;
     float: right;
 }
 
 .MyCertificationsPage .MyCertificationsContent .ChallengeCountSection p {
-    font-family: NanumGothic;
+    font-family: Pretendard;
     font-size: 24px;
     color: #076df3;
     margin: 0 0 30px 0;

@@ -7,7 +7,7 @@ const DefaultProfileImg = (props) => {
     let name = username.substr(1, 3);
     return (
         <div className="UserBackground" style={{ backgroundColor: usercolor, width: props.width, height: props.height, borderRadius: "75px", margin: props.margin }}>
-            <p className="UserName" style={{ color: "white", textAlign: "center", lineHeight: props.lineHeight, fontFamily: "Roboto", margin: props.textMargin, fontSize : props.fontSize }}>{name}</p>
+            <p className="UserName" style={{ color: "white", textAlign: "center", lineHeight: props.lineHeight, fontFamily: "Pretendard", margin: props.textMargin, fontSize: props.fontSize }}>{name}</p>
         </div>
     )
 }
