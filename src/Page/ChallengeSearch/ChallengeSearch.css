@@ -6,3 +6,17 @@
   box-sizing: border-box;
   margin: 40px 75px auto 75px;
 }
+
+.SearchApplyPopUp .SearchApplyCloseBt {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.SearchApplyPopUp h1 {
+  text-align: center;
+  margin-top: 80px;
+}

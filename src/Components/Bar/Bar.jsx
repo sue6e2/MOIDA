@@ -64,7 +64,7 @@ const TopBar = () => {
                 onChange={(e) => {onChangeChallenge(e)}}
             />
             <img className="SearchIcon" src={icon_search} onClick={() =>{onClickButton()}}></img>
-            <div className="TopBarProfileIcon" >
+            <div className="TopBarProfileIcon" onClick={() => { window.location.href = "/MyPage" }} >
                 <DefaultProfileImg
                     id={userData.realId}
                     name={userData.accountName}

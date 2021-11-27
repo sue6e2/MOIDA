@@ -27,10 +27,35 @@ class SignIn extends Component {
     }
 
     responseGoogle = (res) => {
+        console.log("dfs");
         sessionStorage.setItem('googleId', res.profileObj.email);
         sessionStorage.setItem('googleName', res.profileObj.name);
 
-        window.location.href = '/SignUp';
+        // window.location.href = '/SignUp';
+
+        this.gooleLogin2(res.profileObj.email, res.profileObj.name);
+    }
+
+    gooleLogin2 = async (id, name) =>{
+
+        const response = await axios.post("http://localhost:5001/signIn/googleLogin",
+            {
+                headers: {
+                },
+                params: { user_id: id, user_name: name }
+            })
+        console.log(response);
+        if (response.data.code == 0) {
+            sessionStorage.setItem("accountRealId", response.data.accountRealId);
+            sessionStorage.setItem("accountName", response.data.accountName);
+            sessionStorage.setItem("userData", CryptoJS.AES.encrypt(JSON.stringify(response.data.data), 'signIn key').toString());
+            window.location.href = "/Main"
+        } else if (response.data.code == 101) {
+            window.location.href = '/SignUp';
+        } else if (response.data.code == 102) {
+            window.location.href = '/SignUp';
+        }
+
     }
 
     responseFail = (err) => {

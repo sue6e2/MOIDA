@@ -65,5 +65,55 @@ router.post('/', function (req, res) {
 
 })
 
+router.post('/googleLogin', function (req, res) {
+
+    console.log(req);
+
+    const user_id = req.body.params.user_id;
+    const user_name = req.body.params.user_name;
+
+    //입력된 id와 동일한 id가 db에 있는지 확인
+    const sql1 = 'SELECT COUNT(*) AS result from account where account_id = ? '
+
+    connection.query(sql1, user_id, (err, data) => {
+        try {
+            if (data[0].result < 1) { //동일 id가 없다면
+                res.send({ code: 101 }) //입력하신 ID가 없습니다.
+            } else { //동일 id 있다면 일치 확인
+                const sql2 = `SELECT 
+                            CASE(SELECT COUNT(*) FROM account where account_id = ? AND account_name = ?)
+                            WHEN '0' THEN NULL
+                            ELSE (SELECT account_id FROM account WHERE account_id = ? AND account_name = ?)
+                            END AS accountId
+                            , CASE(SELECT COUNT(*) FROM account WHERE account_id = ? AND account_name = ?)
+                            WHEN '0' THEN NULL
+                            ELSE (SELECT account_name FROM account WHERE account_id = ? AND account_name = ?)
+                            END AS accountPwd`;
+                const params = [user_id, user_name, user_id, user_name, user_id, user_name, user_id, user_name]
+
+
+                connection.query(sql2, params, (err, data) => {
+                    if (data[0].accountId != null && data[0].accountPwd != null) {
+                        sql3 = `SELECT id, account_name from account where account_id = ? AND  account_name = ? `
+                        const params2 = [data[0].accountId, data[0].accountPwd]
+
+                        connection.query(sql3, params2, (err, data2) => {
+                            console.log(data2);
+                            res.send({ code: 0, data: data[0], accountRealId: data2[0].id, accountName: data2[0].account_name });
+                        })
+
+                    } else {
+                        console.log(err);
+                        return res.send({ code: 102 });
+                    }
+                })
+            }
+        } catch (err) {
+            res.send(err)
+        }
+    })
+
+})
+
 
 module.exports = router;

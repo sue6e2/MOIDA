@@ -42,6 +42,7 @@ class Main extends Component {
             isOpenApplyPopup : false,
             popularityChallengeId: '',
             popularityApplyData :[],
+            isApplyPopUpOpen: false,
         }
 
         if (this.state.myDataBeforeProcessing.length == 0) {
@@ -369,12 +370,21 @@ class Main extends Component {
             console.log(response);
             if (response.data.code == 0) {
                 this.closeApplyPopup();
-                location.reload();
+                this.setState({
+                    isApplyPopUpOpen: true
+                })
             }
         } catch (error) {
             console.log(error);
         }
     }
+
+    applyPopupClose = () => {
+        this.setState({
+          isSearchApplyPopUpOpen : false
+        })
+        window.location.href = "/Main";
+      }
 
     render() {
 
@@ -507,6 +517,17 @@ class Main extends Component {
                 >
                     <img className ="ApplyPopupClose" src={icon_close} onClick={() => { this.closeApplyPopup() }} />
                 </PopUpApply>
+
+                <PopUp
+                    isOpen={this.state.isApplyPopUpOpen}
+                    width={500}
+                    height={200}
+                >
+                    <div className="ApplyPopUp">
+                        <img className="ApplyCloseBt" src={icon_close} onClick={() => { this.applyPopupClose() }} />
+                        <h1>해당 챌린지가 신청되었습니다!</h1>
+                    </div>
+                </PopUp>
             </div >
         );
     }
