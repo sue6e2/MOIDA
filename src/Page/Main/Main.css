@@ -375,3 +375,17 @@
     right: 6px;
     cursor: pointer;
 }
+
+.ApplyPopUp .ApplyCloseBt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+  
+  .ApplyPopUp h1 {
+    text-align: center;
+    margin-top: 80px;
+  }

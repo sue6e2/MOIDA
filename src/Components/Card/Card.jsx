@@ -114,7 +114,7 @@ const SearchResultCard = (props) => {
                 <p className="DescriptionContent">{props.memberCount}</p>
                 <p className="DescriptionContent">{props.badge}</p>
             </div>
-            <button className="ApplyBtn">신청하기</button>
+            <button className="ApplyBtn" onClick={()=>{props.searchApplyClicked()}}>신청하기</button>
         </div>
     )
 }
