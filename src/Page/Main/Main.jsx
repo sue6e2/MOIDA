@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Main.css';
-import { ChallengeCard } from '../../Components/Card/Card';
-import { PopularityCard } from '../../Components/Card/Card';
+import { ChallengeCard, PopularityCard } from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
-import PopUp from '../../Components/Popup/Popup';
+import {PopUp, PopUpApply} from '../../Components/Popup/Popup';
 import preview_Image from '../../res/img/no-image.jpg'
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
@@ -39,7 +38,9 @@ class Main extends Component {
             isMyPageHandlerOn: true,
             popularityPageNum: 1,
             popularityTotalPageNum: 1,
-            isPopularityHandlerOn: true
+            isPopularityHandlerOn: true,
+            isOpenApplyPopup : false,
+            popularityChallengeId: '',
         }
 
         if (this.state.myDataBeforeProcessing.length == 0) {
@@ -49,8 +50,6 @@ class Main extends Component {
         if (this.state.popularityDataBeforeProcessing.length == 0) {
             this.getPopularityData();
         }
-
-
     }
 
     userData = Data.getUserData();
@@ -63,7 +62,6 @@ class Main extends Component {
                     headers: {
                     },
                     params: { account_id: this.userData.realId }
-
                 }
             );
             console.log(response);
@@ -176,7 +174,6 @@ class Main extends Component {
 
         }
     }
-
 
     openPopup = () => {
         this.setState({
@@ -314,7 +311,8 @@ class Main extends Component {
             } else {
                 this.setState({
                     popularityTotalPageNum: 1,
-                    popularityDataBeforeProcessing: []
+                    popularityDataBeforeProcessing: [],
+                    isOpenApplyPopup : false
                 })
             }
         } catch (error) {
@@ -329,6 +327,46 @@ class Main extends Component {
         sessionStorage.setItem("challengeData", CryptoJS.AES.encrypt(JSON.stringify(challengeData[index]), 'challenge key').toString());
         location.href = "/Challenge/" + challengeData[index].name;
     }
+
+    openApplyPopup =(props) =>{
+        this.setState({
+            isOpenApplyPopup: true,
+        })
+        // sessionStorage.setItem("group_id", response.data.data.group_id);
+        console.log(props);
+        console.log(this.state.isOpenApplyPopup);
+    }
+
+    closeApplyPopup = () => {
+        this.setState({
+            isOpenApplyPopup: false,
+        })
+    }
+
+    // ApplyPopularity =() => {
+
+    //     try {
+    //         let response = await axios(
+    //             {
+    //                 method: 'post',
+    //                 url: 'http://localhost:5001/groupMember/inviteMember',
+    //                 headers: {
+    //                 },
+    //                 params: {
+    //                     master_realid: this.userData.realId,
+    //                     group_id: this.state.popularityChallengeId
+    //                 },
+    //             }
+    //         );
+    //         console.log(response);
+    //         if (response.data.code == 0) {
+    //             sessionStorage.setItem("group_id", response.data.data.group_id);
+    //             this.insertGroupMember();
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     render() {
 
@@ -387,6 +425,7 @@ class Main extends Component {
                                 var result = Math.ceil(gap / (1000 * 60 * 60 * 24));
 
                                 return (
+                                    <div onClick ={() => { this.openApplyPopup(index) }}>
                                     <PopularityCard
                                         key={index}
                                         popularityName={current.name}
@@ -395,6 +434,7 @@ class Main extends Component {
                                         startDate={current.startDate}
                                         endDate={current.endDate}
                                     />
+                                    </div>
                                 )
                             })
                         }
@@ -443,6 +483,27 @@ class Main extends Component {
                         </form>
                     </div>
                 </PopUp >
+                {
+                this.state.popularityData.map((current, index) => {
+                    // sessionStorage.setItem("group_id", response.data.data.group_id);
+                return (
+                <PopUpApply
+                    isOpenApply={this.state.isOpenApplyPopup}
+                    width={758}
+                    height={560}
+                    title = {current.name}
+                    description = {current.description}
+                    img = {current.image}
+                    startDate={current.startDate}
+                    endDate={current.endDate}
+                    memberCount = {current.member_count}
+                    badge = {current.badge}
+                >
+                    <img className ="ApplyPopupClose"src={icon_close} onClick={() => { this.closeApplyPopup() }} />
+                </PopUpApply>
+                                )
+                            })
+                        }
             </div >
         );
     }

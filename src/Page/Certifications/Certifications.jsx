@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
-import PopUp from '../../Components/Popup/Popup';
+import {PopUp} from '../../Components/Popup/Popup';
 import Data from '../../Data';
 import './Certifications.css';
 import icon_camera from '../../res/img/icon-camera.svg';

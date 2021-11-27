@@ -2,7 +2,7 @@ import { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './Challenge.css';
 import Data from '../../Data';
-import PopUp from '../../Components/Popup/Popup';
+import {PopUp} from '../../Components/Popup/Popup';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
 import preview_image from '../../res/img/no-image.jpg';
