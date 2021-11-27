@@ -368,3 +368,10 @@
     cursor: pointer;
     border: 0;
 }
+
+.ApplyPopupClose{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    cursor: pointer;
+}

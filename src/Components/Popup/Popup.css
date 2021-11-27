@@ -1,0 +1,46 @@
+.ApplyBtn{
+  position: absolute;
+  right: 13px;
+  bottom: 20px;
+  width: 142px;
+  height: 59px;
+  display: flex;
+  border-radius: 10px;
+  background-color: #076df3;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+  border: 0;
+}
+
+.ApplySection .DescriptionSection{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 0px 0px;
+    margin-left: 27px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+}
+
+.ApplySection .IconDes{
+  margin-left: 6px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.ApplyContent{
+  font-size: 30px;
+  text-align: center;
+  margin: 20px;
+  font-weight: bold;
+}
+
+.ApplySection .Content{
+  font-size: 22px;
+  font-weight: bold;
+}

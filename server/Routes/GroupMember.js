@@ -34,6 +34,23 @@ router.post('/inviteMember', function (req, res) {
     })
 })
 
+router.post('/inviteApplyMember', function (req, res) {
+    console.log(req);
+
+    let sql = `INSERT INTO moidagroup_member values (?,?,0,'0')`;
+    let user_id = req.query.master_realid;
+    let group_id = req.query.group_id;
+    let params = [user_id, group_id];
+
+    connection.query(sql, params, function (err) {
+        if (!err) {
+            res.send({ code: 0 });
+        } else {
+            res.send({ code: 102, errorMessage: err })
+        }
+    })
+})
+
 //챌린지 탈퇴
 router.delete('/leave', function (req, res) {
     let sql = `DELETE from moidagroup_member where group_id = ? AND user_id = ?`

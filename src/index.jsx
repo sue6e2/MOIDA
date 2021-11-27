@@ -12,6 +12,7 @@ import ChallengeSearch from './Page/ChallengeSearch/ChallengeSearch';
 import ChallengePage from './Page/Challenge/Challenge';
 import OtherCertifications from './Page/Certifications/Certifications';
 import MyCertifications from './Page/MyCertifications/MyCertifications';
+import MyPage from './Page/MyPage/MyPage';
 const Root = () => {
 
   let needSignIn = false;
@@ -34,6 +35,7 @@ const Root = () => {
           <Route exact path="/Challenge/:challenge" component={ChallengePage}></Route>
           <Route exact path="/Challenge/:challenge/Certifications" component={OtherCertifications}></Route>
           <Route exact path="/Challenge/:challenge/MyCertifications" component={MyCertifications}></Route>
+          <Route exact path="/MyPage" component={MyPage}></Route>
         </Switch>
       </div>
     </Router>
