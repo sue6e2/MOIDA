@@ -1,5 +1,9 @@
 import "./Card.css";
 import icon_members from '../../res/img/icon-members.svg';
+import icon_description from '../../res/img/icon-description.png';
+import icon_date from '../../res/img/icon-date.png';
+import icon_memberCount from '../../res/img/icon-memberCount.png';
+import icon_trophy from '../../res/img/icon-trophy.png';
 import DefaultProfileImg from "../DefaultProfileImg/DefaultProfileImg";
 import Data from "../../Data";
 
@@ -82,20 +86,35 @@ const SearchResultCard = (props) => {
     return(
         <div className="SearchResultCard">
             <div className="SearchResultImgSection">
-                <img src={props.img}></img>
+                <img src={props.img} width="320px" height="179px"></img>
             </div>
             <div className="SearchResultInfoSection1">
                 <h1 className="SearchResultTitle">{props.title}</h1>
-                <p className="SearchResultDescription">{props.description}</p>
+                <div className="SearchResultInfoSection2" style ={{width : "500px"}}>
+                    <img className="DescriptionImg" src={icon_description} width="40px" height="40ox"></img>
+                    <p className="DescriptionLabel">{props.description}</p>
+                </div>
             </div>
-            <div className="SearchResultInfoSection2">
-                <h2>챌린지 기간</h2>
-                <span>{dateEnd.replace(/-/g, ".")}~{dateStr.replace(/-/g, ".")}</span>
-                <h2>현재신청인원</h2>
-                <span>{props.memberCount}</span>
-                <h2>칭호</h2>
-                <span>{props.badge}</span>
+            <div>
+                <div className="SearchResultInfoSection2">
+                    <img className="DescriptionImg" src={icon_date} width="40px" height="40ox"></img>
+                    <p className="DescriptionLabel">챌린지 기간</p>
+                </div>
+                <div className="SearchResultInfoSection2">
+                    <img className="DescriptionImg" src={icon_memberCount} width="40px" height="40ox"></img>
+                    <p className="DescriptionLabel">현재신청인원</p>
+                </div>
+                <div className="SearchResultInfoSection2">
+                    <img className="DescriptionImg" src={icon_trophy} width="40px" height="40ox"></img>
+                    <p className="DescriptionLabel">칭호</p>
+                </div>
             </div>
+            <div className ="SearchResultInfoSection3">
+                <p className="DescriptionContent">{dateEnd.replace(/-/g, ".")} ~ {dateStr.replace(/-/g, ".")}</p>
+                <p className="DescriptionContent">{props.memberCount}</p>
+                <p className="DescriptionContent">{props.badge}</p>
+            </div>
+            <button className="ApplyBtn">신청하기</button>
         </div>
     )
 }
