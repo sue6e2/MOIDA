@@ -157,7 +157,6 @@ class CertificationsPage extends Component {
     date = this.today.getDate();
 
     render() {
-        console.log(this.state.certificationData)
         return (
             <div className="CertificationsPage">
                 <TopBar />
@@ -195,7 +194,7 @@ class CertificationsPage extends Component {
                     <div className="ConfirmPopUp">
                         <form encType="multipart/form-data" onSubmit={this.confirmSubmitHandler}>
                             <img className="ConfirmCloseBt" src={icon_close} onClick={() => { this.closeConfirmPopUp() }} />
-                            <h1 className="Title">내인증</h1>
+                            <h1 className="Title">내 인증</h1>
                             <img id="preview-confirmimage" src={preview_image} className="ConfirmImage" alt="인증이미지"></img>
                             <label for="confirm-input-file" className="ConfirmImgUpload">이미지 업로드<img src={icon_camera} /></label>
                             <input style={{ display: "none" }} id="confirm-input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleConfirmFileChange} />

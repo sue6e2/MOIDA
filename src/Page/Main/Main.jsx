@@ -4,7 +4,7 @@ import './Main.css';
 import { ChallengeCard, PopularityCard } from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
-import {PopUp, PopUpApply} from '../../Components/Popup/Popup';
+import { PopUp, PopUpApply } from '../../Components/Popup/Popup';
 import preview_Image from '../../res/img/no-image.jpg'
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
@@ -39,9 +39,9 @@ class Main extends Component {
             popularityPageNum: 1,
             popularityTotalPageNum: 1,
             isPopularityHandlerOn: true,
-            isOpenApplyPopup : false,
+            isOpenApplyPopup: false,
             popularityChallengeId: '',
-            popularityApplyData :[],
+            popularityApplyData: [],
             isApplyPopUpOpen: false,
         }
 
@@ -232,7 +232,6 @@ class Main extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.isBadgeValidate == true) {
-            console.log(this.state.file);
             this.makeChallenge();
         } else if (this.state.isBadgeValidate == false) {
             alert("칭호에 특수문자는 불가능합니다.")
@@ -313,7 +312,7 @@ class Main extends Component {
                 this.setState({
                     popularityTotalPageNum: 1,
                     popularityDataBeforeProcessing: [],
-                    isOpenApplyPopup : false
+                    isOpenApplyPopup: false
                 })
             }
         } catch (error) {
@@ -323,28 +322,22 @@ class Main extends Component {
 
     myChallengeCardHandler = (index) => {
         const challengeData = this.state.myChallengeData;
-        console.log(index);
-        console.log(challengeData[index]);
         sessionStorage.setItem("challengeData", CryptoJS.AES.encrypt(JSON.stringify(challengeData[index]), 'challenge key').toString());
         location.href = "/Challenge/" + challengeData[index].name;
     }
 
     popularityChallengeCardHandler = (index) => {
         const popularityeData = this.state.popularityData;
-        
+
         this.setState({
-            popularityApplyData : popularityeData[index]
+            popularityApplyData: popularityeData[index]
         })
-        console.log(this.state.popularityApplyData);
     }
 
-    openApplyPopup =(props) =>{
+    openApplyPopup = (props) => {
         this.setState({
             isOpenApplyPopup: true,
         })
-        // sessionStorage.setItem("group_id", response.data.data.group_id);
-        console.log(props);
-        console.log(this.state.isOpenApplyPopup);
     }
 
     closeApplyPopup = () => {
@@ -353,7 +346,7 @@ class Main extends Component {
         })
     }
 
-    applyPopularity = async() => {
+    applyPopularity = async () => {
         try {
             let response = await axios(
                 {
@@ -381,10 +374,10 @@ class Main extends Component {
 
     applyPopupClose = () => {
         this.setState({
-          isSearchApplyPopUpOpen : false
+            isSearchApplyPopUpOpen: false
         })
         window.location.href = "/Main";
-      }
+    }
 
     render() {
 
@@ -443,16 +436,16 @@ class Main extends Component {
                                 var result = Math.ceil(gap / (1000 * 60 * 60 * 24));
 
                                 return (
-                                    <div onClick ={() => { this.openApplyPopup(index) }}>
-                                    <PopularityCard
-                                        key={index}
-                                        popularityName={current.name}
-                                        dDay={result}
-                                        image={current.image}
-                                        startDate={current.startDate}
-                                        endDate={current.endDate}
-                                        cardClicked={() => { this.popularityChallengeCardHandler(index) }}
-                                    />
+                                    <div onClick={() => { this.openApplyPopup(index) }}>
+                                        <PopularityCard
+                                            key={index}
+                                            popularityName={current.name}
+                                            dDay={result}
+                                            image={current.image}
+                                            startDate={current.startDate}
+                                            endDate={current.endDate}
+                                            cardClicked={() => { this.popularityChallengeCardHandler(index) }}
+                                        />
                                     </div>
                                 )
                             })
@@ -501,21 +494,21 @@ class Main extends Component {
                             <button className="SubmitBt" type="submit">생성하기</button>
                         </form>
                     </div>
-                </PopUp >                   
+                </PopUp >
                 <PopUpApply
                     isOpenApply={this.state.isOpenApplyPopup}
                     width={758}
                     height={560}
-                    title = {this.state.popularityApplyData.name}
-                    description = {this.state.popularityApplyData.description}
-                    img = {this.state.popularityApplyData.image}
+                    title={this.state.popularityApplyData.name}
+                    description={this.state.popularityApplyData.description}
+                    img={this.state.popularityApplyData.image}
                     startDate={this.state.popularityApplyData.startDate}
                     endDate={this.state.popularityApplyData.endDate}
-                    memberCount = {this.state.popularityApplyData.member_count}
-                    badge = {this.state.popularityApplyData.badge}
-                    applyClicked = {()=>{this.applyPopularity()}}
+                    memberCount={this.state.popularityApplyData.member_count}
+                    badge={this.state.popularityApplyData.badge}
+                    applyClicked={() => { this.applyPopularity() }}
                 >
-                    <img className ="ApplyPopupClose" src={icon_close} onClick={() => { this.closeApplyPopup() }} />
+                    <img className="ApplyPopupClose" src={icon_close} onClick={() => { this.closeApplyPopup() }} />
                 </PopUpApply>
 
                 <PopUp

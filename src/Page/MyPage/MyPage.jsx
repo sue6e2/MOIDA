@@ -18,8 +18,8 @@ class MyPage extends Component {
         super(props);
 
         this.state = {
-            myBadgeData : [],
-            myChallengeData : []
+            myBadgeData: [],
+            myChallengeData: []
         }
 
         this.getMyData();
@@ -27,7 +27,7 @@ class MyPage extends Component {
 
     userData = Data.getUserData();
 
-    getMyData = async(index) => {
+    getMyData = async (index) => {
         try {
             let response = await axios(
                 {
@@ -41,13 +41,10 @@ class MyPage extends Component {
                 }
             );
             if (response.data.code == 0) {
-                console.log(response);
                 this.setState({
-                    myBadgeData : response.data.rows[0],
-                    myChallengeData : response.data.rows[1]
+                    myBadgeData: response.data.rows[0],
+                    myChallengeData: response.data.rows[1]
                 })
-                console.log(this.state.myBadgeData);
-                console.log(this.state.myChallengeData);
             }
         } catch (error) {
             console.log(error);
@@ -56,65 +53,65 @@ class MyPage extends Component {
 
     render() {
 
-      const userData = Data.getUserData();
+        const userData = Data.getUserData();
         return (
             <div className="MyPage">
                 <TopBar />
-                <div className ="MyPageSection">
-                    <div className ="MyPageSection1">
-                    <div className="MyInfo">
-                        <h1>내정보</h1>
-                            <div style ={{width:"102px", margin : "auto"}}>
-                            <DefaultProfileImg
-                                className ="DefaultPRofileImg"
-                                id={userData.realId}
-                                name={userData.accountName}
-                                width={102}
-                                height={102}
-                                margin={"0"}
-                                textMargin={"0"}
-                                lineHeight={3.1}
-                                fontSize ={35}
-                            />
+                <div className="MyPageSection">
+                    <div className="MyPageSection1">
+                        <div className="MyInfo">
+                            <h1>내정보</h1>
+                            <div style={{ width: "102px", margin: "auto" }}>
+                                <DefaultProfileImg
+                                    className="DefaultPRofileImg"
+                                    id={userData.realId}
+                                    name={userData.accountName}
+                                    width={102}
+                                    height={102}
+                                    margin={"0"}
+                                    textMargin={"0"}
+                                    lineHeight={3.1}
+                                    fontSize={35}
+                                />
                             </div>
                             <p className="NameLabel">이름</p>
-                            <p className ="Name">{userData.accountName}</p>
-                            <div style ={{paddingTop : "20px"}}>
-                            <h1>칭호 모아보기</h1>
+                            <p className="Name">{userData.accountName}</p>
+                            <div style={{ paddingTop: "20px" }}>
+                                <h1>칭호 모아보기</h1>
+                                {
+                                    this.state.myBadgeData.map((current, index) => {
+                                        return (
+                                            <div style={{ display: "flex" }}>
+                                                <p className="GroupName">{current.group_name}</p>
+                                                <p className="BadgeName">&lt; {current.badge_name} &gt;</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="MyChallenge" style={{ marginLeft: "20px", width: "1300px" }}>
+                        <h1>챌린지 모아보기</h1>
+                        <div style={{ float: "left" }}>
                             {
-                                this.state.myBadgeData.map((current,index)=>{
-                                    return(
-                                        <div style ={{display :"flex"}}>
-                                        <p className ="GroupName">{current.group_name}</p>
-                                        <p className ="BadgeName">&lt; {current.badge_name} &gt;</p>
+                                this.state.myChallengeData.map((current, index) => {
+                                    return (
+                                        <div style={{ float: "left", margin: "10px 20px 0px 20px" }}>
+                                            <MyChallengeCard
+                                                key={index}
+                                                name={current.name}
+                                                image={current.image}
+                                                startDate={current.startDate}
+                                                endDate={current.endDate}
+                                                myRate={current.my_rate}
+                                            />
                                         </div>
                                     )
                                 })
                             }
-                            </div>
-                            </div>
-                            </div>
-                  <div className="MyChallenge" style ={{ marginLeft : "20px" ,width :"1300px"}}>
-                    <h1>챌린지 모아보기</h1>
-                    <div style={{ float: "left" }}>
-                        {
-                            this.state.myChallengeData.map((current,index) =>{
-                                return(
-                                    <div style ={{ float : "left", margin : "10px 20px 0px 20px"}}>
-                                    <MyChallengeCard
-                                    key={index}
-                                    name={current.name}
-                                    image={current.image}
-                                    startDate={current.startDate}
-                                    endDate={current.endDate}
-                                    myRate={current.my_rate}
-                                />
-                                </div>
-                                )
-                            })
-                        }
+                        </div>
                     </div>
-                </div>
                 </div>
             </div >
         );

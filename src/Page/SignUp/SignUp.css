@@ -1,87 +1,13 @@
-/* 
- 
-.SignUp{
-  display: flex;
-  justify-content: center;
-}
-
-.frmSignUp{
-  margin-top: 40px;
-  margin-bottom: 40px;
-  width: 350px;
-  padding: 20px 50px;
-  background-color: white;
-  box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-}
-
-.frmSignUp h1 {
-  font-family: Ebrima;
-  font-size: 42px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  letter-spacing: normal;
-  color: #000;
-}
-
-.frmSignUp span{
-  display: block;
-  font-family: NanumGothic;
-  font-size: 17px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: normal;
-  text-align: left;
-  color: #414141;
-}
-
-.frmSignUp input{
-  width: 100%;
-  height: 32px;
-  margin: 1px 1px 20px 1px;
-  border-radius: 5px;
-  border: solid 1.5px #9b9b9b;
-}
-
-#correct{
-  display: none;
-  color : blue;
-  font-size: smaller;
-}
-
-#incorrect{
-  display: none;
-  color: red;
-  font-size: smaller;
-}
-
-.btn{
-  justify-content: center;
-  width: 100%;
-  height: 38px;
-  border-radius: 5px;
-  margin: 0;
-  border: none;
-  background-color: #0096ff;
-  color: white;
-  font-size: 14px;
-  margin: 10px 2px 0px 4px;
-}
-
-*/
 @font-face {
   font-family: 'KoPubDotumMedium';
-   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-.container_{
+.container_ {
   margin: auto;
-  background-color : #f4f4f4;
+  background-color: #f4f4f4;
   font-family: 'KoPubDotumMedium';
   width: 100%;
   height: 100vh;
@@ -90,20 +16,20 @@
   min-height: 100vh;
 }
 
-.SignUp{
+.SignUp {
   margin: auto;
   display: inline-block;
   vertical-align: middle;
 }
 
-.frmSignUp{
+.frmSignUp {
   text-align: center;
   width: 380px;
   padding: 20px 50px;
   background-color: white;
   box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
-  
+
   background-color: white;
   box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.19);
 }
@@ -127,70 +53,78 @@
   border-radius: 0.25rem;
   transition: none;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .bt {
     transition: none;
   }
 }
+
 .bt:hover {
   color: #212529;
 }
-.bt-check:focus + .bt, .bt:focus {
+
+.bt-check:focus+.bt, .bt:focus {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
+
 .bt:disabled, .bt.disabled, fieldset:disabled .bt {
   pointer-events: none;
   opacity: 0.65;
 }
 
-.btn-main{
+.btn-main {
   color: #fff;
   background-color: #0096ff;
-  
-} 
+
+}
 
 .btn-main:hover {
   color: #fff;
   background-color: #0088e9;
 }
-.btn-check:focus + .btn-main, .btn-main:focus {
+
+.btn-check:focus+.btn-main, .btn-main:focus {
   color: #fff;
   background-color: #0484df;
   box-shadow: #0484dfee;
 }
-.btn-check:checked + .btn-main, .btn-check:active + .btn-main, .btn-main:active, .btn-main.active, .show > .btn-main.dropdown-toggle {
+
+.btn-check:checked+.btn-main, .btn-check:active+.btn-main, .btn-main:active, .btn-main.active, .show>.btn-main.dropdown-toggle {
   color: #fff;
   background-color: #0484df;
 }
-.btn-check:checked + .btn-main:focus, .btn-check:active + .btn-main:focus, .btn-main:active:focus, .btn-main.active:focus, .show > .btn-main.dropdown-toggle:focus {
+
+.btn-check:checked+.btn-main:focus, .btn-check:active+.btn-main:focus, .btn-main:active:focus, .btn-main.active:focus, .show>.btn-main.dropdown-toggle:focus {
   box-shadow: #0484df;
 }
+
 .btn-main:disabled, .btn-main.disabled {
   color: #fff;
   background-color: #0096ff;
 }
 
-.btn-a{
+.btn-a {
   text-decoration: none;
   background-color: transparent;
   border: none;
   color: #0096ff;
 }
 
-.btn-a:hover{
+.btn-a:hover {
   text-decoration: none;
   background-color: transparent;
   border: none;
-  color:#027ed7;
-} 
+  color: #027ed7;
+}
 
-.invaildFeedback{
+.invaildFeedback {
   color: #ff3535;
   font-size: 14px;
 }
 
-.vaildFeedback{
+.vaildFeedback {
   color: #0088e9;
   font-size: 14px;
 }

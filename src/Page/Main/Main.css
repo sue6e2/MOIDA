@@ -13,7 +13,7 @@
 }
 
 .MainPage .MyChallenge h1 {
-    font-family: NanumGothicOTF;
+    font-family: Pretendard;
     font-size: 40px;
     font-weight: bold;
     font-stretch: normal;
@@ -26,7 +26,7 @@
 }
 
 .MainPage .PopularChallenge h1 {
-    font-family: NanumGothicOTF;
+    font-family: Pretendard;
     font-size: 40px;
     font-weight: bold;
     font-stretch: normal;
@@ -45,7 +45,7 @@
     float: right;
     border-radius: 10px;
     background-color: #076df3;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: bold;
     line-height: 0;
@@ -135,7 +135,7 @@
     width: 270px;
     height: 48px;
     margin: 50px auto 35px auto;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 40px;
     font-weight: bold;
     font-stretch: normal;
@@ -155,7 +155,7 @@
 }
 
 .MainPage .MakeChallengePopUp .ChallengeImgUpload {
-    width: 148px;
+    width: 135px;
     height: 32px;
     margin: 11px auto 28px auto;
     padding: 10px;
@@ -163,7 +163,7 @@
     background-color: #f1f1f1;
     box-sizing: border-box;
     display: flex;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -183,15 +183,15 @@
 }
 
 .MainPage .MakeChallengePopUp .VisibilitySection {
-    margin: 0 635px 25px 205px;
+    margin: 0 635px 25px 202px;
     display: inline-flex;
 }
 
 .MainPage .MakeChallengePopUp .VisibilityTitle {
     width: 92px;
     height: 21px;
-    font-family: Roboto;
-    margin: 3px 53px 3px 0;
+    font-family: Pretendard;
+    margin: 3px 56px 3px 0;
     font-size: 20px;
     font-weight: 500;
     font-stretch: normal;
@@ -220,7 +220,7 @@
 .MainPage .MakeChallengePopUp .NameTitle {
     width: 112px;
     height: 21px;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: 500;
     font-stretch: normal;
@@ -249,14 +249,14 @@
 .MainPage .MakeChallengePopUp .DateSection p {
     margin: auto 20px;
     font-size: 30px;
-    font-family: Roboto;
+    font-family: Pretendard;
     line-height: 0.4;
 }
 
 .MainPage .MakeChallengePopUp .DateTitle {
     width: 112px;
     height: 21px;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: 500;
     font-stretch: normal;
@@ -278,14 +278,14 @@
 }
 
 .MainPage .MakeChallengePopUp .BadgeSection {
-    margin: 0 178px 5px 252px;
+    margin: 0 178px 5px 243px;
     display: inline-flex;
 }
 
 .MainPage .MakeChallengePopUp .BadgeTitle {
-    width: 45px;
+    width: 54px;
     height: 21px;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: 500;
     font-stretch: normal;
@@ -309,7 +309,7 @@
 .MainPage .MakeChallengePopUp .BadgeRule {
     width: 250px;
     height: 23px;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -329,7 +329,7 @@
 .MainPage .MakeChallengePopUp .DescriptionTitle {
     width: 112px;
     height: 21px;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: 500;
     font-stretch: normal;
@@ -349,7 +349,7 @@
     background-color: #fff;
     font-size: 20px;
     resize: none;
-    font-family: Roboto;
+    font-family: Pretendard;
 }
 
 .MainPage .MakeChallengePopUp .SubmitBt {
@@ -359,7 +359,7 @@
     margin-right: 30px;
     border-radius: 10px;
     background-color: #076df3;
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 20px;
     font-weight: bold;
     line-height: 0;
@@ -369,7 +369,7 @@
     border: 0;
 }
 
-.ApplyPopupClose{
+.ApplyPopupClose {
     position: absolute;
     top: 6px;
     right: 6px;
@@ -383,9 +383,9 @@
     width: 70px;
     height: 70px;
     cursor: pointer;
-  }
-  
-  .ApplyPopUp h1 {
+}
+
+.ApplyPopUp h1 {
     text-align: center;
     margin-top: 80px;
-  }
+}

@@ -18,7 +18,6 @@ connection.connect();
 
 router.get('/', function (req, res) {
 
-    console.log(req);
     let user_id = req.query.user_realid;
 
     let sql = `SELECT distinct g.name AS 'group_name', g.startDate, g.endDate, b.name AS 'badge_name' from badge b INNER JOIN moidagroup g ON g.group_id = b.group_id where user_id = ?;`
@@ -31,15 +30,14 @@ router.get('/', function (req, res) {
     let q1 = mysql.format(sql, params);
     let q2 = mysql.format(sql2, params2);
 
-    connection.query( q1 + q2, function (err, rows) {
-            if (!err) {
-                console.log(rows);
-                res.send({ code: 0, rows });
-            } else {
-                
-                res.send({ code: 101 });
-            }
-        });
+    connection.query(q1 + q2, function (err, rows) {
+        if (!err) {
+            res.send({ code: 0, rows });
+        } else {
+
+            res.send({ code: 101 });
+        }
+    });
 })
 
 module.exports = router;

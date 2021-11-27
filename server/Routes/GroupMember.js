@@ -18,8 +18,6 @@ connection.connect();
 
 //챌린지 신청
 router.post('/inviteMember', function (req, res) {
-    console.log(req);
-
     let sql = `INSERT INTO moidagroup_member values (?,?,0,'0')`;
     let user_id = req.body.params.master_realid;
     let group_id = req.body.params.group_id;
@@ -35,8 +33,6 @@ router.post('/inviteMember', function (req, res) {
 })
 
 router.post('/inviteApplyMember', function (req, res) {
-    console.log(req);
-
     let sql = `INSERT INTO moidagroup_member values (?,?,0,'0')`;
     let user_id = req.query.master_realid;
     let group_id = req.query.group_id;

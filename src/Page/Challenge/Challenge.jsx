@@ -5,7 +5,7 @@ import Data from '../../Data';
 import { PopUp } from '../../Components/Popup/Popup';
 import icon_camera from '../../res/img/icon-camera.svg';
 import icon_close from '../../res/img/icon-close.svg';
-import preview_image from '../../res/img/no-image.jpg';
+import preview_image from '../../res/img/certification_default.png';
 import axios from 'axios';
 import { Chart } from 'chart.js';
 import DoughnutChart from '../../Components/DoughnutChart/DoughnutChart';
@@ -270,26 +270,20 @@ class ChallengePage extends Component {
     }
 
     checkTotalRate = (value) => {
-        console.log(value);
         switch (true) {
             case (value <= 100) && (value >= 81):
-                console.log("과일")
                 return fruit
                 break;
             case (value <= 80) && (value >= 61):
-                console.log("나무")
                 return tree
                 break;
             case (value <= 60) && (value >= 41):
-                console.log("꽃")
                 return flower
                 break;
             case (value <= 40) && (value >= 21):
-                console.log("잔디")
                 return grass
                 break;
             case (value <= 20) && (value >= 0):
-                console.log("싹")
                 return sprout
                 break;
         }
@@ -305,8 +299,6 @@ class ChallengePage extends Component {
 
 
     render() {
-        console.log(this.challengeData);
-        console.log(this.userData);
         return (
             <div className="ChallengePage">
                 <TopBar />
@@ -359,7 +351,7 @@ class ChallengePage extends Component {
                     <div className="ConfirmPopUp">
                         <form encType="multipart/form-data" onSubmit={this.handleConfirmFormSubmit}>
                             <img className="ConfirmCloseBt" src={icon_close} onClick={() => { this.closeConfirmPopUp() }} />
-                            <h1 className="Title">내인증</h1>
+                            <h1 className="Title">내 인증</h1>
                             <img id="preview-confirmimage" src={preview_image} className="ConfirmImage" alt="인증이미지"></img>
                             <label for="confirm-input-file" className="ConfirmImgUpload">이미지 업로드<img src={icon_camera} /></label>
                             <input style={{ display: "none" }} id="confirm-input-file" type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleConfirmFileChange} />
