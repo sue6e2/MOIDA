@@ -124,15 +124,12 @@ const MyChallengeCard = (props) =>{
     let end = new Date(props.endDate);
     let start = new Date(props.startDate);
     var gap = end.getTime() - start.getTime();
-    var result = Math.floor(gap / (1000 * 60 * 60 * 24));
 
     return (
-        <div className="MyChallengeCard" onClick={() => { props.cardClicked() }}>
-            <div style={{ position: "relative" }}>
+        <div className="MyChallengeCard">
+            <div>
                 <img id="challenge-image" className="ChallengeImage" src={props.image} ></img>
-            </div>
-            <p className="ChallengeName">{props.name}</p>
-            <div style={{ display: "flex" }}>
+                <p className="ChallengeName">{props.name}</p>
                 <div className="ChallengeRateGraph"><span style={{ width: `${Math.floor(props.myRate)}%` }} /></div>
                 <p className="ChallengeRate">{Math.floor(props.myRate)}%</p>
             </div>

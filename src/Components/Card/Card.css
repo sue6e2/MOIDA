@@ -88,9 +88,10 @@
 
 .MyChallengeCard {
     margin-right: 100px;
-    cursor: pointer;
     padding: 0;
     margin-right: 51px;
+    width: 251px;
+    height: 200px;
 }
 
 .MyChallengeCard .ChallengeImage {

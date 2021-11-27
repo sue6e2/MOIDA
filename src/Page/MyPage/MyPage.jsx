@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from '../../Components/Bar/Bar';
 import './MyPage.css';
-import { ChallengeCard, MyChallengeCard } from '../../Components/Card/Card';
+import { MyChallengeCard } from '../../Components/Card/Card';
 import axios from 'axios';
 import Data from '../../Data';
 import DefaultProfileImg from '../../Components/DefaultProfileImg/DefaultProfileImg';
@@ -18,125 +18,41 @@ class MyPage extends Component {
         super(props);
 
         this.state = {
-          isOpenPopup: false,
-          myDataBeforeProcessing: [],
-          popularityDataBeforeProcessing: [],
-          myChallengeData: [],
-          hide: true,
-          newChallengeVisibility: 0,
-          newChallengeName: "",
-          newChallengeDescription: "",
-          file: null,
-          fileName: '',
-          newChallengeBadge: '',
-          newChallengeStartDate: '',
-          newChallengeEndDate: '',
-          isBadgeValidate: false,
-          popularityData: [],
-          myChallengePageNum: 1,
-          myChallengeTotalPageNum: 1,
-          isMyPageHandlerOn: true,
-          popularityPageNum: 1,
-          popularityTotalPageNum: 1,
-          isPopularityHandlerOn: true
+            myBadgeData : [],
+            myChallengeData : []
         }
 
-        if (this.state.myDataBeforeProcessing.length == 0) {
-          this.getChallengeData();
-      }
+        this.getMyData();
     }
 
-    
     userData = Data.getUserData();
 
-    getChallengeData = async () => {
-        let temp = [];
+    getMyData = async(index) => {
         try {
-            let response = await axios.get("http://localhost:5001/myGroupList",
+            let response = await axios(
                 {
+                    method: 'get',
+                    url: 'http://localhost:5001/mypage',
                     headers: {
                     },
-                    params: { account_id: this.userData.realId }
-
+                    params: {
+                        user_realid: this.userData.realId,
+                    },
                 }
             );
-            console.log(response);
-            if (response.data.rows.length != 0) {
-                for (let i = 0; i < response.data.rows.length; i++) {
-                    temp.push(response.data.rows[i]);
-                }
+            if (response.data.code == 0) {
+                console.log(response);
                 this.setState({
-                    myDataBeforeProcessing: temp,
-                    myChallengeTotalPageNum: Math.ceil(response.data.rows.length / 3),
+                    myBadgeData : response.data.rows[0],
+                    myChallengeData : response.data.rows[1]
                 })
+                console.log(this.state.myBadgeData);
+                console.log(this.state.myChallengeData);
             }
         } catch (error) {
             console.log(error);
         }
     }
-
-    readImage(input) {
-      if (input.files && input.files[0]) {
-
-          const reader = new FileReader()
-          reader.onload = e => {
-              const previewImage = document.getElementById("preview-Image");
-              previewImage.src = e.target.result
-          }
-          reader.readAsDataURL(input.files[0])
-      }
-  }
-
-  componentDidUpdate() {
-    let resetNum = (this.state.myChallengePageNum - 1) * 4;
-    let p_resetNum = (this.state.popularityPageNum - 1) * 4;
-    if (this.state.isMyPageHandlerOn && this.state.myDataBeforeProcessing != 0) {
-        let temp = [];
-        if (this.state.myChallengeTotalPageNum == this.state.myChallengePageNum && this.state.myDataBeforeProcessing.length % 4 != 0) {
-            for (let i = resetNum; i < resetNum + (this.state.myDataBeforeProcessing.length % 4); i++) {
-                temp.push(this.state.myDataBeforeProcessing[i]);
-            }
-            this.setState({
-                isMyPageHandlerOn: false,
-                myChallengeData: temp
-            })
-        } else {
-            for (let i = resetNum; i < resetNum + 4; i++) {
-                if (this.state.myDataBeforeProcessing[i] == null) {
-                    continue;
-                }
-                temp.push(this.state.myDataBeforeProcessing[i]);
-            }
-            this.setState({
-                isMyPageHandlerOn: false,
-                myChallengeData: temp
-            })
-        }
-    } else if (this.state.isPopularityHandlerOn && this.state.popularityDataBeforeProcessing != 0) {
-        let temp = [];
-        if (this.state.popularityTotalPageNum == this.state.popularityPageNum && this.state.popularityDataBeforeProcessing.length % 4 != 0) {
-            for (let i = p_resetNum; i < p_resetNum + (this.state.popularityDataBeforeProcessing.length % 4); i++) {
-                temp.push(this.state.popularityDataBeforeProcessing[i]);
-            }
-            this.setState({
-                isPopularityHandlerOn: false,
-                popularityData: temp
-            })
-        } else {
-            for (let i = p_resetNum; i < p_resetNum + 4; i++) {
-                if (this.state.popularityDataBeforeProcessing[i] == null) {
-                    continue;
-                }
-                temp.push(this.state.popularityDataBeforeProcessing[i]);
-            }
-            this.setState({
-                isPopularityHandlerOn: false,
-                popularityData: temp
-            })
-        }
-    }
-}
-
 
     render() {
 
@@ -145,48 +61,59 @@ class MyPage extends Component {
             <div className="MyPage">
                 <TopBar />
                 <div className ="MyPageSection">
-                <div>
-                  <h1>내정보</h1>
-                  <DefaultProfileImg
-                    className ="DefaultPRofileImg"
-                    id={userData.realId}
-                    name={userData.accountName}
-                    width={56}
-                    height={56}
-                    margin={"0"}
-                    textMargin={"0"}
-                    lineHeight={2.7}
-                />
-                </div>
-                <div>
-                  <div className="MyChallenge">
-                    <h1>챌린지 모아보기</h1>
-                    <div style={{ height: "45px", margin: "0 0 10px 0" }}>
-                    </div>
-                    {
-                        this.state.myDataBeforeProcessing.length != 0 ?
-                            <div style={{ display: "flex" }}>
-                                {
-                                    this.state.myChallengeData.map((current, index) => {
-                                        return (
-                                            <MyChallengeCard
-                                                key={index}
-                                                cardClicked={() => { this.myChallengeCardHandler(index) }}
-                                                name={current.name}
-                                                memberCount={current.member_count}
-                                                image={current.image}
-                                                startDate={current.startDate}
-                                                endDate={current.endDate}
-                                                myRate={current.my_rate}
-                                            />
-                                        )
-                                    })
-                                }
+                    <div className ="MyPageSection1">
+                    <div className="MyInfo">
+                        <h1>내정보</h1>
+                            <div style ={{width:"102px", margin : "auto"}}>
+                            <DefaultProfileImg
+                                className ="DefaultPRofileImg"
+                                id={userData.realId}
+                                name={userData.accountName}
+                                width={102}
+                                height={102}
+                                margin={"0"}
+                                textMargin={"0"}
+                                lineHeight={3.1}
+                                fontSize ={35}
+                            />
                             </div>
-                            :
-                            <div style={{ height: "285.69px" }}></div>
-                    }
-                </div>
+                            <p className="NameLabel">이름</p>
+                            <p className ="Name">{userData.accountName}</p>
+                            <div style ={{paddingTop : "20px"}}>
+                            <h1>칭호 모아보기</h1>
+                            {
+                                this.state.myBadgeData.map((current,index)=>{
+                                    return(
+                                        <div style ={{display :"flex"}}>
+                                        <p className ="GroupName">{current.group_name}</p>
+                                        <p className ="BadgeName">&lt; {current.badge_name} &gt;</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                            </div>
+                            </div>
+                            </div>
+                  <div className="MyChallenge" style ={{ marginLeft : "20px" ,width :"1300px"}}>
+                    <h1>챌린지 모아보기</h1>
+                    <div style={{ float: "left" }}>
+                        {
+                            this.state.myChallengeData.map((current,index) =>{
+                                return(
+                                    <div style ={{ float : "left", margin : "10px 20px 0px 20px"}}>
+                                    <MyChallengeCard
+                                    key={index}
+                                    name={current.name}
+                                    image={current.image}
+                                    startDate={current.startDate}
+                                    endDate={current.endDate}
+                                    myRate={current.my_rate}
+                                />
+                                </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
                 </div>
             </div >
