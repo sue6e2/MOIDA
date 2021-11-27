@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { Component } from 'react';
+import { SearchResultCard } from '../../Components/Card/Card';
+import TopBar from '../../Components/Bar/Bar';
 import './ChallengeSearch.css';
+import CryptoJS from 'crypto-js';
 
 class ChallengeSearch extends Component {
     constructor(props) {
@@ -11,66 +14,51 @@ class ChallengeSearch extends Component {
         }
     }
 
-    onClickButton = async () => {
-        console.log("버튼 클릭");
-        console.log(this.state.challengeName);
-        const response = await axios.get("http://localhost:5001/challengeSearch",
-        {
-          headers:{},
-          params : { name : this.state.challengeName }
-          
-        })
-        console.log(response);
-        this.setState({
-          challenge: response.data.rows
-      })
-
-        var arr = response.data.rows;
-        for (var i = 0; i < arr.length; i++) {
-          console.log(arr[i]);
-      }  
-      console.log(this.state.challenge)
-        
-    }
-
-
-
-    onKeyPress = (e) =>{
-      if(e.key == 'Enter'){
-        this.onClickButton();
+    getSearchData = () => {
+      if (sessionStorage.getItem("searchData") != null) {
+          const bytes = CryptoJS.AES.decrypt(sessionStorage.getItem('searchData'), 'search key');
+          let searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+          console.log(searchData);
+          return searchData
       }
-    }
-
-    onChangeChallenge = (e) => {
-        this.setState({
-            challengeName: e.target.value
-        })
-        
-    }
-
-    renderResult = () => {
-      console.log(this.state.challenge[0])
-      
-      for (var step = 0; step < this.state.challenge.length; step++) {
-        return(
-          <div>{this.state.challenge[step].name}</div>
-        );
+      else {
+          return null
       }
-    }
+  }
 
     render() {
-
+      let renderData = this.getSearchData();
         return (
           <>
-            <div className="ChallengeSearch">
-                챌린지 검색 페이지
-                  <input
-                    placeholder = "챌린지 검색"
-                    type="text"
-                    onKeyPress = {this.onKeyPress}
-                    onChange={(e) => { this.onChangeChallenge(e) }} />
-                <button onClick={() => { this.onClickButton() }}>검색하기</button>
-                {this.renderResult()}
+            <div className="ResultPage">
+              <TopBar />
+              <div className="ChallengeResult">
+                <h1>검색결과</h1>
+                {
+                  renderData.length != 0?
+                  <div>
+                  {
+                    renderData.map((current, index) =>{
+                      return(
+                        <SearchResultCard
+                        key = {current.index}
+                        title = {current.name}
+                        discription = {current.discription}
+                        image = {current.imgage}
+                        startDate={current.startDate}
+                        endDate={current.endDate}
+                        memberCount = {current.member_count}
+                        badge = {current.badge}
+                        />
+                      )
+                    })
+                  }
+                  </div>
+                  :
+                  <div>일치하는 검색 결과가 없습니다.</div>
+                }
+              </div>
+                {/* {this.renderResult()} */}
             </div>
             </>
         );

@@ -73,6 +73,33 @@ const CertificationCard = (props) => {
     )
 }
 
+const SearchResultCard = (props) => {
+    let dateSt = props.startDate.toString();
+    let dateEn = props.endDate.toString();
+    let dateStr = dateSt.substring(0, 10);
+    let dateEnd = dateEn.substring(0, 10);
+
+    return(
+        <div className="SearchResultCard">
+            <div className="SearchResultImgSection">
+                <img src={props.img}></img>
+            </div>
+            <div className="SearchResultInfoSection1">
+                <h1 className="SearchResultTitle">{props.title}</h1>
+                <p className="SearchResultDescription">{props.description}</p>
+            </div>
+            <div className="SearchResultInfoSection2">
+                <h2>챌린지 기간</h2>
+                <span>{dateEnd.replace(/-/g, ".")}~{dateStr.replace(/-/g, ".")}</span>
+                <h2>현재신청인원</h2>
+                <span>{props.memberCount}</span>
+                <h2>칭호</h2>
+                <span>{props.badge}</span>
+            </div>
+        </div>
+    )
+}
+
 const MyCertificationCard = (props) => {
     let date = props.date.toString();
     let dateStr = date.substring(0, 10);
@@ -106,4 +133,4 @@ const MyCertificationCard = (props) => {
     )
 }
 
-export { ChallengeCard, PopularityCard, CertificationCard, MyCertificationCard };
+export { ChallengeCard, PopularityCard, SearchResultCard, CertificationCard, MyCertificationCard };
