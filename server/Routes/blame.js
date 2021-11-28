@@ -33,7 +33,7 @@ router.post('/', function (req, res) {
     connection.query( q1 + sql2, function (err) {
         if (!err) {
             //신고 성공할 때마다 신고당한 아이디 rate update(validation = '0' 인 것만 카운트)
-            let sql3 = `update moidagroup g INNER JOIN  moidagroup_member m ON g.group_id = m.group_id set m.rate = (SELECT count(*)/(g.endDate - g.startDate + 1) * 100  from certification where validation = '0' group by group_id2, account_id having group_id2 = ? and account_id = ?) 
+            let sql3 = `update moidagroup g INNER JOIN  moidagroup_member m ON g.group_id = m.group_id set m.rate = (SELECT count(*)/(Datediff(g.endDate, g.startDate)+1) * 100  from certification where validation = '0' group by group_id2, account_id having group_id2 = ? and account_id = ?) 
             where  m.group_id = ? AND m.user_id = ?;`
             let sql4 = `update moidagroup g INNER JOIN (SELECT group_id, AVG(rate) AS 'Group_rate' FROM moidagroup_member GROUP BY group_id) m ON g.group_id = m.group_id set g.rate = m.Group_rate where g.group_id = ?;`
             let params3 = [group_id, blamedUser_id, group_id, blamedUser_id];

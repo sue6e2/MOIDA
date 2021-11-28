@@ -61,7 +61,7 @@ router.post('/certification', upload.single('photo'), function (req, res) {
     connection.query(sql, params, function (err) {
 
         if (!err) {
-            let sql3 = `update moidagroup g INNER JOIN  moidagroup_member m ON g.group_id = m.group_id set m.rate = (SELECT count(*)/(g.endDate - g.startDate + 1) * 100  from certification where validation = '0' group by group_id2, account_id having group_id2 = ? and account_id = ?) 
+            let sql3 = `update moidagroup g INNER JOIN  moidagroup_member m ON g.group_id = m.group_id set m.rate = (SELECT count(*)/ (Datediff(g.endDate, g.startDate) + 1) * 100  from certification where validation = '0' group by group_id2, account_id having group_id2 = ? and account_id = ?) 
                         where  m.group_id = ? AND m.user_id = ?;`;
             let params3 = [group_id, account_id, group_id, account_id];
             let q1 = mysql.format(sql3, params3);
