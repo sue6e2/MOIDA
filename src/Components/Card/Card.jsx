@@ -110,7 +110,7 @@ const SearchResultCard = (props) => {
                 </div>
             </div>
             <div className ="SearchResultInfoSection3">
-                <p className="DescriptionContent">{dateEnd.replace(/-/g, ".")} ~ {dateStr.replace(/-/g, ".")}</p>
+                <p className="DescriptionContent">{dateStr.replace(/-/g, ".")} ~ {dateEnd.replace(/-/g, ".")}</p>
                 <p className="DescriptionContent">{props.memberCount}</p>
                 <p className="DescriptionContent">{props.badge}</p>
             </div>
