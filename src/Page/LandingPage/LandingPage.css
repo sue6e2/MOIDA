@@ -1,5 +1,83 @@
 .LandingPage {
-    width: 100vw;
+    width: 1920px;
     height: 100vh;
-    overflow: hidden;
+    padding: 49px 60px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.LandingPage .LandingPageTop {
+    height: 55px;
+    margin: 0 0 48px 0;
+    display: flex;
+}
+
+.LandingPage .LandingPageTop img {
+    width: 211px;
+    height: 55px;
+}
+
+.LandingPage .LandingPageTop .SignInBt {
+    height: 28px;
+    margin: auto 29px auto auto;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    color: #076df3;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.LandingPage .LandingPageTop .SignUpBt {
+    height: 55px;
+    padding: 13px 37px 14px 38px;
+    border-radius: 11px;
+    background-color: #076df3;
+    color: white;
+    border: 0;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.LandingPage .VideoOne {
+    margin: 0 0 32px 0;
+    height: 500px;
+    background-color: #e0e0e0;
+}
+
+.LandingPage .VideoOne img {
+    width: 1800px;
+    height: 500px;
+}
+
+.LandingPage .StartBt {
+    width: 235px;
+    height: 60px;
+    margin: 12px 0 88px 0;
+    padding: 20px 66px 20px 65px;
+    border-radius: 11px;
+    background-color: #076df3;
+    font-family: Pretendard;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    border: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.LandingPage .VideoTwo {
+    margin: 0;
+    height: 500px;
+    background-color: #e0e0e0;
+}
+
+.LandingPage .VideoTwo img {
+    width: 1800px;
 }
