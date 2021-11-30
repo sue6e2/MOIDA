@@ -9,9 +9,9 @@ import Data from "../../Data";
 
 const ChallengeCard = (props) => {
     let end = new Date(props.endDate);
-    let start = new Date(props.startDate);
-    var gap = end.getTime() - start.getTime();
-    var result = Math.floor(gap / (1000 * 60 * 60 * 24));
+    let now = new Date();
+    var gap = end.getTime() - now.getTime();
+    var result = Math.ceil(gap / (1000 * 60 * 60 * 24));
 
     return (
         <div className="ChallengeCard" onClick={() => { props.cardClicked() }}>
@@ -34,7 +34,7 @@ const ChallengeCard = (props) => {
 
 const PopularityCard = (props) => {
     return (
-        <div className="PopularityCard" onClick ={ ()=>{props.cardClicked()} }>
+        <div className="PopularityCard" onClick={() => { props.cardClicked() }}>
             <div className="ImageSection" style={{ height: "177px", backgroundColor: "balck" }}>
                 <img id="popularity-image" className="PopularityImage" src={props.image} ></img>
             </div>
@@ -83,14 +83,14 @@ const SearchResultCard = (props) => {
     let dateStr = dateSt.substring(0, 10);
     let dateEnd = dateEn.substring(0, 10);
 
-    return(
+    return (
         <div className="SearchResultCard">
             <div className="SearchResultImgSection">
                 <img src={props.img} width="320px" height="179px"></img>
             </div>
             <div className="SearchResultInfoSection1">
                 <h1 className="SearchResultTitle">{props.title}</h1>
-                <div className="SearchResultInfoSection2" style ={{width : "500px"}}>
+                <div className="SearchResultInfoSection2" style={{ width: "500px" }}>
                     <img className="DescriptionImg" src={icon_description} width="40px" height="40ox"></img>
                     <p className="DescriptionLabel">{props.description}</p>
                 </div>
@@ -109,17 +109,17 @@ const SearchResultCard = (props) => {
                     <p className="DescriptionLabel">칭호</p>
                 </div>
             </div>
-            <div className ="SearchResultInfoSection3">
+            <div className="SearchResultInfoSection3">
                 <p className="DescriptionContent">{dateStr.replace(/-/g, ".")} ~ {dateEnd.replace(/-/g, ".")}</p>
                 <p className="DescriptionContent">{props.memberCount}</p>
                 <p className="DescriptionContent">{props.badge}</p>
             </div>
-            <button className="ApplyBtn" onClick={()=>{props.searchApplyClicked()}}>신청하기</button>
+            <button className="ApplyBtn" onClick={() => { props.searchApplyClicked() }}>신청하기</button>
         </div>
     )
 }
 
-const MyChallengeCard = (props) =>{
+const MyChallengeCard = (props) => {
 
     let end = new Date(props.endDate);
     let start = new Date(props.startDate);
@@ -170,4 +170,4 @@ const MyCertificationCard = (props) => {
     )
 }
 
-export { ChallengeCard, PopularityCard, SearchResultCard, CertificationCard, MyChallengeCard ,MyCertificationCard };
+export { ChallengeCard, PopularityCard, SearchResultCard, CertificationCard, MyChallengeCard, MyCertificationCard };

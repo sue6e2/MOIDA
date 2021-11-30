@@ -41,9 +41,9 @@ class ChallengePage extends Component {
     challengeData = Data.getChallengeData();
 
     endDate = new Date(this.challengeData.endDate);
-    startDate = new Date(this.challengeData.startDate);
-    gap = this.endDate.getTime() - this.startDate.getTime();
-    result = Math.floor(this.gap / (1000 * 60 * 60 * 24));
+    now = new Date();
+    gap = this.endDate.getTime() - this.now.getTime();
+    result = Math.ceil(this.gap / (1000 * 60 * 60 * 24));
     start = this.challengeData.startDate.toString();
     end = this.challengeData.endDate.toString();
     startDStr = this.start.substring(0, 10);
