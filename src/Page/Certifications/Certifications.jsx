@@ -19,7 +19,8 @@ class CertificationsPage extends Component {
             confirmDate: new Date(),
             file: null,
             fileName: "",
-            certificationData: []
+            certificationData: [],
+            isBlamePopUpOpen: false
         }
 
 
@@ -146,9 +147,26 @@ class CertificationsPage extends Component {
                 }
             );
             console.log(response);
+            if (response.data.code == 0) {
+                this.setState({
+                    isBlamePopUpOpen: true
+                })
+            }
         } catch (error) {
             console.log(error);
         }
+    }
+
+    openBlamePopUp = () => {
+        this.setState({
+            isBlamePopUpOpen: true,
+        })
+    }
+
+    closeBlamePopUp = () => {
+        this.setState({
+            isBlamePopUpOpen: false,
+        })
     }
 
     today = new Date();
@@ -212,6 +230,17 @@ class CertificationsPage extends Component {
                             </div>
                             <button className="SubmitConfirmBt" type="submit">생성하기</button>
                         </form>
+                    </div>
+                </PopUp>
+
+                <PopUp
+                    isOpen={this.state.isBlamePopUpOpen}
+                    width={400}
+                    height={200}
+                >
+                    <div className="BlamePopUp">
+                        <img className="BlamePopUpCloseBt" src={icon_close} onClick={() => { this.closeBlamePopUp() }} />
+                        <h1>신고 완료되었습니다!</h1>
                     </div>
                 </PopUp>
             </div>
