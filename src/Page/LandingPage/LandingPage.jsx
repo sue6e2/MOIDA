@@ -2,7 +2,8 @@ import { Component } from 'react';
 import './LandingPage.css';
 import logo from '../../res/img/logo.png';
 import GifPlayer from "react-gif-player";
-import Pengsu from "../../res/img/instagram.gif";
+import GifOne from "../../res/img/landingPage1.gif";
+import GifTwo from "../../res/img/landingpage2.gif";
 
 class LandingPage extends Component {
     render() {
@@ -15,11 +16,11 @@ class LandingPage extends Component {
                 </div>
 
                 <div className="VideoOne">
-                    <GifPlayer autoplay={true} gif={Pengsu} ></GifPlayer>
+                    <GifPlayer autoplay={true} gif={GifOne} ></GifPlayer>
                 </div>
-                <button className="StartBt">시작하기</button>
+                <button className="StartBt" onClick={() => { window.location.href = "/SignUp" }}>시작하기</button>
                 <div className="VideoTwo">
-                    <GifPlayer autoplay={true} gif={Pengsu} ></GifPlayer>
+                    <GifPlayer autoplay={true} gif={GifTwo} ></GifPlayer>
                 </div>
             </div>
         );
