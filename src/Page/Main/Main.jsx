@@ -59,7 +59,7 @@ class Main extends Component {
     getChallengeData = async () => {
         let temp = [];
         try {
-            let response = await axios.get("http://localhost:5001/myGroupList",
+            let response = await axios.get("http://13.124.164.33:5001/myGroupList",
                 {
                     headers: {
                     },
@@ -251,7 +251,7 @@ class Main extends Component {
             let response = await axios(
                 {
                     method: 'post',
-                    url: 'http://localhost:5001/makeGroup',
+                    url: 'http://13.124.164.33:5001/makeGroup',
                     data: formData,
                     headers: {
                         "Content-Type": "multipart/form-data"
@@ -277,7 +277,7 @@ class Main extends Component {
     insertGroupMember = async () => {
         let madeGroupId = sessionStorage.getItem('group_id');
         try {
-            let response = await axios.post("http://localhost:5001/groupMember/inviteMember",
+            let response = await axios.post("http://13.124.164.33:5001/groupMember/inviteMember",
                 {
                     headers: {
                     },
@@ -297,7 +297,7 @@ class Main extends Component {
     getPopularityData = async () => {
         let temp = [];
         try {
-            let response = await axios.get("http://localhost:5001/myGroupList/popularity");
+            let response = await axios.get("http://13.124.164.33:5001/myGroupList/popularity");
             console.log(response);
             if (response.data.rows.length != 0) {
                 for (let i = 0; i < response.data.rows.length; i++) {
@@ -351,7 +351,7 @@ class Main extends Component {
             let response = await axios(
                 {
                     method: 'post',
-                    url: 'http://localhost:5001/groupMember/inviteApplyMember',
+                    url: 'http://13.124.164.33:5001/groupMember/inviteApplyMember',
                     headers: {
                     },
                     params: {

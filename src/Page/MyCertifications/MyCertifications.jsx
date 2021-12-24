@@ -22,7 +22,7 @@ class MyCertificationsPage extends Component {
 
     getMyCertificationData = async () => {
         try {
-            let response = await axios.get("http://localhost:5001/challengeMain/mine",
+            let response = await axios.get("http://13.124.164.33:5001/challengeMain/mine",
                 {
                     headers: {
                     },

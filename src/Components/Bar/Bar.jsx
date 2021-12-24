@@ -21,7 +21,7 @@ const TopBar = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:5001/challengeSearch",
+        "http://13.124.164.33:5001/challengeSearch",
         {
           headers: {},
           params: { name: challengeName }

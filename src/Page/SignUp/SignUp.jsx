@@ -84,7 +84,7 @@ class SignUp extends Component {
     }
 
     callSignUpApi = async () => {
-        const response = await axios.post("http://localhost:5001/signUp",
+        const response = await axios.post("http://13.124.164.33:5001/signUp",
             {
                 headers: {
                 },
@@ -98,7 +98,7 @@ class SignUp extends Component {
     }
 
     idDoubleCheck = async () => {
-        const response = await axios.get("http://localhost:5001/signUp/idDoubleCheck", {
+        const response = await axios.get("http://13.124.164.33:5001/signUp/idDoubleCheck", {
             headers: {
 
             },

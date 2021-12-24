@@ -1,7 +1,7 @@
 {
-    "host": "moida-instance.csnx9owbfgoh.ap-northeast-2.rds.amazonaws.com",
-    "user": "admin",
-    "password": "mzmoida5",
+    "host": "13.124.164.33",
+    "user": "root",
+    "password": "sue1234",
     "port": "3306",
     "database": "MOIDA_database"
 }
