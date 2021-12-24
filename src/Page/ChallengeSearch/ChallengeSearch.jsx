@@ -26,7 +26,7 @@ class ChallengeSearch extends Component {
       let response = await axios(
         {
           method: 'post',
-          url: 'http://localhost:5001/groupMember/inviteApplyMember',
+          url: 'http://13.124.164.33:5001/groupMember/inviteApplyMember',
           headers: {
           },
           params: {

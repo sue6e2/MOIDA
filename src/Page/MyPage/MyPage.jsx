@@ -32,7 +32,7 @@ class MyPage extends Component {
             let response = await axios(
                 {
                     method: 'get',
-                    url: 'http://localhost:5001/mypage',
+                    url: 'http://13.124.164.33:5001/mypage',
                     headers: {
                     },
                     params: {
