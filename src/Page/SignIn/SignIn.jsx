@@ -34,7 +34,7 @@ class SignIn extends Component {
 
     gooleLogin2 = async (id, name) => {
 
-        const response = await axios.post("http://13.124.164.33:5001/signIn/googleLogin",
+        const response = await axios.post("signIn/googleLogin",
             {
                 headers: {
                 },
@@ -59,7 +59,7 @@ class SignIn extends Component {
     }
 
     callApi = async () => {
-        const response = await axios.post("http://13.124.164.33:5001/signIn",
+        const response = await axios.post("/signIn",
             {
                 headers: {
                 },
