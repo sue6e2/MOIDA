@@ -52,7 +52,7 @@ class ChallengePage extends Component {
 
     checkBadgeValidation = async () => {
         try {
-            let response = await axios.get("http://13.124.164.33:5001/groupMember/validation2",
+            let response = await axios.get("/groupMember/validation2",
                 {
                     headers: {
                     },
@@ -171,7 +171,7 @@ class ChallengePage extends Component {
             let response = await axios(
                 {
                     method: 'post',
-                    url: 'http://13.124.164.33:5001/challengeMain/certification',
+                    url: '/challengeMain/certification',
                     data: formData,
                     headers: {
                         "Content-Type": "multipart/form-data"
@@ -199,7 +199,7 @@ class ChallengePage extends Component {
 
     getBadgeHandler = async () => {
         try {
-            let response = await axios.post("http://13.124.164.33:5001/groupMember/getBadge",
+            let response = await axios.post("/groupMember/getBadge",
                 {
                     headers: {
                     },
@@ -247,7 +247,7 @@ class ChallengePage extends Component {
 
     leaveChallenge = async () => {
         try {
-            let response = await axios.delete("http://13.124.164.33:5001/groupMember/leave",
+            let response = await axios.delete("/groupMember/leave",
                 {
                     headers: {
                     },

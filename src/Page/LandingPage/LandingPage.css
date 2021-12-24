@@ -1,9 +1,7 @@
 .LandingPage {
-    width: 1920px;
     height: 100vh;
-    padding: 49px 60px;
     box-sizing: border-box;
-    overflow-x: hidden;
+    margin-top: 40px;
 }
 
 .LandingPage .LandingPageTop {
@@ -13,7 +11,6 @@
 }
 
 .LandingPage .LandingPageTop img {
-    width: 211px;
     height: 55px;
 }
 
@@ -27,6 +24,7 @@
     color: #076df3;
     line-height: 1;
     cursor: pointer;
+    white-space:nowrap;
 }
 
 .LandingPage .LandingPageTop .SignUpBt {
@@ -42,16 +40,16 @@
     text-align: center;
     line-height: 1;
     cursor: pointer;
+    white-space:nowrap;
 }
 
 .LandingPage .VideoOne {
     margin: 0 0 32px 0;
-    height: 500px;
     background-color: #e0e0e0;
 }
 
 .LandingPage .VideoOne img {
-    width: 1800px;
+
     height: 500px;
 }
 
@@ -70,14 +68,10 @@
     border: 0;
     line-height: 0;
     cursor: pointer;
+    white-space:nowrap;
 }
 
 .LandingPage .VideoTwo {
     margin: 0;
-    height: 500px;
     background-color: #e0e0e0;
-}
-
-.LandingPage .VideoTwo img {
-    width: 1800px;
 }

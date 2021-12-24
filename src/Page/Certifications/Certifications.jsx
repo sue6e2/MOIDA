@@ -33,7 +33,7 @@ class CertificationsPage extends Component {
 
     getCertificationData = async () => {
         try {
-            let response = await axios.get("http://13.124.164.33:5001/challengeMain/others",
+            let response = await axios.get("/challengeMain/others",
                 {
                     headers: {
                     },
@@ -114,7 +114,7 @@ class CertificationsPage extends Component {
             let response = await axios(
                 {
                     method: 'post',
-                    url: 'http://13.124.164.33:5001/challengeMain/certification',
+                    url: '/challengeMain/certification',
                     data: formData,
                     headers: {
                         "Content-Type": "multipart/form-data"
@@ -133,7 +133,7 @@ class CertificationsPage extends Component {
 
     handleBlame = async (index) => {
         try {
-            let response = await axios.post("http://13.124.164.33:5001/blame",
+            let response = await axios.post("/blame",
                 {
                     headers: {
                     },
